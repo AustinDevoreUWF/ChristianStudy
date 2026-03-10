@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User{
+  id Int @id @default(autoincrement())//auto increments userID when added
+  email String @unique//must be unique
+  name String
+  password String
+  comments Comment[]//array of post objects listed that is attached to the user
+  discussions Discussion[]
+  createdAt DateTime @default(now())
+  isAdmin Boolean @default(false)
+}
+model Comment {
+  id           String    @id @default(uuid())
+  content      String
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  discussionId Int
+  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  parentId     String?
+  parent       Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies      Comment[] @relation("CommentReplies")
+  createdAt    DateTime  @default(now())
+}
+model Discussion {
+  id        Int       @id @default(autoincrement())
+  content   String
+  authorId  Int
+  author    User      @relation(fields: [authorId], references: [id])
+  topic     String
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+}

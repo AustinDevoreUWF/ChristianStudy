@@ -1,11 +1,9 @@
-import prisma from "@prisma"
+import CreateDiscussion from "@/components/ui/CreateDiscussion";
 
-async function getDiscussions(){
-  return await prisma.discussion.findMany({
-    select: {id:true}
-  })  
-}
-export default function discussionList(){
-    const discussions = await getDiscussions();
-
+export default function discussionPage(){
+    return(
+        <div className="flex justify-center items-center min-h-screen">
+                <CreateDiscussion user={{id: 1,isAdmin: true}}/>
+        </div>
+)
 }

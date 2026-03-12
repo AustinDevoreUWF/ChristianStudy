@@ -2,7 +2,7 @@ import Image from "next/image";
 //HomePage
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
       {/*BackGround*/}
       <div 
       className="bg-center bg-cover min-h-screen opacity-100"

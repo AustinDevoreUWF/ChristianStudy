@@ -1,8 +1,10 @@
 import prisma from "@/lib/prisma"
 import {NextResponse} from "next/server"
+import {Prisma} from "@prisma/client"
 
 export async function POST(req: Request){
-  const body = await req.json()
+  try{
+    const body = await req.json()
   
     const User = await prisma.user.create({
         data:{
@@ -12,6 +14,12 @@ export async function POST(req: Request){
         }
     })
     
-    return NextResponse.json(User)
-  
+    return NextResponse.json(User,{status:201})
+
+    }catch(err){
+        if(err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002")
+            return NextResponse.json({error:"This email is already in use."},{status:400})
+        console.error(err)
+        return NextResponse.json({error:"User creation Failed"}, {status:500});
+    }
 }

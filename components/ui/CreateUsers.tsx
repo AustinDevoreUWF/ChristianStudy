@@ -1,3 +1,4 @@
+'use client'
 import { useRef } from "react";
 
 export default function CreateUser(){
@@ -12,11 +13,9 @@ export default function CreateUser(){
         const password = passwordRef.current?.value;
         const name =nameRef.current?.value;
 
-        if(!email||!password||!name){alert("Please enter all the required fields")};
-
-        //check if the email is already in use
-
-        //check if the name is already in use
+        if(!email||!password||!name){alert("Please enter all the required fields")
+            return;
+        };
 
         try {
             const res = await fetch("/api/users", {
@@ -24,7 +23,10 @@ export default function CreateUser(){
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, name }),
             });
-
+            if(res.status === 400){
+                alert("That email is already in use!")
+                return;
+            }
             if (!res.ok) throw new Error("Failed to create user");
 
             alert("User created!");

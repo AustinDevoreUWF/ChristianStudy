@@ -39,10 +39,10 @@ export default function CreateUser(){
         }
     };
 return(
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md p-4">
-        <input ref={emailRef} type="email" placeholder="Email Address" required className="" />
-        <input ref={passwordRef} type="password" placeholder="Password" required className="" />
-        <input ref={nameRef}type="text" placeholder="Name" required className="" />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md p-4 bg-[#0A0806EB]">
+        <input ref={emailRef} type="email" placeholder="Email Address" required className="text-white" />
+        <input ref={passwordRef} type="password" placeholder="Password" required className="text-white" />
+        <input ref={nameRef}type="text" placeholder="Name" required className="text-white" />
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit</button>
     </form>
 )

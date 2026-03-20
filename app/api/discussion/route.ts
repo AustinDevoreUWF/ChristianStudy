@@ -13,3 +13,19 @@ export async function POST(req: Request){
     })
     return NextResponse.json(discussion);
 }
+export async function GET(){
+    try{
+        const discussions = await prisma.discussion.findMany({
+            include:{
+                author:{
+                    select:{name:true}
+                },
+            },
+            orderBy:{createdAt:"desc"}
+        })
+        return NextResponse.json(discussions)
+    }catch(err){
+        console.log(err)
+        return NextResponse.json({error: "Failed to fetch the discussions"}, {status:500})
+    }
+}

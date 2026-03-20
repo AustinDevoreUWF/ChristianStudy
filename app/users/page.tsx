@@ -1,4 +1,4 @@
-import CreateUser from "@/components/ui/CreateUsers"
+import CreateUser from "@/components/ui/Users/CreateUsers"
 
 
 /*
@@ -13,8 +13,9 @@ Needs to pass in a user Object for if the user is already registered
 */
 export default function usersPage(){
     return( 
-<div className=" flex justify-center my-100">
-    <CreateUser />
-</div>
+    <main className="flex min-h-screen items-center justify-center bg-[#a09080]">
+        <CreateUser />
+    </main>
+
     )
 }

@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 
 type BannerLink = { label: string; href: string };
@@ -17,22 +16,25 @@ export default function BannerClient({
     <div
       className={`${cinzelClass} ${garamondClass} fixed top-0 z-50 w-full`}
       style={{
-        background: "rgba(10, 8, 6, 0.92)",
-        borderBottom: "1px solid rgba(180, 160, 140, 0.2)",
+        background: "#060606",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
         backdropFilter: "blur(2px)",
+        height: "72px",
+        display: "flex",
+        alignItems: "center",
       }}
     >
-      <div className="px-10 py-4 flex items-center justify-between">
+      <div className="px-10 w-full flex items-center justify-between">
         {/* Title */}
-        <div className="flex flex-col">
+        <div className="flex flex-col" style={{ gap: "3px" }}>
           <span
             style={{
               fontFamily: "var(--font-cinzel)",
-              fontSize: "2.3rem",
+              fontSize: "1.55rem",
               fontWeight: 600,
-              letterSpacing: "0.08em",
-              color: "#e8e2d9",
-              lineHeight: 1.2,
+              letterSpacing: "0.07em",
+              color: "#ffffff",
+              lineHeight: 1,
             }}
           >
             The Study of Faith
@@ -40,9 +42,9 @@ export default function BannerClient({
           <span
             style={{
               fontFamily: "var(--font-garamond)",
-              fontSize: "1rem",
-              letterSpacing: "0.25em",
-              color: "#8a7060",
+              fontSize: "0.72rem",
+              letterSpacing: "0.30em",
+              color: "rgba(255,255,255,0.30)",
               textTransform: "uppercase",
               fontStyle: "italic",
             }}
@@ -59,15 +61,15 @@ export default function BannerClient({
               href={link.href}
               style={{
                 fontFamily: "var(--font-garamond)",
-                fontSize: "1.3rem",
-                letterSpacing: "0.08em",
-                color: "#a09080",
+                fontSize: "1.1rem",
+                letterSpacing: "0.06em",
+                color: "rgba(255,255,255,0.35)",
                 textDecoration: "none",
                 fontStyle: "italic",
                 transition: "color 0.2s ease",
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#e8e2d9")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#a09080")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
             >
               {link.label}
             </Link>

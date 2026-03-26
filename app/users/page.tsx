@@ -21,7 +21,7 @@ export default function usersPage(){
  
       {/* Painting Panel */}
       <div
-        className="hidden xl:flex w-2/3 bg-cover bg-center relative overflow-hidden"
+        className="hidden lg:flex w-2/3 bg-cover bg-center relative overflow-hidden"
         style={{ backgroundImage: "url('/JesusWithRabbis.jpg')" }}
       >
         {/* Dim the painting */}

@@ -7,14 +7,14 @@ export default async function DiscussionBoard() {
   const discussions = await res.json()
 
   return (
-    <main className="flex justify-center w-full my-40">
+    <main className="flex justify-center w-full my-20">
       <div style={{
         backgroundColor: "#080808",
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: "12px",
         width: "100%",
         maxWidth: "800px",
-        maxHeight: "80vh",
+        maxHeight: "90vh",
         overflowY: "auto",
         padding: "2rem",
       }}>

@@ -23,15 +23,13 @@ model User{
   isAdmin Boolean @default(false)
 }
 model Comment {
-  id           String    @id @default(uuid())
+  id           Int    @id @default(autoincrement())
   content      String
   userId       Int
   user         User      @relation(fields: [userId], references: [id])
   discussionId Int
   discussion   Discussion @relation(fields: [discussionId], references: [id])
   parentId     String?
-  parent       Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  reply      Comment[] @relation("CommentReplies")
   createdAt    DateTime  @default(now())
 }
 model Discussion {

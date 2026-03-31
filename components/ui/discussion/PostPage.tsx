@@ -1,3 +1,4 @@
+import prisma from "@/lib/prisma"
 /*
 Pre - Create a component for collecting replies
 1. Based on the disscussion_id grab the Title and the content into variables
@@ -14,7 +15,7 @@ Pre - Create a component for collecting replies
 */
 
 export default function PostPage(){
-    
+ const comments = await prisma.discussion
     
     return(
 

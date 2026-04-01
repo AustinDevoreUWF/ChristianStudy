@@ -26,23 +26,27 @@ export class Discussion {
         return `Discussion(discussionID)=${this.id}, discussionTitle=${this.title}, discussionText=${this.text}, authorId=${this.authorId}`
     };
 }
-export class Comment{
+export class Reply{
     id: number;
     title: string;
     text: string;
     authorId: number;
-    constructor(commentId: number, commentTitle: string, commentText: string, authorId:number){
+    discussionId: number;
+    constructor(replyId: number, replyTitle: string, replyText: string, authorId:number, discussionId: number){
         //checks
-        if(!commentId)throw new Error("A commentId was not provided, Im low Level!");
-        if(!commentTitle)throw new Error("A commentTitle was now provided!");
-        if(!commentText)throw new Error("A commentText was not provided");
+        if(!replyId)throw new Error("A replyId was not provided, Im low Level!");
+        if(!replyTitle)throw new Error("A replyTitle was now provided!");
+        if(!replyText)throw new Error("A replyText was not provided");
+        if(!discussionId)throw new Error("A discussionId is required");
+    
         //mapping
-        this.id = commentId
-        this.title = commentTitle
-        this.text = commentText
+        this.id = replyId
+        this.title = replyTitle
+        this.text = replyText
         this.authorId = authorId
+        this.discussionId = discussionId
     }
     toString():string{
-        return `Comment(commentID)=${this.id}, commentTitle=${this.title}, commentText=${this.text}, authorId=${this.authorId}`
+        return `reply(replyID)=${this.id}, replyTitle=${this.title}, replyText=${this.text}, authorId=${this.authorId}, discussionId=${this.discussionId}`
     }
 }

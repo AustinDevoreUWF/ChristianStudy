@@ -5,11 +5,11 @@ import {NextResponse} from "next/server"
 export async function POST(req: Request){
     const body = await req.json()
 
-    const comment = await prisma.comment.create({
+    const reply = await prisma.reply.create({
         data: {
             content: body.content,
 
         }
     })
-    return NextResponse.json(comment);
+    return NextResponse.json(reply);
 }

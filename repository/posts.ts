@@ -1,12 +1,13 @@
 import prisma from "@/lib/prisma";
 import { Discussion } from "@/domain/posts";
-import { Comment } from "@/domain/posts";
+import { Reply } from "@/domain/posts";
 
 export interface DiscussionRepo{
     //Find the discussion By Id
     findById(id: number): Promise<Discussion | null>
     findByTitle(title: string):Promise<Discussion[] | null>
     findByauthorId(authorId:number):Promise<Discussion[] | null>
+    save(discussion: Discussion):Promise<Discussion>
 }
 
 export class PrismaDiscussionRepo implements DiscussionRepo {
@@ -35,41 +36,64 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             new Discussion(d.id, d.title!, d.text!, d.authorId!)
   );
     }
+    async save(discussion:Discussion):Promise<Discussion>{
+        const data = await prisma.discussion.create({
+            data:{
+                title: discussion.title,
+                text: discussion.text,
+                authorId: discussion.authorId,
+
+            }
+        })
+        return new Discussion(data.id, data.title, data.text, data.authorId);
+    }
 }
 
 
 
-export interface CommentRepo{
-    //Looks for a comment with a specific ID, returns 1
-    findById(id:number):Promise<Comment | null>
-    //Looks for all comments written by an author
-    findByauthorId(authorId : number):Promise<Comment[] | null>
-    //Returns all Comments under a discussion(This will need serious formatting)
-    findAllCommentsUnderDiscussion(discussionId:number):Promise<Comment[]| null>
+export interface replyRepo{
+    //Looks for a reply with a specific ID, returns 1
+    findById(id:number):Promise<Reply | null>
+    //Looks for all replys written by an author
+    findByauthorId(authorId : number):Promise<Reply[] | null>
+    //Returns all replys under a discussion(This will need serious formatting)
+    findAllreplysUnderDiscussion(discussionId:number):Promise<Reply[]| null>
+    save(reply:Reply):Promise<Reply>
 }
-export class PrismaCommentRepo implements CommentRepo{
-    async findById(id:number):Promise<Comment|null>{
-        const data = await prisma.comment.findUnique({
+export class PrismareplyRepo implements replyRepo{
+    async findById(id:number):Promise<Reply|null>{
+        const data = await prisma.reply.findUnique({
             where: {id: id},
         });if(!data)return null;
-        return new Comment(data.id!, data.text!, data.title!, data.authorId!)
+        return new Reply(data.id!, data.text!, data.title!, data.authorId!, data.discussionId)
     }
-    async findByauthorId(authorId:number):Promise<Comment[]|null>{
-        const data = await prisma.comment.findMany({
+    async findByauthorId(authorId:number):Promise<Reply[]|null>{
+        const data = await prisma.reply.findMany({
             where: {authorId},
         });
         return data.map(d=>
-            new Comment(d.id, d.text!, d.title, d.authorId)
+            new Reply(d.id, d.text!, d.title, d.authorId,d.discussionId)
         )
     }
     //might return alot
-    async findAllCommentsUnderDiscussion(discussionId:number):Promise<Comment[]|null>{
-        const data = await prisma.comment.findMany({
+    async findAllreplysUnderDiscussion(discussionId:number):Promise<Reply[]|null>{
+        const data = await prisma.reply.findMany({
             where: {discussionId},
         });
         if(!discussionId)return null
         return data.map(d=>
-            new Comment(d.id, d.text!, d.title, d.authorId)
+            new Reply(d.id, d.text!, d.title, d.authorId,d.discussionId)
         )
+    }
+    async save(reply:Reply):Promise<Reply>{
+        const data = await prisma.reply.create({
+            data: {
+                title: reply.title,
+                text: reply.text,
+                authorId: reply.authorId,
+                discussionId: reply.discussionId, 
+            }
+        })
+        return new Reply(data.id, data.text, data.title, data.authorId,data.discussionId)
     }
 }

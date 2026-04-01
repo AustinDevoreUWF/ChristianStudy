@@ -17,12 +17,12 @@ model User{
   email String @unique//must be unique
   name String
   password String
-  comments Comment[]//array of post objects listed that is attached to the user
+  replys reply[]//array of post objects listed that is attached to the user
   discussions Discussion[]
   createdAt DateTime @default(now())
   isAdmin Boolean @default(false)
 }
-model Comment {
+model reply {
   id           Int    @id @default(autoincrement())
   text      String
   title     String
@@ -36,9 +36,9 @@ model Comment {
 model Discussion {
   id        Int       @id @default(autoincrement())
   text   String
-  authorId  Int?
+  authorId  Int
   author    User?      @relation(fields: [authorId], references: [id])
   title     String
-  comments  Comment[]
+  replys  reply[]
   createdAt DateTime  @default(now())
 }

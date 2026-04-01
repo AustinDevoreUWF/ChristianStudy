@@ -15,7 +15,7 @@ Pre - Create a component for collecting replies
 */
 
 export default function PostPage(){
- const comments = await prisma.discussion
+ const replys = await prisma.discussion
     
     return(
 

@@ -40,8 +40,11 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
 
 
 export interface CommentRepo{
+    //Looks for a comment with a specific ID, returns 1
     findById(id:number):Promise<Comment | null>
-    findByauthorId(authorId : number):Promise<Comment | null>
+    //Looks for all comments written by an author
+    findByauthorId(authorId : number):Promise<Comment[] | null>
+    //Returns all Comments under a discussion(This will need serious formatting)
     findAllCommentsUnderDiscussion(discussionId:number):Promise<Comment[]| null>
 }
 export class PrismaCommentRepo implements CommentRepo{
@@ -51,13 +54,22 @@ export class PrismaCommentRepo implements CommentRepo{
         });if(!data)return null;
         return new Comment(data.id!, data.text!, data.title!, data.authorId!)
     }
-    async findByauthorId(authorId:number):Promise<Comment|null>{
+    async findByauthorId(authorId:number):Promise<Comment[]|null>{
         const data = await prisma.comment.findMany({
             where: {authorId},
         });
-        return
+        return data.map(d=>
+            new Comment(d.id, d.text!, d.title, d.authorId)
+        )
     }
-    findAllCommentsUnderDiscussion(discussionId:number):Promise<Comment[]|null>{
-        return
+    //might return alot
+    async findAllCommentsUnderDiscussion(discussionId:number):Promise<Comment[]|null>{
+        const data = await prisma.comment.findMany({
+            where: {discussionId},
+        });
+        if(!discussionId)return null
+        return data.map(d=>
+            new Comment(d.id, d.text!, d.title, d.authorId)
+        )
     }
 }

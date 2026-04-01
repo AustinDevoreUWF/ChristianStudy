@@ -24,9 +24,10 @@ model User{
 }
 model Comment {
   id           Int    @id @default(autoincrement())
-  content      String
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
+  text      String
+  title     String
+  authorId       Int
+  author         User      @relation(fields: [authorId], references: [id])
   discussionId Int
   discussion   Discussion @relation(fields: [discussionId], references: [id])
   parentId     String?

@@ -51,7 +51,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
 
 
 
-export interface replyRepo{
+export interface ReplyRepo{
     //Looks for a reply with a specific ID, returns 1
     findById(id:number):Promise<Reply | null>
     //Looks for all replys written by an author
@@ -60,7 +60,7 @@ export interface replyRepo{
     findAllreplysUnderDiscussion(discussionId:number):Promise<Reply[]| null>
     save(reply:Reply):Promise<Reply>
 }
-export class PrismareplyRepo implements replyRepo{
+export class PrismaReplyRepo implements ReplyRepo{
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
             where: {id: id},

@@ -49,11 +49,11 @@ export async function loginUser(
     ):Promise<{user: User; token: string}>{
     
     const user =await repo.findUserByEmail(userEmail);
-        if(!user) throw new Error("Invalid Email")
+        if(!user) throw new Error("Invalid Credentials")
     
         if(!user.verifyPassword(password)){
-            throw new Error("Invalid Password");
-        }
-
-    return {user:User, token}
+            throw new Error("Invalid Credentials");
+        }    
+    const token = generateToken(user)
+    return {user, token}
 }

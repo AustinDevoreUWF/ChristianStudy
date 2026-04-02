@@ -2,22 +2,24 @@
 import bcrypt from "bcrypt";
 
 export class User {
-  userId: number;
+  id: number;
   userName: string;
   userEmail: string;
-  private passwordHash: string; //hashbrown password
+  private passwordHash: string; //hashpassword
 
-  constructor(userId: number, userName: string, userEmail:string ,password: string) {
+  constructor(userId: number, userName: string, userEmail:string ,passwordHash: string) {
     if (!userName) throw new Error("Username required");
-    if (!password) throw new Error("Password required");
+    if (!passwordHash) throw new Error("Password required");
     if(!userEmail) throw new Error("Email not provided");
 
-    this.userId = userId;
+    this.id = userId;
     this.userName = userName;
     this.userEmail = userEmail;
-    this.passwordHash = this.hashPassword(password);
+    this.passwordHash = this.hashPassword(passwordHash);
   }
-
+  public getPasswordHash(): string {
+    return this.passwordHash;
+  }
   // Hash the password using bcrypt
   private hashPassword(password: string): string {
     const saltRounds = 10;

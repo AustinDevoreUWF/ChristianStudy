@@ -34,7 +34,7 @@ export class User {
   // Only expose safe user info
   public toJSON() {
     return {
-      userId: this.userId,
+      userId: this.id,
       userName: this.userName,
       userEmail: this.userEmail
     };

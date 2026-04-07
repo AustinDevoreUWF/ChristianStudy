@@ -15,15 +15,10 @@ export class User {
     this.id = userId;
     this.userName = userName;
     this.userEmail = userEmail;
-    this.passwordHash = this.hashPassword(passwordHash);
+    this.passwordHash = passwordHash;
   }
   public getPasswordHash(): string {
     return this.passwordHash;
-  }
-  // Hash the password using bcrypt
-  private hashPassword(password: string): string {
-    const saltRounds = 10;
-    return bcrypt.hashSync(password, saltRounds);
   }
 
   // Verify a password attempt

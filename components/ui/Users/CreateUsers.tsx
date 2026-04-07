@@ -16,7 +16,7 @@ const inputStyle: React.CSSProperties = {
   outline: "none",
 };
 
-export default function CreateUser() {
+export default function () {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);

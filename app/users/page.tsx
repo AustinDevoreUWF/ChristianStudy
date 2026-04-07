@@ -1,6 +1,4 @@
-import CreateUser from "@/components/ui/Users/CreateUsers"
-
-
+import RegisterUser from "@/components/ui/Users/RegisterUser";
 /*
 Create a page for non users to create a User Profile.
 Needs to pass in a user Object for if the user is already registered
@@ -16,7 +14,7 @@ export default function usersPage(){
     <main className="flex min-h-screen" style={{ background: "#080808" }}>
       {/* Form Panel */}
       <div className="w-full md:w-1/3 flex justify-center items-center" style={{ background: "#080808", padding: "3rem 2.5rem" }}>
-        <CreateUser />
+        <RegisterUser />
       </div>
  
       {/* Painting Panel */}

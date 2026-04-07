@@ -1,33 +1,26 @@
-import prisma from "@/lib/prisma"
-import {NextResponse} from "next/server"
-import {Prisma} from "@prisma/client"
-import bcrypt from "bcrypt"
+import { registerUser } from "@/services/users";
 
-export async function POST(req: Request){
-  try{
-    const body = await req.json()
-  
-    const hashedPassword = await bcrypt.hash(body.password, 10)
+export async function POST(req: Request) {
+  const body = await req.json();
+  const { userName, userEmail, password } = body;
 
-    const User = await prisma.user.create({
-        data:{
-            email: body.email,
-            password: hashedPassword,
-            name: body.name,
-        }
-    })
-    
-    return NextResponse.json(
-        {
-            id: User.id,
-            email: User.email,
-            name: User.name,
-        },{status:201})
+  if (!userName || !userEmail || !password) {
+    return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
+  }
 
-    }catch(err){
-        if(err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002")
-            return NextResponse.json({error:"This email is already in use."},{status:400})
-        console.error(err)
-        return NextResponse.json({error:"User creation Failed"}, {status:500});
-    }
+  try {
+    const user = await registerUser(userName, userEmail, password);
+
+    return new Response(
+      JSON.stringify({
+        message: "Successfully Registered!",
+        user: user.user.toJSON(),
+        token: user.token,
+      }),
+      { status: 200 }
+    );
+  } catch (err: any) {
+        console.error("REGISTER ERROR:", err);
+    return new Response(JSON.stringify({ error: err.message || "Registration Failed"}), { status: 400 });
+  }
 }

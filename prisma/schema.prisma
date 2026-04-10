@@ -11,40 +11,44 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
-model UserProfile{
-  id
-  userName
-  profilePic
-  
+
+model UserProfile {
+  userId      Int      @id
+  user        User     @relation(fields: [userId], references: [id])
+  profilePic  String?
+  tags        String[]
 }
+
 model User {
-  id           Int      @id @default(autoincrement())
-  userName     String   @unique
-  userEmail    String   @unique
+  id           Int          @id @default(autoincrement())
+  userName     String       @unique
+  userEmail    String       @unique
   passwordHash String
   replies      Reply[]
   discussions  Discussion[]
-  createdAt    DateTime @default(now())
-  isAdmin      Boolean  @default(false)
+  createdAt    DateTime     @default(now())
+  isAdmin      Boolean      @default(false)
+  profile      UserProfile?
 }
 
 model Reply {
-  id           Int    @id @default(autoincrement())
-  text      String
-  title     String
-  authorId       Int
-  author         User      @relation(fields: [authorId], references: [id])
+  id           Int        @id @default(autoincrement())
+  text         String
+  title        String
+  authorId     Int
+  author       User       @relation(fields: [authorId], references: [id])
   discussionId Int
   discussion   Discussion @relation(fields: [discussionId], references: [id])
   parentId     String?
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime   @default(now())
 }
+
 model Discussion {
-  id        Int       @id @default(autoincrement())
-  text   String
+  id        Int      @id @default(autoincrement())
+  text      String
   authorId  Int
-  author    User?      @relation(fields: [authorId], references: [id])
+  author    User?    @relation(fields: [authorId], references: [id])
   title     String
-  replys  Reply[]
-  createdAt DateTime  @default(now())
+  replys    Reply[]
+  createdAt DateTime @default(now())
 }

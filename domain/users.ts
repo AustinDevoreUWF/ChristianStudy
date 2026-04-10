@@ -2,9 +2,10 @@
 import bcrypt from "bcrypt";
 
 export class UserProfile{
-  id:
-  userName:
+  userId: number;
+  userName: string;
   
+
 }
 
 export class User {

@@ -1,6 +1,12 @@
 // domain/User.ts
 import bcrypt from "bcrypt";
 
+export class UserProfile{
+  id:
+  userName:
+  
+}
+
 export class User {
   id: number;
   userName: string;

@@ -1,4 +1,6 @@
-import RegisterUser from "@/components/ui/Users/RegisterUser";
+"use client"
+import { useState } from "react";
+import AuthForm from "@/components/ui/Users/AuthForm";
 /*
 Create a page for non users to create a User Profile.
 Needs to pass in a user Object for if the user is already registered
@@ -10,11 +12,13 @@ Needs to pass in a user Object for if the user is already registered
     -If NO fade into create Account popup
 */
 export default function usersPage(){
-     return (
+  const [isLogin, setIsLogin] = useState(true)
+
+  return (
     <main className="flex min-h-screen" style={{ background: "#080808" }}>
       {/* Form Panel */}
       <div className="w-full md:w-1/3 flex justify-center items-center" style={{ background: "#080808", padding: "3rem 2.5rem" }}>
-        <RegisterUser />
+          <AuthForm />
       </div>
  
       {/* Painting Panel */}

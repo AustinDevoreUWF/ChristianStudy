@@ -57,3 +57,10 @@ export async function loginUser(
     const token = generateToken(user)
     return {user, token}
 }
+
+export async function getUser(userId:number): Promise<User>{
+    const user = await repo.findUserById(userId);
+        if(!user) throw new Error("UserId was not found")
+            
+    return 
+}

@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { User } from "@/domain/users";
+import { User, UserProfile } from "@/domain/users";
 
 
 export interface UserRepository{
@@ -46,9 +46,37 @@ export class PrismaUserRepository implements UserRepository{
                 userName: user.userName,
                 userEmail: user.userEmail,
                 passwordHash: user.getPasswordHash(),
+                //create a userProfile each registration
+                profile:{
+                    create:{
+                        profilePic:null,
+                        //tags:null,
+                    }
+                }
             }
         })
         return this.toDomain(data);
     }
 
+}
+export interface UserProfileRepository{
+    updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>;
+    //updateProfileTag(userName:string, tags:[]):Promise<UserProfile|null>;
+}
+export class PrismaUserProfileRepository implements UserProfileRepository{
+    async updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>{
+        const user = await prisma.user.findUnique({
+            where:{userName},
+        })
+        if(!user) return null;
+        const data = await prisma.userProfile.update({
+            where:{userId:user.id},
+            data:{profilePic}
+        })
+        return {
+            userId:data.userId,
+            userName:userName,
+            profilePic:data.profilePic ??"",
+        }
+    };
 }

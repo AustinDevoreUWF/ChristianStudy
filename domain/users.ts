@@ -4,7 +4,17 @@ import bcrypt from "bcrypt";
 export class UserProfile{
   userId: number;
   userName: string;
-  
+  profilePic: string;
+  constructor(
+  userId: number,
+  userName: string,
+  profilePic: string,){
+    if(!userId) throw new Error("userId not provided");
+    if(!userName) throw new Error("userName not provided");
+    this.userId = userId;
+    this.userName = userName;
+    this.profilePic = profilePic;
+  }
 
 }
 

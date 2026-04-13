@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"}]}/>
+        <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},{label:"Profile",href:"/profile"}]}/>
 
         {children}
       </body>

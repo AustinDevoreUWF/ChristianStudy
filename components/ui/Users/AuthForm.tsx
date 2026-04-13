@@ -42,9 +42,9 @@ export default function AuthForm(){
         }
     
         try{
-            if(!isLogin){
-                const res = await fetch("/api/users",{
-                    method:"GET",
+            if(isLogin){
+                const res = await fetch("/api/users/login",{
+                    method:"POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({userEmail:email, password})
                 });
@@ -53,11 +53,12 @@ export default function AuthForm(){
                 alert(`Welcome ${data.user.userName}`);
                 localStorage.setItem("token", data.token);
             }else{
-                const res = await fetch("/api/users",{
-                    method: "GET",
+                const res = await fetch("/api/users/register",{
+                    method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({userEmail:email, userName:name, password}),
                 });
+                
                 const data = await res.json();
                 if(!res.ok) throw new Error(data.message||"Registration Failed");
                 alert(`Welcome ${data.user.userName}!`);

@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
-import { PrismaUserRepository } from "@/repository/users";
+import { PrismaUserRepository, PrismaUserProfileRepository } from "@/repository/users";
 import bcrypt from "bcrypt";
-import { User } from "@/domain/users";
+import { User, UserProfile} from "@/domain/users";
 import jwt from "jsonwebtoken"
 //This is the service file for Users
 //Register Users
@@ -57,10 +57,8 @@ export async function loginUser(
     const token = generateToken(user)
     return {user, token}
 }
-
-export async function getUser(userId:number): Promise<User>{
-    const user = await repo.findUserById(userId);
-        if(!user) throw new Error("UserId was not found")
-            
-    return 
+const profileRepo = new PrismaUserProfileRepository();
+//Call the Repo method to swap PFP's
+export async function setPFP(userName:string, profilePic:string):Promise<UserProfile | null>{
+    return await profileRepo.updateProfilePic(userName, profilePic);
 }

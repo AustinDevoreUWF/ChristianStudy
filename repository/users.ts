@@ -41,6 +41,7 @@ export class PrismaUserRepository implements UserRepository{
     }
     //creating a user here
     async save(user:User):Promise<User>{
+        try{
         const data = await prisma.user.create({
             data:{
                 userName: user.userName,
@@ -49,13 +50,17 @@ export class PrismaUserRepository implements UserRepository{
                 //create a userProfile each registration
                 profile:{
                     create:{
-                        profilePic:null,
-                        //tags:null,
+                        profilePic:"",
+                        tags: [],
                     }
                 }
             }
         })
         return this.toDomain(data);
+        }catch(err:any){
+            console.error("Prisma full error:", JSON.stringify(err, null, 2));
+        throw err;
+        }
     }
 
 }

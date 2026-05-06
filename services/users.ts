@@ -57,7 +57,9 @@ export async function loginUser(
     const token = generateToken(user)
     return {user, token}
 }
+
 const profileRepo = new PrismaUserProfileRepository();
+
 //Call the Repo method to swap PFP's
 export async function setPFP(userName:string, profilePic:string):Promise<UserProfile | null>{
     return await profileRepo.updateProfilePic(userName, profilePic);

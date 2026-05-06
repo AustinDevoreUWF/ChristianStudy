@@ -75,6 +75,7 @@ export default function BannerClient({
             </Link>
           ))}
         </nav>
+        
       </div>
     </div>
   );

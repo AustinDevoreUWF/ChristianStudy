@@ -12,11 +12,12 @@ export interface UserRepository{
     //saves a user to the DB
     save(user:User):Promise<User>
 }
+
 export class PrismaUserRepository implements UserRepository{
     private toDomain(data: any):User{
         return new User(data.id, data.userName, data.userEmail, data.passwordHash)
     }
-//finding a user by there userId
+    //finding a user by there userId
     async findUserById(id: number): Promise<User | null> {
         const data = await prisma.user.findUnique({
             where: {id},
@@ -24,7 +25,7 @@ export class PrismaUserRepository implements UserRepository{
         if(!data)return null
         return this.toDomain(data);
     }
-//finding a user by their UNIQUE name
+    //finding a user by their UNIQUE name
     async findUserByName(userName:string):Promise<User|null>{
         const data = await prisma.user.findUnique({
             where: {userName},
@@ -32,6 +33,7 @@ export class PrismaUserRepository implements UserRepository{
         if(!data) return null;
         return this.toDomain(data);
     }
+    //Finding a user by their UNIQUE email
     async findUserByEmail(userEmail:string):Promise<User|null>{
         const data = await prisma.user.findUnique({
             where: {userEmail},
@@ -64,11 +66,14 @@ export class PrismaUserRepository implements UserRepository{
     }
 
 }
+
+//repo for userProfiles
 export interface UserProfileRepository{
     updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>;
     //updateProfileTag(userName:string, tags:[]):Promise<UserProfile|null>;
 }
 export class PrismaUserProfileRepository implements UserProfileRepository{
+    //user can update their profile pic.
     async updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>{
         const user = await prisma.user.findUnique({
             where:{userName},

@@ -58,6 +58,10 @@ export async function loginUser(
     return {user, token}
 }
 
+export async function getCurrentUser(token:string){
+    return jwt.verify(token, process.env.JWT_SECRET!);
+}
+
 const profileRepo = new PrismaUserProfileRepository();
 
 //Call the Repo method to swap PFP's

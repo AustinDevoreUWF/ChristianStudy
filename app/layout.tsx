@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Banner from "@/components/ui/Banner"
+import { AuthProvider } from "@/components/ui/context/AuthContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,11 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AuthProvider>
         <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},{label:"Profile",href:"/profile"}]}/>
-
         {children}
+        </AuthProvider>
       </body>
     </html>
   );

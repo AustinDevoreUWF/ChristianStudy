@@ -1,5 +1,5 @@
 import {loginUser} from "@/services/users"
-
+//req is given name to the data sent to the route.
 export async function POST(req:Request){
         //get userEmail and Password from the req.Json()
         const {userEmail, password} = await req.json()

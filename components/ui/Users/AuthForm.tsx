@@ -42,7 +42,7 @@ export default function AuthForm(){
         }
     
         try{
-            if(isLogin){
+            if(isLogin){//res gets a response object must then convert to json.
                 const res = await fetch("/api/users/login",{
                     method:"POST",
                     headers: {"Content-Type": "application/json"},

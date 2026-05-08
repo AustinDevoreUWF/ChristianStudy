@@ -5,6 +5,7 @@ export class UserProfile{
   userId: number;
   userName: string;
   profilePic: string;
+  
   constructor(
   userId: number,
   userName: string,

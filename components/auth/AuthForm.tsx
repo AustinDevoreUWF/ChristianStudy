@@ -1,22 +1,23 @@
 "use client";
 import { useRef, useState } from "react";
 import FormInput from "../ui/FormInput";
- 
+import useLogin from "@/hooks/auth/useLogin";
+import useRegister from "@/hooks/auth/useRegister";
 
 export default function AuthForm(){
-    const [isAnimated, setIsAnimated] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
-
+    //Deconstructing useLogin hook, pulls out login, isLoading, and error from whatever useLogin returns.
+    const { login,isLoading,error } = useLogin();
+    const { register, isRegisterLoading, errorRegister } = useRegister();
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
+    
+    const handleToggle = () => {
+      setIsLogin((prev) => !prev);
+      if (isLogin && nameRef.current) nameRef.current.value = "";
+    };
 
-    const handleToggle = () =>{
-        setIsAnimated(true);
-        setTimeout(()=>setIsAnimated(false),400);
-        setIsLogin((prev)=>!prev)
-        if(!isLogin && nameRef.current) nameRef.current.value="";
-    }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const email    = emailRef.current?.value;
@@ -30,40 +31,23 @@ export default function AuthForm(){
     
         try{
             if(isLogin){//res gets a response object must then convert to json.
-                const res = await fetch("/api/users/login",{
-                    method:"POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({userEmail:email, password})
-                });
-                const data = await res.json();
-                if(!res.ok) throw new Error(data.message||"Login Failed");
-                alert(`Welcome ${data.user.userName}`);
-                localStorage.setItem("token", data.token);
+              const data = await login(email, password);
+              alert(`Logged in as ${data.user.userName}`);
             }else{
-                const res = await fetch("/api/users/register",{
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({userEmail:email, userName:name, password}),
-                });
-                
-                const data = await res.json();
-                if(!res.ok) throw new Error(data.message||"Registration Failed");
-                alert(`Welcome ${data.user.userName}!`);
-                localStorage.setItem("token",data.token);
+                const res = await register(email, password, name!);
+                alert(`Account created for${res.user.name}`);
+                }
 
+                if (emailRef.current)    emailRef.current.value    = "";
+                if (passwordRef.current) passwordRef.current.value = "";
+                if (nameRef.current)     nameRef.current.value     = "";
+              } catch(err){
+              console.error(err);
+              alert(isLogin ? "Error logging in" : "Error creating account");
             }
+    };
 
-      if (emailRef.current)    emailRef.current.value    = "";
-      if (passwordRef.current) passwordRef.current.value = "";
-      if (nameRef.current)     nameRef.current.value     = "";
-    } catch (err) {
-      console.error(err);
-      alert(isLogin ? "Error logging in" : "Error creating account");
-    }
-  };
-
-
-return(
+  return(
         <div
       style={{
         display: "flex",
@@ -99,9 +83,9 @@ return(
  
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", width: "100%" }}>
  
-        <FormInput type="email" placeholder="Email address" inputRef={emailRef}  tabIndex={isLogin ? -1 : 0} required/>
+        <FormInput type="email" placeholder="Email address" inputRef={emailRef} required/>
  
-        <FormInput type="password" placeholder="Password" inputRef={passwordRef}  tabIndex={isLogin ? -1 : 0} required/>
+        <FormInput type="password" placeholder="Password" inputRef={passwordRef} required/>
         {/*
           Name field: animates in/out via max-height + opacity.
           overflow:hidden is the key — combined with max-height transition
@@ -117,12 +101,16 @@ return(
             pointerEvents: isLogin ? "none" : "auto",
           }}
         >
-          <FormInput type="text" placeholder="Your name" inputRef={nameRef}  tabIndex={isLogin ? -1 : 0} required/>
+          <FormInput type="text" placeholder="Your name" inputRef={nameRef}  tabIndex={isLogin ? -1 : 0}/>
         </div>
- 
+
+        {error && <p style={{ color: "red", fontSize: "0.8rem" }}>{error}</p>}
+        {errorRegister && <p style={{ color: "red", fontSize: "0.8rem" }}>{errorRegister}</p>}
+        
         {/* Submit */}
         <button
           type="submit"
+          disabled={isLoading||isRegisterLoading}
           style={{
             background: "transparent",
             border: "1px solid rgba(255,255,255,0.20)",
@@ -147,7 +135,7 @@ return(
             e.currentTarget.style.borderColor  = "rgba(255,255,255,0.20)";
           }}
         >
-          {isLogin ? "Enter" : "Begin"}
+          {isLoading||isRegisterLoading ? "..." :isLogin ? "Enter": "Begin"}
         </button>
  
         <div

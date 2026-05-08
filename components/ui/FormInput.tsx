@@ -18,8 +18,8 @@ const inputStyle: CSSProperties = {
 interface FormInputProps{
     type:string;
     placeholder:string;
-    required:boolean;
-    tabIndex:number;
+    required?:boolean;
+    tabIndex?:number;
     inputRef:React.Ref<HTMLInputElement>;
 }
 

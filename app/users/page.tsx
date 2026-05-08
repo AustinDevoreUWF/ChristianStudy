@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import AuthForm from "@/components/ui/Users/AuthForm";
+import AuthForm from "@/components/auth/AuthForm";
 /*
 Create a page for non users to create a User Profile.
 Needs to pass in a user Object for if the user is already registered

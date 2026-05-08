@@ -1,20 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
+import FormInput from "../ui/FormInput";
  
-const inputStyle: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  background: "transparent",
-  border: "none",
-  borderBottom: "1px solid rgba(255,255,255,0.10)",
-  color: "#e8e8e8",
-  fontFamily: "var(--font-garamond)",
-  fontSize: "1.05rem",
-  letterSpacing: "0.04em",
-  padding: "0.7rem 0",
-  marginBottom: "1.4rem",
-  outline: "none",
-};
 
 export default function AuthForm(){
     const [isAnimated, setIsAnimated] = useState(false);
@@ -74,6 +61,8 @@ export default function AuthForm(){
       alert(isLogin ? "Error logging in" : "Error creating account");
     }
   };
+
+
 return(
         <div
       style={{
@@ -110,26 +99,9 @@ return(
  
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", width: "100%" }}>
  
-        <input
-          ref={emailRef}
-          type="email"
-          placeholder="Email address"
-          required
-          style={inputStyle}
-          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
-          onBlur={(e)  => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
-        />
+        <FormInput type="email" placeholder="Email address" inputRef={emailRef}  tabIndex={isLogin ? -1 : 0} required/>
  
-        <input
-          ref={passwordRef}
-          type="password"
-          placeholder="Password"
-          required
-          style={inputStyle}
-          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
-          onBlur={(e)  => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
-        />
- 
+        <FormInput type="password" placeholder="Password" inputRef={passwordRef}  tabIndex={isLogin ? -1 : 0} required/>
         {/*
           Name field: animates in/out via max-height + opacity.
           overflow:hidden is the key — combined with max-height transition
@@ -145,16 +117,7 @@ return(
             pointerEvents: isLogin ? "none" : "auto",
           }}
         >
-          <input
-            ref={nameRef}
-            type="text"
-            placeholder="Your name"
-            required={!isLogin}
-            tabIndex={isLogin ? -1 : 0}
-            style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
-            onBlur={(e)  => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
-          />
+          <FormInput type="text" placeholder="Your name" inputRef={nameRef}  tabIndex={isLogin ? -1 : 0} required/>
         </div>
  
         {/* Submit */}
@@ -187,10 +150,6 @@ return(
           {isLogin ? "Enter" : "Begin"}
         </button>
  
-        {/*
-          Toggle — sits below the button, centered, subtle.
-          A thin rule + small caps text feels intentional rather than afterthought.
-        */}
         <div
           style={{
             display: "flex",

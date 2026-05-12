@@ -12,6 +12,7 @@ type AuthContextType = {
   user: User | null;
   loading: boolean;
   logout: () => void;
+  refreshUser: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -27,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
       return;
     }
-
+//fetch the response object from the api route which returns the pfp userName and userId
     const res = await fetch("/api/users/me", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (res.ok) {
       const data = await res.json();
-      setUser(data.user);
+      setUser(data.userProfile);
     } else {
       localStorage.removeItem("token");
       setUser(null);
@@ -55,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, logout }}>
+    <AuthContext.Provider value={{ user, loading, logout, refreshUser: loadUser }}>
       {children}
     </AuthContext.Provider>
   );

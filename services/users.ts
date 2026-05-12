@@ -7,7 +7,8 @@ import jwt from "jsonwebtoken"
 //Register Users
 //Log-in Users
 //Gather user Info for account page
-const repo = new PrismaUserRepository();
+const userRepo = new PrismaUserRepository();
+const profileRepo = new PrismaUserProfileRepository();
 
 export function generateToken(user: User): string {
   return jwt.sign(
@@ -31,14 +32,14 @@ export async function registerUser(
     password:string,
     ): Promise<{user: User; token: string}>{
     
-    const existing_user = await repo.findUserByEmail(userEmail)
+    const existing_user = await userRepo.findUserByEmail(userEmail)
     if (existing_user){
         throw new Error("Email already in use")
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User(0,userName,userEmail,hashedPassword,)
-    const savedUser = await repo.save(newUser)
+    const savedUser = await userRepo.save(newUser)
     const token = generateToken(savedUser)
     return {user:savedUser, token};
 }
@@ -48,7 +49,7 @@ export async function loginUser(
     password:string,    
     ):Promise<{user: User; token: string}>{
     
-    const user =await repo.findUserByEmail(userEmail);
+    const user =await userRepo.findUserByEmail(userEmail);
         if(!user) throw new Error("Invalid Credentials")
     
         if(!user.verifyPassword(password)){
@@ -57,12 +58,13 @@ export async function loginUser(
     const token = generateToken(user)
     return {user, token}
 }
-
-export async function getCurrentUser(token:string){
-    return jwt.verify(token, process.env.JWT_SECRET!);
+//
+export async function getCurrentUser(token:string):Promise<UserProfile|null>{
+    //verify the token, and recieve it as an object, specifically tell TS userId is a number 
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {userId:number};
+        const userProfile = await profileRepo.getUserProfile(decoded.userId);
+    return userProfile;
 }
-
-const profileRepo = new PrismaUserProfileRepository();
 
 //Call the Repo method to swap PFP's
 export async function setPFP(userName:string, profilePic:string):Promise<UserProfile | null>{

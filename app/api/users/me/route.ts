@@ -5,9 +5,14 @@ export async function GET(req:Request){
     if(!auth){
         return Response.json({error:"Unauthorized"},{status:401});
     }
-    //token is the secon part of the auth header which is (bearer, tokenNum).
+    //token is the second part of the auth header which is (bearer, tokenNum).
     const token = auth.split(" ")[1];
-    const user = await getCurrentUser(token);
-
-    return Response.json({user});
+    try{
+        const userProfile = await getCurrentUser(token);
+        if(!userProfile){
+            return Response.json({error:"User not found"},{status:404});
+        }return Response.json({userProfile});
+    }catch(err){
+        return Response.json({error:"Invalid Token"},{status:401});
+    }
 }

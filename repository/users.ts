@@ -12,6 +12,11 @@ export interface UserRepository{
     //saves a user to the DB
     save(user:User):Promise<User>
 }
+export interface UserProfileRepository{
+    getUserProfile(id:number):Promise<UserProfile|null>;
+    updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>;
+    //updateProfileTag(userName:string, tags:[]):Promise<UserProfile|null>;
+}
 
 export class PrismaUserRepository implements UserRepository{
     private toDomain(data: any):User{
@@ -67,11 +72,7 @@ export class PrismaUserRepository implements UserRepository{
 
 }
 
-//repo for userProfiles
-export interface UserProfileRepository{
-    updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>;
-    //updateProfileTag(userName:string, tags:[]):Promise<UserProfile|null>;
-}
+
 export class PrismaUserProfileRepository implements UserProfileRepository{
     //user can update their profile pic.
     async updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>{
@@ -79,14 +80,24 @@ export class PrismaUserProfileRepository implements UserProfileRepository{
             where:{userName},
         })
         if(!user) return null;
-        const data = await prisma.userProfile.update({
+        const profile = await prisma.userProfile.update({
             where:{userId:user.id},
             data:{profilePic}
         })
-        return {
-            userId:data.userId,
-            userName:userName,
-            profilePic:data.profilePic ??"",
-        }
+        return new UserProfile(profile.userId, user.userName, profile.profilePic)
+    };
+
+    //get a user profile by their username
+    async getUserProfile(id:number): Promise<UserProfile | null> {
+        const user = await prisma.user.findUnique({
+            where: {id: id},
+        })
+        if(!user) return null;
+        const profile = await prisma.userProfile.findUnique({
+            //where UserProfiles userId is the same as the users id.
+            where: {userId: user.id},
+        })
+        if(!profile)return null;
+        return new UserProfile(profile.userId, user.userName, profile.profilePic);
     };
 }

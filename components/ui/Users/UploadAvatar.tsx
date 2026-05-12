@@ -1,6 +1,8 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useAuth } from "../context/AuthContext";
+const { refreshUser } = useAuth();
 
 export default function ProfilePage() {
   const [preview, setPreview] = useState<string | null>(null);
@@ -75,6 +77,8 @@ export default function ProfilePage() {
 
       setStatus("Photo updated.");
       setShowSave(false);
+      //refresh user data to update the avatar
+      await refreshUser()
     } catch (err) {
       setStatus("Failed to update.");
     }

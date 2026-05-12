@@ -3,17 +3,15 @@ import bcrypt from "bcrypt";
 
 export class UserProfile{
   userId: number;
-  userName: string;
-  profilePic: string;
+  profilePic: string |null;
   
   constructor(
   userId: number,
   userName: string,
-  profilePic: string,){
+  profilePic: string|null=null){//the = null because user doesnt need any pfp when registering.
     if(!userId) throw new Error("userId not provided");
     if(!userName) throw new Error("userName not provided");
     this.userId = userId;
-    this.userName = userName;
     this.profilePic = profilePic;
   }
 

@@ -50,7 +50,7 @@ export default function CreateDiscussion({ user }: props) {
     if (!topic || !content) return alert("Please add a topic and content");
 
     try {
-      const res = await fetch("/api/discussion", {
+      const res = await fetch("/discussion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic, content, authorId: user.id })

@@ -67,6 +67,6 @@ export async function getCurrentUser(token:string):Promise<UserProfile|null>{
 }
 
 //Call the Repo method to swap PFP's
-export async function setPFP(userName:string, profilePic:string):Promise<UserProfile | null>{
+export async function setPFP(userName:string, profilePic:string):Promise<void>{
     return await profileRepo.updateProfilePic(userName, profilePic);
 }

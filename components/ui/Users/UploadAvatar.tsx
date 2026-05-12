@@ -2,32 +2,20 @@
 import { useRef, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../context/AuthContext";
-const { refreshUser } = useAuth();
 
 export default function ProfilePage() {
   const [preview, setPreview] = useState<string | null>(null);
   const [showSave, setShowSave] = useState(false);
   const [status, setStatus] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const { user,refreshUser } = useAuth();
+  const userName = user?.userName ??"";
+  const userPfp= user?.profilePic ?? null;
+  const userEmail = user?.userEmail ?? "";
 
-  interface TokenPayload {
-  userName: string;
-  userEmail: string;
-}
-    const [userName, setUserName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-
-    useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    try {
-        const decoded = jwtDecode<TokenPayload>(token);
-        setUserName(decoded.userName);
-        setUserEmail(decoded.userEmail);
-    } catch (err) {
-        console.error("Invalid token", err);
-    }
-    }, []);
+  useEffect(() => {
+    refreshUser();
+  },[]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -59,7 +47,7 @@ export default function ProfilePage() {
     });
 
     // 2. Upload to Cloudinary → get back a URL
-    const uploadRes = await fetch("/api/upload", {
+    const uploadRes = await fetch("/api/users/uploadImage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ image: base64 }),
@@ -68,7 +56,7 @@ export default function ProfilePage() {
     if (!uploadRes.ok) throw new Error(uploadData.error);
 
     // 3. Save the URL to your database
-    const saveRes = await fetch("/api/users/profile-pic", {
+    const saveRes = await fetch("/api/users/pfpSave", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userName, profilePic: uploadData.url }),
@@ -107,6 +95,8 @@ export default function ProfilePage() {
         <div style={{ width: "96px", height: "96px", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#111", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
           {preview ? (
             <img src={preview} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          ) : userPfp ? (
+            <img src={userPfp} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
             <span style={{ fontFamily: "var(--font-cinzel)", fontSize: "1.4rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>
               {userName.split(" ").map(n => n[0]).join("")}
@@ -124,7 +114,7 @@ export default function ProfilePage() {
       {/* Name & Email */}
       <div style={{ textAlign: "center" }}>
         <p style={{ fontFamily: "var(--font-cinzel)", fontSize: "1.1rem", color: "#e8e8e8", margin: "0 0 0.2rem", letterSpacing: "0.12em" }}>{userName}</p>
-        <p style={{ fontFamily: "var(--font-garamond)", fontSize: "0.85rem", color: "rgba(255,255,255,0.35)", margin: 0, letterSpacing: "0.08em" }}>{userEmail}</p>
+        <p style={{ fontFamily: "var(--font-garamond)", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", margin: 0, letterSpacing: "0.04em" }}>{userEmail}</p>
       </div>
 
       <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.10)" }} />

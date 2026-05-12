@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-
+import { useAuth } from "./context/AuthContext";
 type BannerLink = { label: string; href: string };
 
 export default function BannerClient({
@@ -11,7 +11,8 @@ export default function BannerClient({
   links: BannerLink[];
   cinzelClass: string;
   garamondClass: string;
-}) {
+}){ 
+  const { user} = useAuth();
   return (
     <div
       className={`${cinzelClass} ${garamondClass} fixed top-0 z-50 w-full`}
@@ -49,7 +50,7 @@ export default function BannerClient({
               fontStyle: "italic",
             }}
           >
-            Scripture &amp; Tradition
+            Reason &amp; Love
           </span>
         </div>
 
@@ -74,9 +75,19 @@ export default function BannerClient({
               {link.label}
             </Link>
           ))}
+          {/* Avatar sits outside the map */}
+          <Link href="/profile">
+            {user?.profilePic ? (
+              <img src={user.profilePic} alt="Profile" style={{width: "32px",height: "32px",borderRadius: "50%",objectFit: "cover",}}/>
+            ) : user ? (
+              <span>
+                {user.userName.split(" ").map((n) => n[0]).join("")}
+              </span>
+            ) : null}
+          </Link>
         </nav>
         
       </div>
     </div>
   );
-}
+  }

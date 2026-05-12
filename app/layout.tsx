@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-        <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},{label:"Profile",href:"/profile"}]}/>
+        <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/>
         {children}
         </AuthProvider>
       </body>

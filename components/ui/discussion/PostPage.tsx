@@ -14,10 +14,3 @@ Pre - Create a component for collecting replies
  - 
 */
 
-export default function PostPage(){
- const replys = await prisma.discussion
-    
-    return(
-
-    )
-}

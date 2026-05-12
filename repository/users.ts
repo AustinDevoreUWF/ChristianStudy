@@ -14,7 +14,8 @@ export interface UserRepository{
 }
 export interface UserProfileRepository{
     getUserProfile(id:number):Promise<UserProfile|null>;
-    updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>;
+
+    updateProfilePic(userName: string, profilePic: string): Promise<void>;    
     //updateProfileTag(userName:string, tags:[]):Promise<UserProfile|null>;
 }
 
@@ -74,21 +75,19 @@ export class PrismaUserRepository implements UserRepository{
 
 
 export class PrismaUserProfileRepository implements UserProfileRepository{
+    
     //user can update their profile pic.
-    async updateProfilePic(userName:string, profilePic: string):Promise<UserProfile | null>{
-        const user = await prisma.user.findUnique({
-            where:{userName},
-        })
-        if(!user) return null;
-        const profile = await prisma.userProfile.update({
-            where:{userId:user.id},
-            data:{profilePic}
-        })
-        return new UserProfile(profile.userId, user.userName, profile.profilePic)
-    };
+    async updateProfilePic(userName: string, profilePic: string): Promise<void> {
+        const user = await prisma.user.findUnique({ where: { userName } });
+        if (!user) throw new Error("User not found");
+        await prisma.userProfile.update({
+            where: { userId: user.id },
+            data: { profilePic },
+        });
+    }
 
-    //get a user profile by their username
-    async getUserProfile(id:number): Promise<UserProfile | null> {
+    //get a user profile by their username, returns an DTO not a domain entity, since mixed.
+    async getUserProfile(id:number){
         const user = await prisma.user.findUnique({
             where: {id: id},
         })
@@ -98,6 +97,11 @@ export class PrismaUserProfileRepository implements UserProfileRepository{
             where: {userId: user.id},
         })
         if(!profile)return null;
-        return new UserProfile(profile.userId, user.userName, profile.profilePic);
+        return{
+            userId: user.id,
+            userName: user.userName,
+            userEmail: user.userEmail,
+            profilePic: profile.profilePic,
+        };
     };
 }

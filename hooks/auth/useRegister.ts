@@ -1,8 +1,10 @@
 import {useState} from "react";
+import { useAuth } from "@/components/ui/context/AuthContext";
 
 export default function useRegister(){
     const [isRegisterLoading, setIsRegisterLoading] = useState(false);
     const [errorRegister, setErrorRegister]  = useState<string|null>(null);
+    const { refreshUser } = useAuth();
 
     const register = async (email:string, password:string, name:string)=>{
         setIsRegisterLoading(true);
@@ -16,6 +18,7 @@ export default function useRegister(){
             const data = await res.json();
             if(!res.ok) throw new Error(data.message||"Registration Failed");
             localStorage.setItem("token", data.token);
+            await refreshUser();
             return data;
         }catch(err:any){
             setErrorRegister(err.message);

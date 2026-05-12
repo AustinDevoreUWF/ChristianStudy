@@ -19,3 +19,6 @@ export async function createReply(title:string, text:string, authorId:number, di
     const newReply = new Reply(0,title,text,authorId, discussionId)
     return await replyRepo.save(newReply);
 }
+export async function getAllDiscussions():Promise<Discussion[]>{
+    return await discussionRepo.findAll();
+}

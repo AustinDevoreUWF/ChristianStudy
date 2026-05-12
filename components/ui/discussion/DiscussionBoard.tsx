@@ -1,10 +1,8 @@
 import DiscussionLink from "@/components/ui/discussion/DiscussionBoardLink"
+import { getAllDiscussions } from "@/services/posts";
 
 export default async function DiscussionBoard() {
-  const res = await fetch("http://localhost:3000/api/discussion", {
-    cache: "no-store"
-  })
-  const discussions = await res.json()
+  const discussions = await getAllDiscussions();
 
   return (
     <main className="flex justify-center w-full my-20">
@@ -38,8 +36,8 @@ export default async function DiscussionBoard() {
             <DiscussionLink
               key={d.id}
               id={d.id}
-              topic={d.topic}
-              content={d.content}
+              topic={d.title}
+              content={d.text}
               authorName={d.author?.name ?? "Unknown"}
               createdAt={d.createdAt}
             />

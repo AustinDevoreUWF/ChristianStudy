@@ -47,6 +47,11 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
         })
         return new Discussion(data.id, data.title, data.text, data.authorId);
     }
+    async findAll():Promise<Discussion[]>{
+        const data = await prisma.discussion.findMany();
+        return data.map(d => new Discussion(d.id, d.title!, d.text!, d.authorId!))
+    }
+
 }
 
 

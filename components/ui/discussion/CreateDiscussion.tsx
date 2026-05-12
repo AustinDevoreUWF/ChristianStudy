@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useState } from "react";
-
+import useCreateDiscussion from "@/hooks/auth/useCreateDiscussion";
 interface props {
   user: {
     id: number,
@@ -28,6 +28,7 @@ export default function CreateDiscussion({ user }: props) {
   const [open, setOpen] = useState(false)
   const topicRef = useRef<HTMLInputElement>(null)
   const contentRef = useRef<HTMLTextAreaElement>(null)
+  const { createDiscussion } = useCreateDiscussion();
 
   if (!user.isAdmin) {
     return (
@@ -41,23 +42,13 @@ export default function CreateDiscussion({ user }: props) {
       </p>
     )
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const topic = topicRef.current?.value;
     const content = contentRef.current?.value;
-
-    if (!topic || !content) return alert("Please add a topic and content");
-
+    if(!topic||!content)return alert("Please fill in all fields");
     try {
-      const res = await fetch("/discussion", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic, content, authorId: user.id })
-      });
-
-      if (!res.ok) throw new Error("Failed to create discussion");
-
+      await createDiscussion(topic, content, user.id);
       alert("Discussion created");
       if (topicRef.current) topicRef.current.value = "";
       if (contentRef.current) contentRef.current.value = "";

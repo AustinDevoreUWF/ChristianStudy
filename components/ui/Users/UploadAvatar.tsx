@@ -8,11 +8,11 @@ export default function ProfilePage() {
   const [showSave, setShowSave] = useState(false);
   const [status, setStatus] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { user,refreshUser } = useAuth();
+  const { user,refreshUser,logout } = useAuth();
   const userName = user?.userName ??"";
   const userPfp= user?.profilePic ?? null;
   const userEmail = user?.userEmail ?? "";
-
+  const showLogout = Boolean(user)
   useEffect(() => {
     refreshUser();
   },[]);
@@ -133,7 +133,11 @@ export default function ProfilePage() {
           Save Photo
         </button>
       )}
-
+      {showLogout &&(
+        <button onClick={logout} style={{ width: "100%", background: "transparent", border: "1px solid rgba(255,255,255,0.20)", color: "rgba(255,255,255,0.60)", fontFamily: "var(--font-cinzel)", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase", padding: "0.75rem", cursor: "pointer" }}>
+          Logout
+        </button>
+      )}
       {status && (
         <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.30)", fontFamily: "var(--font-garamond)", letterSpacing: "0.1em", margin: 0 }}>{status}</p>
       )}

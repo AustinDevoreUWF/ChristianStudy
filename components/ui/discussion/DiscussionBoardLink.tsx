@@ -40,7 +40,7 @@ export default function DiscussionLink({ id, topic, content, authorName, created
         fontStyle: "italic",
         marginBottom: "0.5rem",
       }}>
-        {content.length > 100 ? content.slice(0, 100) + "..." : content}
+        {content.length > 70 ? content.slice(0, 70) + "..." : content}
       </p>
       <small style={{
         fontFamily: "var(--font-garamond)",

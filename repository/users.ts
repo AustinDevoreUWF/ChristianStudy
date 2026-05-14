@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { User, UserProfile } from "@/domain/users";
+import { User, UserProfile } from "@/src/domain/users";
 
 
 export interface UserRepository{
@@ -21,7 +21,7 @@ export interface UserProfileRepository{
 
 export class PrismaUserRepository implements UserRepository{
     private toDomain(data: any):User{
-        return new User(data.id, data.userName, data.userEmail, data.passwordHash)
+        return new User(data.userName, data.userEmail, data.passwordHash, data.isAdmin,data.id||null);
     }
     //finding a user by there userId
     async findUserById(id: number): Promise<User | null> {
@@ -102,6 +102,7 @@ export class PrismaUserProfileRepository implements UserProfileRepository{
             userName: user.userName,
             userEmail: user.userEmail,
             profilePic: profile.profilePic,
+            isAdmin: user.isAdmin
         };
     };
 }

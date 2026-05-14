@@ -1,7 +1,9 @@
-import { createDiscussion, getAllDiscussions } from "@/services/posts";
+import { createDiscussion} from "@/services/posts";
 
 export async function POST(req:Request){
-    const {title, text, authorId} = await req.json();
+    const body = await req.json();
+    console.log("Received body:", body);
+    const {title, text, authorId} = body;
     if(!title || !text || !authorId){
         return Response.json({error:"Missing Fields"}, {status:400});
     }

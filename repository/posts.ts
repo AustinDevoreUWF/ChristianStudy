@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
-import { Discussion } from "@/domain/posts";
-import { Reply } from "@/domain/posts";
+import { Discussion } from "@/src/domain/posts";
+import { Reply } from "@/src/domain/posts";
 
 export interface DiscussionRepo{
     //Find the discussion By Id
@@ -17,14 +17,14 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             where: {id: id},
         });
         if(!data)return null;
-        return new Discussion(data.id, data.title!, data.text!, data.authorId!)
+        return new Discussion(data.title!, data.text!, data.authorId!,data.createdAt,data.id, )
     }
     //Find by Title(Can return many)
     async findByTitle(title: string):Promise<Discussion[] | null>{
         const data = await prisma.discussion.findMany({
             where: { title },
         });
-        return data.map(d => new Discussion(d?.id,d.title!,d.text!,d.authorId!)
+        return data.map(d => new Discussion(d.title, d.text, d.authorId, d.createdAt, d.id)
         )
     }
     //returns an array of all Discussions made by a User
@@ -33,7 +33,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             where: {authorId},
         });
         return data.map(d => 
-            new Discussion(d.id, d.title!, d.text!, d.authorId!)
+            new Discussion(d.title!, d.text!, d.authorId!, d.createdAt, d.id)
   );
     }
     async save(discussion:Discussion):Promise<Discussion>{
@@ -42,14 +42,13 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
                 title: discussion.title,
                 text: discussion.text,
                 authorId: discussion.authorId,
-
             }
         })
-        return new Discussion(data.id, data.title, data.text, data.authorId);
+        return new Discussion(data.title, data.text, data.authorId, data.createdAt, data.id);
     }
     async findAll():Promise<Discussion[]>{
         const data = await prisma.discussion.findMany();
-        return data.map(d => new Discussion(d.id, d.title!, d.text!, d.authorId!))
+        return data.map(d => new Discussion(d.title!, d.text!, d.authorId!, d.createdAt, d.id))
     }
 
 }

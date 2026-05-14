@@ -33,12 +33,13 @@ export default async function DiscussionBoard() {
         {/* Discussion list */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {discussions.map((d: any) => (
-            <DiscussionLink
+           //need to get and created_time
+           <DiscussionLink
               key={d.id}
               id={d.id}
               topic={d.title}
               content={d.text}
-              authorName={d.author?.name ?? "Unknown"}
+              authorName={d.userName}
               createdAt={d.createdAt}
             />
           ))}

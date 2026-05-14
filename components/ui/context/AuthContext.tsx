@@ -7,6 +7,7 @@ type User = {
   userName: string;
   userEmail: string;
   profilePic:string|null;
+  isAdmin:boolean;
 };
 
 type AuthContextType = {
@@ -22,36 +23,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  async function loadUser() {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
+    async function loadUser() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+      //fetch the response object from the api route which returns the pfp userName and userId
+      const res = await fetch("/api/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data.userProfile);
+      } else {
+        localStorage.removeItem("token");
+        setUser(null);
+      }
       setLoading(false);
-      return;
     }
-//fetch the response object from the api route which returns the pfp userName and userId
-    const res = await fetch("/api/users/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      setUser(data.userProfile);
-    } else {
-      localStorage.removeItem("token");
-      setUser(null);
-    }
-
-    setLoading(false);
-  }
 
   function logout() {
     localStorage.removeItem("token");
     setUser(null);
   }
-
+  //loads the user on initial render
   useEffect(() => {
     loadUser();
   }, []);

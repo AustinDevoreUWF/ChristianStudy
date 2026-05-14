@@ -1,13 +1,8 @@
 'use client'
 import { useRef, useState } from "react";
-import useCreateDiscussion from "@/hooks/auth/useCreateDiscussion";
-interface props {
-  user: {
-    id: number,
-    isAdmin: boolean,
-  };
-}
-
+import { useRouter } from "next/navigation";
+import useCreateDiscussion from "@/hooks/auth/discussion/useCreateDiscussion";
+import { useAuth } from "../context/AuthContext";
 const inputStyle: React.CSSProperties = {
   display: "block",
   width: "100%",
@@ -24,13 +19,18 @@ const inputStyle: React.CSSProperties = {
   resize: "none",
 }
 
-export default function CreateDiscussion({ user }: props) {
+export default function CreateDiscussion() {
   const [open, setOpen] = useState(false)
-  const topicRef = useRef<HTMLInputElement>(null)
-  const contentRef = useRef<HTMLTextAreaElement>(null)
+  const titleRef = useRef<HTMLInputElement>(null)
+  const textRef = useRef<HTMLTextAreaElement>(null)
   const { createDiscussion } = useCreateDiscussion();
+  const {user,loading, refreshUser} = useAuth();
+  const router = useRouter();
 
-  if (!user.isAdmin) {
+
+  if(loading) return null;
+
+  if (!user?.isAdmin) {
     return (
       <p style={{
         fontFamily: "var(--font-garamond)",
@@ -44,19 +44,22 @@ export default function CreateDiscussion({ user }: props) {
   }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const topic = topicRef.current?.value;
-    const content = contentRef.current?.value;
-    if(!topic||!content)return alert("Please fill in all fields");
+    const title = titleRef.current?.value;
+    const text = textRef.current?.value;
+    if(!title||!text)return alert("Please fill in all fields");
+    
     try {
-      await createDiscussion(topic, content, user.id);
-      alert("Discussion created");
-      if (topicRef.current) topicRef.current.value = "";
-      if (contentRef.current) contentRef.current.value = "";
+      await createDiscussion(title, text, user.userId);
+        alert("Discussion created");
+        if (titleRef.current) titleRef.current.value = "";
+        if (textRef.current) textRef.current.value = "";
+        router.refresh();
       setOpen(false)
     } catch (err) {
-      console.error(err);
-      alert("There was an error creating the discussion");
+        console.error(err);
+        alert("There was an error creating the discussion");
     }
+
   }
 
   return (
@@ -134,8 +137,8 @@ export default function CreateDiscussion({ user }: props) {
 
             {/* Topic */}
             <input
-              ref={topicRef}
-              placeholder="Topic"
+              ref={titleRef}
+              placeholder="Title"
               required
               style={inputStyle}
               onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
@@ -144,7 +147,7 @@ export default function CreateDiscussion({ user }: props) {
 
             {/* Content */}
             <textarea
-              ref={contentRef}
+              ref={textRef}
               placeholder="What do you want to discuss?"
               required
               rows={5}

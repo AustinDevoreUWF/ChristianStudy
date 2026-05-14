@@ -2,28 +2,28 @@
 
 export class Discussion {
     //Variables
-    id: number;
+    id: number|null;
     title: string;
     text: string;
     authorId: number;
-    //authorId: number; add this
-
+    createdAt?: Date;
     //Constructor1.Default/
-    constructor(discussionId:number, discussionTitle:string, discussionText:string, authorId:number){
-        if(!discussionId)throw new Error("A discussionId was not provided, Im low Level!");
+    constructor(discussionTitle:string, discussionText:string, authorId:number,createdAt?: Date, id:number|null=null){
+        if(!authorId)throw new Error("A authorId was not provided, Im low Level!");
         if(!discussionTitle)throw new Error("A discussionTitle was not provided!");
         if(!discussionText) throw new Error("Discussion Text was not provided!")
         
         //mapping
-        this.id = discussionId;
+        this.id = id;
         this.title = discussionTitle;
         this.text = discussionText;
-        this.authorId = authorId
+        this.authorId = authorId;
+        this.createdAt = createdAt;
     }
     
     //Entity as String
     toString(): string {
-        return `Discussion(discussionID)=${this.id}, discussionTitle=${this.title}, discussionText=${this.text}, authorId=${this.authorId}`
+        return `Discussion(id)=${this.id}, discussionTitle=${this.title}, discussionText=${this.text}, authorId=${this.authorId}, createdAt=${this.createdAt}`
     };
 }
 export class Reply{

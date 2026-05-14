@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 export class UserProfile{
   userId: number;
   profilePic: string |null;
-  
+
   constructor(
   userId: number,
   profilePic: string|null=null){//the = null because user doesnt need any pfp when registering.
@@ -16,12 +16,13 @@ export class UserProfile{
 }
 
 export class User {
-  id: number;
+  id: number|null;
   userName: string;
   userEmail: string;
   private passwordHash: string; //hashpassword
+  isAdmin:boolean;
 
-  constructor(userId: number, userName: string, userEmail:string ,passwordHash: string) {
+  constructor(userName: string, userEmail: string, passwordHash: string, isAdmin: boolean = false,  userId: number | null = null) {
     if (!userName) throw new Error("Username required");
     if (!passwordHash) throw new Error("Password required");
     if(!userEmail) throw new Error("Email not provided");
@@ -30,6 +31,7 @@ export class User {
     this.userName = userName;
     this.userEmail = userEmail;
     this.passwordHash = passwordHash;
+    this.isAdmin = isAdmin;
   }
   public getPasswordHash(): string {
     return this.passwordHash;

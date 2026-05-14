@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { PrismaUserRepository, PrismaUserProfileRepository } from "@/repository/users";
 import bcrypt from "bcrypt";
-import { User, UserProfile} from "@/domain/users";
+import { User, UserProfile} from "@/src/domain/users";
 import jwt from "jsonwebtoken"
 //This is the service file for Users
 //Register Users
@@ -38,7 +38,7 @@ export async function registerUser(
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User(0,userName,userEmail,hashedPassword,)
+    const newUser = new User(userName,userEmail,hashedPassword)
     const savedUser = await userRepo.save(newUser)
     const token = generateToken(savedUser)
     return {user:savedUser, token};

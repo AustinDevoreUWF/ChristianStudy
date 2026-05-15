@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/src/lib/prisma";
 import { PrismaUserRepository, PrismaUserProfileRepository } from "@/repository/users";
 import bcrypt from "bcrypt";
 import { User, UserProfile} from "@/src/domain/users";

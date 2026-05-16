@@ -1,5 +1,5 @@
 import prisma from "@/src/lib/prisma"
-import { getDiscussionById } from "@/services/posts"
+import { DiscussionDTO } from "@/src/dto/discussionDTO";
 /*
 Pre - Create a component for collecting replies
 1. Based on the disscussion_id grab the Title and the content into variables
@@ -14,20 +14,24 @@ Pre - Create a component for collecting replies
     (Length Requirment)
  - 
 */
-//params is passed from the browser and accessed through params in the component
-export async function DiscussionPostPage({params}:{params:{id:string}}){
- const discussion = await getDiscussionById(Number(params.id))
+
+export default async function DiscussionPostPage({discussion}:{discussion: DiscussionDTO}){
  return (
-        <main style={{ background: "#080808", minHeight: "100vh", padding: "2rem" }}>
-            <h1 style={{ fontFamily: "var(--font-cinzel)", color: "#ffffff" }}>
-                {discussion.title}
-            </h1>
-            <p style={{ fontFamily: "var(--font-garamond)", color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
-                By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
-            </p>
-            <p style={{ fontFamily: "var(--font-garamond)", color: "#e8e8e8", marginTop: "2rem" }}>
-                {discussion.text}
-            </p>
+        <main>{/*Start at top=0 bottom=0*/}
+            <div style={{position:"fixed",left:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
+            <div style={{position:"fixed",right:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
+
+            <div style={{ background: "#080808", minHeight: "100vh", padding: "10rem" }}>
+                <h1 style={{ fontFamily: "var(--fjont-cinzel)", color: "#ffffff", fontSize:"28px", fontWeight:"700"}}>
+                    {discussion.title}
+                </h1>
+                <p style={{ fontFamily: "var(--font-garamond)", color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
+                    By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
+                </p>
+                <p style={{ fontFamily: "var(--font-garamond)", color: "#e8e8e8", marginTop: "2rem" }}>
+                    {discussion.text}
+                </p>
+                </div>
         </main>
  )
 

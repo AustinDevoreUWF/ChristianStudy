@@ -27,26 +27,27 @@ export class Discussion {
     };
 }
 export class Reply{
-    id: number;
+    id: number|null;
     title: string;
     text: string;
     authorId: number;
     discussionId: number;
-    constructor(replyId: number, replyTitle: string, replyText: string, authorId:number, discussionId: number){
+    createdAt?: Date;
+    constructor(replyTitle: string, replyText: string, authorId:number, discussionId: number,createdAt?: Date, id:number|null=null){
         //checks
-        if(!replyId)throw new Error("A replyId was not provided, Im low Level!");
         if(!replyTitle)throw new Error("A replyTitle was now provided!");
         if(!replyText)throw new Error("A replyText was not provided");
         if(!discussionId)throw new Error("A discussionId is required");
     
         //mapping
-        this.id = replyId
+        this.id = id
         this.title = replyTitle
         this.text = replyText
         this.authorId = authorId
         this.discussionId = discussionId
+        this.createdAt = createdAt
     }
     toString():string{
-        return `reply(replyID)=${this.id}, replyTitle=${this.title}, replyText=${this.text}, authorId=${this.authorId}, discussionId=${this.discussionId}`
+        return `reply(replyID)=${this.id}, replyTitle=${this.title}, replyText=${this.text}, authorId=${this.authorId}, discussionId=${this.discussionId}, createdAt=${this.createdAt}`
     }
 }

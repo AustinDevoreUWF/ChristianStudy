@@ -6,7 +6,7 @@ import { User } from "@/src/domain/users";
 import { Discussion, Reply } from "@/src/domain/posts";
 
 import {DiscussionDTO} from "@/src/dto/discussionDTO";
-
+import { ReplyDTO } from "@/src/dto/discussionDTO";
 const userRepo = new PrismaUserRepository();
 const discussionRepo = new PrismaDiscussionRepo();
 const replyRepo = new PrismaReplyRepo();
@@ -32,11 +32,39 @@ export async function getAllDiscussions():Promise<DiscussionDTO[]>{
     }))
 }
     //Get a Discussion by ID
-    export async function getDiscussionById(id:number):Promise<DiscussionDTO>{
+export async function getDiscussionById(id:number):Promise<DiscussionDTO | null>{
         const discussion = await discussionRepo.findById(id);
-    }
+        if(!discussion) return null;
+        const user = await userRepo.findUserById(discussion.authorId)
+        return {
+            id:discussion.id,
+            title: discussion.title,
+            text: discussion.text,
+            authorId: discussion.authorId,
+            userName: user!.userName,
+            createdAt:discussion.createdAt,
+        }
+}
     //Create a reply (NEEDS SERIOUS REWORK)
 export async function createReply(title:string, text:string, authorId:number, discussionId:number):Promise<Reply>{
     const newReply = new Reply(0,title,text,authorId, discussionId)
     return await replyRepo.save(newReply);
+}
+    //This is used to get all replies for a discussion
+export async function getAllReplies(id:number): Promise<ReplyDTO[]>{
+    const replies = await replyRepo.findAllReplies(id);
+    return Promise.all(replies.map( async (reply)=>{
+        const user = await userRepo.findUserById(reply.authorId)
+        return{
+            id: reply.id,
+            title: reply.title,
+            text: reply.text,
+            authorId: reply.authorId,
+            discussionId: reply.discussionId,
+            userName: user!.userName,
+            createdAt?: reply.createdAt,
+        }
+    }))
+}
+export async function(){
 }

@@ -47,7 +47,14 @@ export default function DiscussionLink({ id, topic, content, authorName, created
         color: "rgba(255,255,255,0.20)",
         fontSize: "0.85rem",
       }}>
-        By {authorName} &bull; {new Date(createdAt).toLocaleDateString()}
+        By {authorName} &bull; {new Date(createdAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true
+        })}
       </small>
     </a>
   )

@@ -11,6 +11,7 @@ export interface DiscussionRepo{
 }
 
 export class PrismaDiscussionRepo implements DiscussionRepo {
+
     //Find by the unique ID(only returns 1)
     async findById(id:number): Promise<Discussion | null>{
         const data = await prisma.discussion.findUnique({
@@ -61,32 +62,35 @@ export interface ReplyRepo{
     //Looks for all replys written by an author
     findByauthorId(authorId : number):Promise<Reply[] | null>
     //Returns all replys under a discussion(This will need serious formatting)
-    findAllreplysUnderDiscussion(discussionId:number):Promise<Reply[]| null>
+    findAllReplies(discussionId:number):Promise<Reply[]>
     save(reply:Reply):Promise<Reply>
 }
 export class PrismaReplyRepo implements ReplyRepo{
+     private toDomain(data: any):Reply{
+            return new Reply(data.title, data.text, data.authorId,data.createdAt,data.id||null);
+     }
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
             where: {id: id},
         });if(!data)return null;
-        return new Reply(data.id!, data.text!, data.title!, data.authorId!, data.discussionId)
+        return this.toDomain(data)
     }
     async findByauthorId(authorId:number):Promise<Reply[]|null>{
         const data = await prisma.reply.findMany({
             where: {authorId},
         });
         return data.map(d=>
-            new Reply(d.id, d.text!, d.title, d.authorId,d.discussionId)
+            this.toDomain(data)
         )
     }
     //might return alot
-    async findAllreplysUnderDiscussion(discussionId:number):Promise<Reply[]|null>{
+    async findAllReplies(discussionId:number):Promise<Reply[]>{
         const data = await prisma.reply.findMany({
             where: {discussionId},
         });
-        if(!discussionId)return null
+        if(!discussionId)return []
         return data.map(d=>
-            new Reply(d.id, d.text!, d.title, d.authorId,d.discussionId)
+            this.toDomain(data)
         )
     }
     async save(reply:Reply):Promise<Reply>{
@@ -98,6 +102,6 @@ export class PrismaReplyRepo implements ReplyRepo{
                 discussionId: reply.discussionId, 
             }
         })
-        return new Reply(data.id, data.text, data.title, data.authorId,data.discussionId)
+        return this.toDomain(data)
     }
 }

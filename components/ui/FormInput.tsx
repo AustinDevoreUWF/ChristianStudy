@@ -1,22 +1,39 @@
-import type { Ref } from "react";
+import { CSSProperties } from "react";
 
-interface FormInputProps {
-  type: string;
-  placeholder: string;
-  required?: boolean;
-  tabIndex?: number;
-  inputRef: Ref<HTMLInputElement>;
+const inputStyle: CSSProperties = {
+  display: "block",
+  width: "100%",
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid rgba(255,255,255,0.10)",
+  color: "#e8e8e8",
+  fontFamily: "var(--font-garamond)",
+  fontSize: "1.05rem",
+  letterSpacing: "0.04em",
+  padding: "0.7rem 0",
+  marginBottom: "1.4rem",
+  outline: "none",
+};
+
+interface FormInputProps{
+    type:string;
+    placeholder:string;
+    required?:boolean;
+    tabIndex?:number;
+    inputRef:React.Ref<HTMLInputElement>;
 }
 
-export default function FormInput({ type, placeholder, required, inputRef, tabIndex }: FormInputProps) {
-  return (
-    <input
-      ref={inputRef}
-      type={type}
-      placeholder={placeholder}
-      required={required}
-      tabIndex={tabIndex}
-      className="block w-full bg-transparent border-none border-b border-b-[rgba(255,255,255,0.10)] text-[#e8e8e8] font-[var(--font-garamond)] text-[1.05rem] tracking-[0.04em] py-[0.7rem] mb-[1.4rem] outline-none transition-colors duration-200 focus:border-b-[rgba(255,255,255,0.60)]"
-    />
-  );
+export default function FormInput({type,placeholder,required,inputRef,tabIndex}:FormInputProps){
+    return (
+        <input
+          ref={inputRef}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          tabIndex={tabIndex}
+          style={inputStyle}
+          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
+          onBlur={(e)  => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
+        />
+    )
 }

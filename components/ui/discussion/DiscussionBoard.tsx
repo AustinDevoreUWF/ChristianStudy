@@ -1,4 +1,4 @@
-import DiscussionLink from "@/components/ui/discussion/DiscussionBoardLink";
+import DiscussionLink from "@/components/ui/discussion/DiscussionBoardLink"
 import { getAllDiscussions } from "@/services/posts";
 
 export default async function DiscussionBoard() {
@@ -6,16 +6,46 @@ export default async function DiscussionBoard() {
 
   return (
     <main className="flex justify-center w-full my-20">
-      <div className="w-full max-w-[800px] max-h-[90vh] overflow-y-auto rounded-[12px] border border-[rgba(255,255,255,0.08)] bg-[#080808] p-8">
-        <p className="font-[var(--font-cinzel)] text-[1.1rem] font-[400] tracking-[0.14em] text-white mb-[0.35rem]">Discussions</p>
-        <div className="mb-8 h-[1px] w-[32px] bg-[rgba(255,255,255,0.20)]" />
+      <div style={{
+        backgroundColor: "#080808",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "12px",
+        width: "100%",
+        maxWidth: "800px",
+        maxHeight: "90vh",
+        overflowY: "auto",
+        padding: "2rem",
+      }}>
 
-        <div className="flex flex-col gap-4">
+        {/* Heading */}
+        <p style={{
+          fontFamily: "var(--font-cinzel)",
+          fontSize: "1.1rem",
+          fontWeight: 400,
+          letterSpacing: "0.14em",
+          color: "#ffffff",
+          marginBottom: "0.35rem",
+        }}>
+          Discussions
+        </p>
+        <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "2rem" }} />
+
+        {/* Discussion list */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {discussions.map((d: any) => (
-            <DiscussionLink key={d.id} id={d.id} topic={d.title} content={d.text} authorName={d.userName} createdAt={d.createdAt} />
+           //need to get and created_time
+           <DiscussionLink
+              key={d.id}
+              id={d.id}
+              topic={d.title}
+              content={d.text}
+              authorName={d.userName}
+              createdAt={d.createdAt}
+            />
           ))}
         </div>
+
       </div>
     </main>
-  );
+  )
 }

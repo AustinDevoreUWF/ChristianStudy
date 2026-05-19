@@ -11,42 +11,83 @@ export default function BannerClient({
   links: BannerLink[];
   cinzelClass: string;
   garamondClass: string;
-}) {
-  const { user } = useAuth();
+}){ 
+  const { user} = useAuth();
   return (
-    <div className={`${cinzelClass} ${garamondClass} fixed top-0 z-50 w-full h-[72px] bg-[#060606] border-b border-[rgba(255,255,255,0.08)] backdrop-blur-[2px] flex items-center`}>
+    <div
+      className={`${cinzelClass} ${garamondClass} fixed top-0 z-50 w-full`}
+      style={{
+        background: "#060606",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        backdropFilter: "blur(2px)",
+        height: "72px",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <div className="px-10 w-full flex items-center justify-between">
-        <div className="flex flex-col gap-[3px]">
-          <span className="font-[var(--font-cinzel)] text-[1.55rem] font-semibold tracking-[0.07em] text-white leading-[1]">
+        {/* Title */}
+        <div className="flex flex-col" style={{ gap: "3px" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-cinzel)",
+              fontSize: "1.55rem",
+              fontWeight: 600,
+              letterSpacing: "0.07em",
+              color: "#ffffff",
+              lineHeight: 1,
+            }}
+          >
             The Study of Faith
           </span>
-          <span className="font-[var(--font-garamond)] text-[0.72rem] tracking-[0.30em] text-[rgba(255,255,255,0.30)] uppercase italic">
+          <span
+            style={{
+              fontFamily: "var(--font-garamond)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.30em",
+              color: "rgba(255,255,255,0.30)",
+              textTransform: "uppercase",
+              fontStyle: "italic",
+            }}
+          >
             Reason &amp; Love
           </span>
         </div>
 
+        {/* Nav */}
         <nav className="flex gap-10 items-center">
           {links.map((link, i) => (
             <Link
               key={i}
               href={link.href}
-              className="font-[var(--font-garamond)] text-[1.1rem] tracking-[0.06em] text-[rgba(255,255,255,0.35)] no-underline italic transition duration-200 ease-in-out hover:text-white"
+              style={{
+                fontFamily: "var(--font-garamond)",
+                fontSize: "1.1rem",
+                letterSpacing: "0.06em",
+                color: "rgba(255,255,255,0.35)",
+                textDecoration: "none",
+                fontStyle: "italic",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
             >
               {link.label}
             </Link>
           ))}
-          <Link href="/profile" className="inline-flex items-center justify-center">
+          {/* Avatar sits outside the map */}
+          <Link href="/profile">
             {user?.profilePic ? (
-              <img src={user.profilePic} alt="Profile" className="w-[32px] h-[32px] rounded-full object-cover" />
+              <img src={user.profilePic} alt="Profile" style={{width: "32px",height: "32px",borderRadius: "50%",objectFit: "cover",}}/>
             ) : user ? (
-              <span className="inline-flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.85)] text-[0.9rem]">
+              <span>
                 {user.userName.split(" ").map((n) => n[0]).join("")}
               </span>
             ) : null}
           </Link>
         </nav>
+        
       </div>
     </div>
   );
-}
-
+  }

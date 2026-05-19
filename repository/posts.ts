@@ -67,7 +67,8 @@ export interface ReplyRepo{
 }
 export class PrismaReplyRepo implements ReplyRepo{
      private toDomain(data: any):Reply{
-            return new Reply(data.title, data.text, data.authorId,data.createdAt,data.id||null);
+         console.log("toDomain data:", data);
+            return new Reply(data.title, data.text, data.authorId, data.discussionId, data.createdAt, data.id || null);
      }
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
@@ -90,7 +91,7 @@ export class PrismaReplyRepo implements ReplyRepo{
         });
         if(!discussionId)return []
         return data.map(d=>
-            this.toDomain(data)
+            this.toDomain(d)
         )
     }
     async save(reply:Reply):Promise<Reply>{

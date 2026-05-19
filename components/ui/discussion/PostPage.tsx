@@ -1,5 +1,6 @@
-import prisma from "@/src/lib/prisma"
-import { DiscussionDTO } from "@/src/dto/discussionDTO";
+import prisma from "@/src/lib/prisma";
+import { DiscussionDTO, ReplyDTO } from "@/src/dto/discussionDTO";
+import ReplyList from "./replies/replyList";
 /*
 Pre - Create a component for collecting replies
 1. Based on the disscussion_id grab the Title and the content into variables
@@ -15,24 +16,27 @@ Pre - Create a component for collecting replies
  - 
 */
 
-export default async function DiscussionPostPage({discussion}:{discussion: DiscussionDTO}){
- return (
-        <main>{/*Start at top=0 bottom=0*/}
-            <div style={{position:"fixed",left:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
-            <div style={{position:"fixed",right:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
+export default async function DiscussionPostPage({ discussion, replies }: {
+  discussion: DiscussionDTO;
+  replies: ReplyDTO[];
+}) {
+  return (
+    <main>
+      <div className="fixed left-[2rem] top-0 bottom-0 w-[1px] bg-[rgba(255,255,255,0.08)]" />
+      <div className="fixed right-[2rem] top-0 bottom-0 w-[1px] bg-[rgba(255,255,255,0.08)]" />
 
-            <div style={{ background: "#080808", minHeight: "100vh", padding: "10rem" }}>
-                <h1 style={{ fontFamily: "var(--fjont-cinzel)", color: "#ffffff", fontSize:"28px", fontWeight:"700"}}>
-                    {discussion.title}
-                </h1>
-                <p style={{ fontFamily: "var(--font-garamond)", color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
-                    By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
-                </p>
-                <p style={{ fontFamily: "var(--font-garamond)", color: "#e8e8e8", marginTop: "2rem" }}>
-                    {discussion.text}
-                </p>
-                </div>
-        </main>
- )
-
+      <div className="bg-[#080808] min-h-screen p-[10rem]">
+        <h1 className="font-[var(--font-cinzel)] text-[28px] font-[700] text-white">
+          {discussion.title}
+        </h1>
+        <p className="font-[var(--font-garamond)] italic text-[rgba(255,255,255,0.35)]">
+          By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
+        </p>
+        <p className="font-[var(--font-garamond)] text-[#e8e8e8] mt-[2rem]">
+          {discussion.text}
+        </p>
+        <ReplyList replies={replies} />
+      </div>
+    </main>
+  );
 }

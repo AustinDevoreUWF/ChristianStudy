@@ -3,212 +3,85 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import useCreateDiscussion from "@/hooks/auth/discussion/useCreateDiscussion";
 import { useAuth } from "../context/AuthContext";
-const inputStyle: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  background: "transparent",
-  border: "none",
-  borderBottom: "1px solid rgba(255,255,255,0.10)",
-  color: "#e8e8e8",
-  fontFamily: "var(--font-garamond)",
-  fontSize: "1.05rem",
-  letterSpacing: "0.04em",
-  padding: "0.7rem 0",
-  outline: "none",
-  transition: "border-color 0.2s",
-  resize: "none",
-}
+
+const inputClassName =
+  "block w-full bg-transparent border-none border-b border-b-[rgba(255,255,255,0.10)] text-[#e8e8e8] font-[var(--font-garamond)] text-[1.05rem] tracking-[0.04em] py-[0.7rem] outline-none transition-colors duration-200 focus:border-b-[rgba(255,255,255,0.60)] resize-none";
 
 export default function CreateDiscussion() {
-  const [open, setOpen] = useState(false)
-  const titleRef = useRef<HTMLInputElement>(null)
-  const textRef = useRef<HTMLTextAreaElement>(null)
+  const [open, setOpen] = useState(false);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const textRef = useRef<HTMLTextAreaElement>(null);
   const { createDiscussion } = useCreateDiscussion();
-  const {user,loading, refreshUser} = useAuth();
+  const { user, loading, refreshUser } = useAuth();
   const router = useRouter();
 
-
-  if(loading) return null;
+  if (loading) return null;
 
   if (!user?.isAdmin) {
     return (
-      <p style={{
-        fontFamily: "var(--font-garamond)",
-        fontStyle: "italic",
-        color: "rgba(255,255,255,0.30)",
-        fontSize: "1rem",
-      }}>
+      <p className="font-[var(--font-garamond)] italic text-[1rem] text-[rgba(255,255,255,0.30)]">
         You are not permitted to create a discussion.
       </p>
-    )
+    );
   }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const title = titleRef.current?.value;
     const text = textRef.current?.value;
-    if(!title||!text)return alert("Please fill in all fields");
-    
+    if (!title || !text) return alert("Please fill in all fields");
+
     try {
       await createDiscussion(title, text, user.userId);
-        alert("Discussion created");
-        if (titleRef.current) titleRef.current.value = "";
-        if (textRef.current) textRef.current.value = "";
-        router.refresh();
-      setOpen(false)
+      alert("Discussion created");
+      if (titleRef.current) titleRef.current.value = "";
+      if (textRef.current) textRef.current.value = "";
+      router.refresh();
+      setOpen(false);
     } catch (err) {
-        console.error(err);
-        alert("There was an error creating the discussion");
+      console.error(err);
+      alert("There was an error creating the discussion");
     }
-
-  }
+  };
 
   return (
     <div>
-      {/* Trigger button */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          style={{
-            position: "fixed",
-            top: "7.5rem",
-            right: "1.5rem",
-            background: "transparent",
-            border: "1px solid rgba(255,255,255,0.20)",
-            color: "rgba(255,255,255,0.60)",
-            fontFamily: "var(--font-cinzel)",
-            fontSize: "0.75rem",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            padding: "0.65rem 1.25rem",
-            cursor: "pointer",
-            transition: "background 0.2s, color 0.2s, border-color 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#ffffff";
-            e.currentTarget.style.color = "#080808";
-            e.currentTarget.style.borderColor = "#ffffff";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "rgba(255,255,255,0.60)";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.20)";
-          }}
+          className="fixed top-[7.5rem] right-[1.5rem] rounded-none border border-[rgba(255,255,255,0.20)] bg-transparent px-[1.25rem] py-[0.65rem] text-[0.75rem] uppercase tracking-[0.22em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.60)] transition duration-200 ease-in-out hover:bg-white hover:text-[#080808] hover:border-white"
         >
           New Discussion
         </button>
       )}
 
-      {/* Modal overlay */}
       {open && (
-        <div style={{
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.75)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 50,
-        }}>
-          <form
-            onSubmit={handleSubmit}
-            style={{
-              background: "#080808",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "12px",
-              padding: "2rem",
-              width: "100%",
-              maxWidth: "520px",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {/* Heading */}
-            <p style={{
-              fontFamily: "var(--font-cinzel)",
-              fontSize: "1.1rem",
-              fontWeight: 400,
-              letterSpacing: "0.14em",
-              color: "#ffffff",
-              marginBottom: "0.35rem",
-            }}>
-              New Discussion
-            </p>
-            <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "2rem" }} />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.75)]">
+          <form className="flex w-full max-w-[520px] flex-col rounded-[12px] border border-[rgba(255,255,255,0.08)] bg-[#080808] p-8" onSubmit={handleSubmit}>
+            <p className="font-[var(--font-cinzel)] text-[1.1rem] font-[400] tracking-[0.14em] text-white mb-[0.35rem]">New Discussion</p>
+            <div className="mb-8 h-[1px] w-[32px] bg-[rgba(255,255,255,0.20)]" />
 
-            {/* Topic */}
-            <input
-              ref={titleRef}
-              placeholder="Title"
-              required
-              style={inputStyle}
-              onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
-              onBlur={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
-            />
+            <input ref={titleRef} placeholder="Title" required className={inputClassName} />
 
-            {/* Content */}
             <textarea
               ref={textRef}
               placeholder="What do you want to discuss?"
               required
               rows={5}
-              style={{ ...inputStyle, marginTop: "1.4rem", borderBottom: "1px solid rgba(255,255,255,0.10)" }}
-              onFocus={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.60)")}
-              onBlur={(e) => (e.currentTarget.style.borderBottomColor = "rgba(255,255,255,0.10)")}
+              className={`${inputClassName} mt-[1.4rem]`}
             />
 
-            {/* Actions */}
-            <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.75rem", marginTop: "2rem" }}>
+            <div className="mt-[2rem] flex justify-end gap-[0.75rem]">
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "rgba(255,255,255,0.35)",
-                  fontFamily: "var(--font-cinzel)",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.20em",
-                  textTransform: "uppercase",
-                  padding: "0.6rem 1.2rem",
-                  cursor: "pointer",
-                  transition: "color 0.2s, border-color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#ffffff";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.30)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "rgba(255,255,255,0.35)";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-                }}
+                className="rounded-none border border-[rgba(255,255,255,0.12)] bg-transparent px-[1.2rem] py-[0.6rem] text-[0.72rem] uppercase tracking-[0.20em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.35)] transition duration-200 ease-in-out hover:text-white hover:border-[rgba(255,255,255,0.30)]"
               >
                 Cancel
               </button>
-
               <button
                 type="submit"
-                style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.20)",
-                  color: "rgba(255,255,255,0.60)",
-                  fontFamily: "var(--font-cinzel)",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.20em",
-                  textTransform: "uppercase",
-                  padding: "0.6rem 1.2rem",
-                  cursor: "pointer",
-                  transition: "background 0.2s, color 0.2s, border-color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#ffffff";
-                  e.currentTarget.style.color = "#080808";
-                  e.currentTarget.style.borderColor = "#ffffff";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.color = "rgba(255,255,255,0.60)";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.20)";
-                }}
+                className="rounded-none border border-[rgba(255,255,255,0.20)] bg-transparent px-[1.2rem] py-[0.6rem] text-[0.72rem] uppercase tracking-[0.20em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.60)] transition duration-200 ease-in-out hover:bg-white hover:text-[#080808] hover:border-white"
               >
                 Post
               </button>
@@ -217,5 +90,5 @@ export default function CreateDiscussion() {
         </div>
       )}
     </div>
-  )
+  );
 }

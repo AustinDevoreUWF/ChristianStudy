@@ -11,25 +11,18 @@ Needs to pass in a user Object for if the user is already registered
     -If YES Log in
     -If NO fade into create Account popup
 */
-export default function usersPage(){
-  const [isLogin, setIsLogin] = useState(true)
+export default function usersPage() {
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <main className="flex min-h-screen" style={{ background: "#080808" }}>
-      {/* Form Panel */}
-      <div className="w-full md:w-1/3 flex justify-center items-center" style={{ background: "#080808", padding: "3rem 2.5rem" }}>
-          <AuthForm />
+    <main className="flex min-h-screen bg-[#080808]">
+      <div className="w-full md:w-1/3 flex justify-center items-center bg-[#080808] px-[2.5rem] py-[3rem]">
+        <AuthForm />
       </div>
- 
-      {/* Painting Panel */}
-      <div
-        className="hidden lg:flex w-2/3 bg-cover bg-center relative overflow-hidden"
-        style={{ backgroundImage: "url('/JesusWithRabbis.jpg')" }}
-      >
-        {/* Dim the painting */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
-        {/* Left fade into form panel */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #080808 0%, transparent 28%)" }} />
+
+      <div className="hidden lg:flex w-2/3 relative overflow-hidden bg-[url('/JesusWithRabbis.jpg')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-[rgba(0,0,0,0.45)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,_#080808_0%,_transparent_28%)]" />
       </div>
     </main>
   );

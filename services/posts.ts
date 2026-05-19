@@ -50,6 +50,7 @@ export async function createReply(title:string, text:string, authorId:number, di
     const newReply = new Reply(0,title,text,authorId, discussionId)
     return await replyRepo.save(newReply);
 }
+
     //This is used to get all replies for a discussion
 export async function getAllReplies(id:number): Promise<ReplyDTO[]>{
     const replies = await replyRepo.findAllReplies(id);
@@ -62,9 +63,9 @@ export async function getAllReplies(id:number): Promise<ReplyDTO[]>{
             authorId: reply.authorId,
             discussionId: reply.discussionId,
             userName: user!.userName,
-            createdAt?: reply.createdAt,
+            createdAt: reply.createdAt,
         }
     }))
 }
-export async function(){
-}
+
+ 

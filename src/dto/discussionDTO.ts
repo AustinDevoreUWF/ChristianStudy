@@ -1,3 +1,4 @@
+import { JSX } from "react/jsx-runtime";
 
 export type DiscussionDTO = {
     id:number|null;

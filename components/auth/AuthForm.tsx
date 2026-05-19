@@ -4,174 +4,92 @@ import FormInput from "../ui/FormInput";
 import useLogin from "@/hooks/auth/useLogin";
 import useRegister from "@/hooks/auth/useRegister";
 
-export default function AuthForm(){
-    const [isLogin, setIsLogin] = useState(true);
-    //Deconstructing useLogin hook, pulls out login, isLoading, and error from whatever useLogin returns.
-    const { login,isLoading,error } = useLogin();
-    const { register, isRegisterLoading, errorRegister } = useRegister();
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
-    const nameRef = useRef<HTMLInputElement>(null);
-    
-    const handleToggle = () => {
-      setIsLogin((prev) => !prev);
-      if (isLogin && nameRef.current) nameRef.current.value = "";
-    };
+export default function AuthForm() {
+  const [isLogin, setIsLogin] = useState(true);
+  const { login, isLoading, error } = useLogin();
+  const { register, isRegisterLoading, errorRegister } = useRegister();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const email    = emailRef.current?.value;
-        const password = passwordRef.current?.value;
-        const name     = nameRef.current?.value;
-    
-        if (!email || !password || (!isLogin && !name)) {
-        alert("Please fill out all fields");
-        return;
-        }
-    
-        try{
-            if(isLogin){//res gets a response object must then convert to json.
-              const data = await login(email, password);
-              alert(`Logged in as ${data.user.userName}`);
-            }else{
-                const res = await register(email, password, name!);
-                alert(`Account created for${res.user.name}`);
-                }
+  const handleToggle = () => {
+    setIsLogin((prev) => !prev);
+    if (isLogin && nameRef.current) nameRef.current.value = "";
+  };
 
-                if (emailRef.current)    emailRef.current.value    = "";
-                if (passwordRef.current) passwordRef.current.value = "";
-                if (nameRef.current)     nameRef.current.value     = "";
-              } catch(err){
-              console.error(err);
-              alert(isLogin ? "Error logging in" : "Error creating account");
-            }
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    const name = nameRef.current?.value;
 
-  return(
-        <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        maxWidth: "280px",
-      }}
-    >
-      {/* Heading */}
-      <p
-        style={{
-          fontFamily: "var(--font-cinzel)",
-          fontSize: "1.1rem",
-          fontWeight: 400,
-          letterSpacing: "0.14em",
-          color: "#ffffff",
-          marginBottom: "0.35rem",
-          transition: "opacity 0.3s ease",
-        }}
-      >
+    if (!email || !password || (!isLogin && !name)) {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        const data = await login(email, password);
+        alert(`Logged in as ${data.user.userName}`);
+      } else {
+        const res = await register(email, password, name!);
+        alert(`Account created for${res.user.name}`);
+      }
+
+      if (emailRef.current) emailRef.current.value = "";
+      if (passwordRef.current) passwordRef.current.value = "";
+      if (nameRef.current) nameRef.current.value = "";
+    } catch (err) {
+      console.error(err);
+      alert(isLogin ? "Error logging in" : "Error creating account");
+    }
+  };
+
+  return (
+    <div className="flex flex-col w-full max-w-[280px]">
+      <p className="font-[var(--font-cinzel)] text-[1.1rem] font-[400] tracking-[0.14em] text-white mb-[0.35rem] transition-opacity duration-300 ease-in-out">
         {isLogin ? "Welcome Back" : "Welcome In"}
       </p>
- 
-      {/* Rule */}
-      <div
-        style={{
-          width: "32px",
-          height: "1px",
-          background: "rgba(255,255,255,0.20)",
-          marginBottom: "2rem",
-        }}
-      />
- 
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", width: "100%" }}>
- 
-        <FormInput type="email" placeholder="Email address" inputRef={emailRef} required/>
- 
-        <FormInput type="password" placeholder="Password" inputRef={passwordRef} required/>
-        {/*
-          Name field: animates in/out via max-height + opacity.
-          overflow:hidden is the key — combined with max-height transition
-          it creates the smooth expand/collapse effect.
-        */}
+
+      <div className="w-[32px] h-[1px] bg-[rgba(255,255,255,0.20)] mb-8" />
+
+      <form onSubmit={handleSubmit} className="flex flex-col w-full">
+        <FormInput type="email" placeholder="Email address" inputRef={emailRef} required />
+
+        <FormInput type="password" placeholder="Password" inputRef={passwordRef} required />
+
         <div
-          style={{
-            maxHeight: isLogin ? "0px" : "80px",
-            opacity: isLogin ? 0 : 1,
-            overflow: "hidden",
-            transition: "max-height 1.0s ease, opacity 0.35s ease",
-            // Pointer-events off while hidden so tab order is clean
-            pointerEvents: isLogin ? "none" : "auto",
-          }}
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            isLogin ? "max-h-0 opacity-0 pointer-events-none" : "max-h-[80px] opacity-100 pointer-events-auto"
+          }`}
         >
-          <FormInput type="text" placeholder="Your name" inputRef={nameRef}  tabIndex={isLogin ? -1 : 0}/>
+          <FormInput type="text" placeholder="Your name" inputRef={nameRef} tabIndex={isLogin ? -1 : 0} />
         </div>
 
-        {error && <p style={{ color: "red", fontSize: "0.8rem" }}>{error}</p>}
-        {errorRegister && <p style={{ color: "red", fontSize: "0.8rem" }}>{errorRegister}</p>}
-        
-        {/* Submit */}
+        {error && <p className="text-red-500 text-[0.8rem]">{error}</p>}
+        {errorRegister && <p className="text-red-500 text-[0.8rem]">{errorRegister}</p>}
+
         <button
           type="submit"
-          disabled={isLoading||isRegisterLoading}
-          style={{
-            background: "transparent",
-            border: "1px solid rgba(255,255,255,0.20)",
-            color: "rgba(255,255,255,0.60)",
-            fontFamily: "var(--font-cinzel)",
-            fontSize: "0.75rem",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            padding: "0.75rem",
-            cursor: "pointer",
-            marginTop: "0.4rem",
-            transition: "background 0.2s, color 0.2s, border-color 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background   = "#ffffff";
-            e.currentTarget.style.color        = "#080808";
-            e.currentTarget.style.borderColor  = "#ffffff";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background   = "transparent";
-            e.currentTarget.style.color        = "rgba(255,255,255,0.60)";
-            e.currentTarget.style.borderColor  = "rgba(255,255,255,0.20)";
-          }}
+          disabled={isLoading || isRegisterLoading}
+          className="mt-1 inline-flex w-full justify-center border border-[rgba(255,255,255,0.20)] bg-transparent px-[0.75rem] py-[0.75rem] text-[0.75rem] uppercase tracking-[0.22em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.60)] transition duration-200 ease-in-out hover:bg-white hover:text-[#080808] hover:border-white disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isLoading||isRegisterLoading ? "..." :isLogin ? "Enter": "Begin"}
+          {isLoading || isRegisterLoading ? "..." : isLogin ? "Enter" : "Begin"}
         </button>
- 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.75rem",
-            marginTop: "1.8rem",
-          }}
-        >
-          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.08)" }} />
+
+        <div className="mt-[1.8rem] flex items-center gap-[0.75rem]">
+          <div className="flex-1 h-[1px] bg-[rgba(255,255,255,0.08)]" />
           <button
             type="button"
             onClick={handleToggle}
-            style={{
-              background: "none",
-              border: "none",
-              padding: 0,
-              cursor: "pointer",
-              fontFamily: "var(--font-cinzel)",
-              fontSize: "0.62rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.30)",
-              transition: "color 0.2s ease",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.70)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.30)")}
+            className="bg-none border-none p-0 text-[0.62rem] uppercase tracking-[0.18em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.30)] transition duration-200 ease-in-out whitespace-nowrap hover:text-[rgba(255,255,255,0.70)]"
           >
             {isLogin ? "New member?" : "Have an account?"}
           </button>
-          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.08)" }} />
+          <div className="flex-1 h-[1px] bg-[rgba(255,255,255,0.08)]" />
         </div>
- 
       </form>
     </div>
-)
+  );
 }

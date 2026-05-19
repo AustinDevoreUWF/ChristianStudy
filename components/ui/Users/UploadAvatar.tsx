@@ -8,14 +8,15 @@ export default function ProfilePage() {
   const [showSave, setShowSave] = useState(false);
   const [status, setStatus] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { user,refreshUser,logout } = useAuth();
-  const userName = user?.userName ??"";
-  const userPfp= user?.profilePic ?? null;
+  const { user, refreshUser, logout } = useAuth();
+  const userName = user?.userName ?? "";
+  const userPfp = user?.profilePic ?? null;
   const userEmail = user?.userEmail ?? "";
-  const showLogout = Boolean(user)
+  const showLogout = Boolean(user);
+
   useEffect(() => {
     refreshUser();
-  },[]);
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,119 +30,92 @@ export default function ProfilePage() {
     if (!inputRef.current?.files?.[0]) return;
     setStatus("Uploading...");
     try {
-      // 1. Upload to Cloudinary/S3 → get back a URL
-      // 2. Call your API
-      // const res = await fetch("/api/users/profile-pic", {
-      //   method: "PUT",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ userName, profilePic: uploadedUrl }),
-      // });
-        const file = inputRef.current.files[0];
+      const file = inputRef.current.files[0];
 
-    // 1. Convert file to base64
-    const base64 = await new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
+      const base64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
 
-    // 2. Upload to Cloudinary → get back a URL
-    const uploadRes = await fetch("/api/users/uploadImage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ image: base64 }),
-    });
-    const uploadData = await uploadRes.json();
-    if (!uploadRes.ok) throw new Error(uploadData.error);
+      const uploadRes = await fetch("/api/users/uploadImage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: base64 }),
+      });
+      const uploadData = await uploadRes.json();
+      if (!uploadRes.ok) throw new Error(uploadData.error);
 
-    // 3. Save the URL to your database
-    const saveRes = await fetch("/api/users/pfpSave", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userName, profilePic: uploadData.url }),
-    });
-    if (!saveRes.ok) throw new Error("Failed to save");
+      const saveRes = await fetch("/api/users/pfpSave", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userName, profilePic: uploadData.url }),
+      });
+      if (!saveRes.ok) throw new Error("Failed to save");
 
       setStatus("Photo updated.");
       setShowSave(false);
-      //refresh user data to update the avatar
-      await refreshUser()
+      await refreshUser();
     } catch (err) {
       setStatus("Failed to update.");
     }
   };
 
-  const inputStyle: React.CSSProperties = {
-    display: "block",
-    width: "100%",
-    background: "transparent",
-    border: "none",
-    borderBottom: "1px solid rgba(255,255,255,0.10)",
-    color: "#e8e8e8",
-    fontFamily: "var(--font-garamond)",
-    fontSize: "1.05rem",
-    letterSpacing: "0.04em",
-    padding: "0.7rem 0",
-    marginBottom: "1.4rem",
-    outline: "none",
-  };
-
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: "320px", gap: "2rem" }}>
-
-      {/* Avatar */}
-      <div style={{ position: "relative", width: "96px", height: "96px" }}>
-        <div style={{ width: "96px", height: "96px", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#111", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+    <div className="flex flex-col items-center w-full max-w-[320px] gap-[2rem]">
+      <div className="relative w-[96px] h-[96px]">
+        <div className="w-[96px] h-[96px] rounded-full border border-[rgba(255,255,255,0.15)] bg-[#111] flex items-center justify-center overflow-hidden">
           {preview ? (
-            <img src={preview} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={preview} alt="Profile" className="w-full h-full object-cover" />
           ) : userPfp ? (
-            <img src={userPfp} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={userPfp} alt="Profile" className="w-full h-full object-cover" />
           ) : (
-            <span style={{ fontFamily: "var(--font-cinzel)", fontSize: "1.4rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>
-              {userName.split(" ").map(n => n[0]).join("")}
+            <span className="font-[var(--font-cinzel)] text-[1.4rem] text-[rgba(255,255,255,0.4)] tracking-[0.1em]">
+              {userName.split(" ").map((n) => n[0]).join("")}
             </span>
           )}
         </div>
 
-        {/* Camera button */}
-        <label htmlFor="pfp-input" style={{ position: "absolute", bottom: 0, right: 0, width: "26px", height: "26px", borderRadius: "50%", background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.20)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+        <label htmlFor="pfp-input" className="absolute bottom-0 right-0 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-[#1a1a1a] border border-[rgba(255,255,255,0.20)] cursor-pointer">
           📷
         </label>
-        <input ref={inputRef} id="pfp-input" type="file" accept="image/*" style={{ display: "none" }} onChange={handleFileChange} />
+        <input ref={inputRef} id="pfp-input" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
       </div>
 
-      {/* Name & Email */}
-      <div style={{ textAlign: "center" }}>
-        <p style={{ fontFamily: "var(--font-cinzel)", fontSize: "1.1rem", color: "#e8e8e8", margin: "0 0 0.2rem", letterSpacing: "0.12em" }}>{userName}</p>
-        <p style={{ fontFamily: "var(--font-garamond)", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", margin: 0, letterSpacing: "0.04em" }}>{userEmail}</p>
+      <div className="text-center">
+        <p className="font-[var(--font-cinzel)] text-[1.1rem] text-[#e8e8e8] mb-[0.2rem] tracking-[0.12em]">{userName}</p>
+        <p className="font-[var(--font-garamond)] text-[0.9rem] text-[rgba(255,255,255,0.6)] m-0 tracking-[0.04em]">{userEmail}</p>
       </div>
 
-      <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.10)" }} />
+      <div className="w-[32px] h-[1px] bg-[rgba(255,255,255,0.10)]" />
 
-      {/* Details */}
       {[{ label: "Name", value: userName }, { label: "Email", value: userEmail }].map(({ label, value }) => (
-        <div key={label} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.6rem 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <span style={{ fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-cinzel)" }}>{label}</span>
-          <span style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.70)", fontFamily: "var(--font-garamond)", letterSpacing: "0.04em" }}>{value}</span>
+        <div key={label} className="w-full flex justify-between items-center py-[0.6rem] border-b border-b-[rgba(255,255,255,0.06)]">
+          <span className="text-[0.72rem] uppercase tracking-[0.14em] text-[rgba(255,255,255,0.25)] font-[var(--font-cinzel)]">{label}</span>
+          <span className="text-[0.88rem] text-[rgba(255,255,255,0.70)] font-[var(--font-garamond)] tracking-[0.04em]">{value}</span>
         </div>
       ))}
 
-      {/* Save button */}
       {showSave && (
-        <button onClick={handleSave} style={{ width: "100%", background: "transparent", border: "1px solid rgba(255,255,255,0.20)", color: "rgba(255,255,255,0.60)", fontFamily: "var(--font-cinzel)", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase", padding: "0.75rem", cursor: "pointer" }}>
+        <button
+          onClick={handleSave}
+          className="w-full border border-[rgba(255,255,255,0.20)] bg-transparent py-[0.75rem] text-[0.75rem] uppercase tracking-[0.22em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.60)] transition duration-200 ease-in-out hover:bg-white hover:text-[#080808] hover:border-white"
+        >
           Save Photo
         </button>
       )}
-      {showLogout &&(
-        <button onClick={logout} style={{ width: "100%", background: "transparent", border: "1px solid rgba(255,255,255,0.20)", color: "rgba(255,255,255,0.60)", fontFamily: "var(--font-cinzel)", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase", padding: "0.75rem", cursor: "pointer" }}>
+
+      {showLogout && (
+        <button
+          onClick={logout}
+          className="w-full border border-[rgba(255,255,255,0.20)] bg-transparent py-[0.75rem] text-[0.75rem] uppercase tracking-[0.22em] font-[var(--font-cinzel)] text-[rgba(255,255,255,0.60)] transition duration-200 ease-in-out hover:bg-white hover:text-[#080808] hover:border-white"
+        >
           Logout
         </button>
       )}
-      {status && (
-        <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.30)", fontFamily: "var(--font-garamond)", letterSpacing: "0.1em", margin: 0 }}>{status}</p>
-      )}
 
+      {status && <p className="text-[0.72rem] text-[rgba(255,255,255,0.30)] font-[var(--font-garamond)] tracking-[0.1em] m-0">{status}</p>}
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default async function ReplyList({ replies }: { replies: ReplyDTO[] }) {
                 replies.map((reply) => (
                     //Actual style goes here:
                     <div key={reply.id}>
-                        <p className="text-sm text-white py-5">{reply.userName}</p>
+                        <p className="text-sm text-white ">{reply.userName}</p>
                         <p className="text-white text-xl">{reply.title}</p>
                         <p className="mx-5 text-white ">{reply.text}</p>
                         <p>{new Date(reply.createdAt).toLocaleDateString()}</p>

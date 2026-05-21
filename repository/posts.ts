@@ -63,12 +63,13 @@ export interface ReplyRepo{
     findByauthorId(authorId : number):Promise<Reply[] | null>
     //Returns all replys under a discussion(This will need serious formatting)
     findAllReplies(discussionId:number):Promise<Reply[]>
+    //createReply(text: string, title: string, userId: string,discussionId: string, parentId?: number):Promise<Reply>
     save(reply:Reply):Promise<Reply>
 }
 export class PrismaReplyRepo implements ReplyRepo{
      private toDomain(data: any):Reply{
          console.log("toDomain data:", data);
-            return new Reply(data.title, data.text, data.authorId, data.discussionId, data.createdAt, data.id || null);
+            return new Reply(data.title, data.text, data.authorId, data.discussionId, data.parentId ,data.createdAt, data.id || null);
      }
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
@@ -94,13 +95,20 @@ export class PrismaReplyRepo implements ReplyRepo{
             this.toDomain(d)
         )
     }
+    /**
+    async createReply(text: string, title: string, userId: string,discussionId: number, parentId?: number):Promise<Reply>{
+        
+        return 
+    }
+  */
     async save(reply:Reply):Promise<Reply>{
         const data = await prisma.reply.create({
             data: {
                 title: reply.title,
                 text: reply.text,
                 authorId: reply.authorId,
-                discussionId: reply.discussionId, 
+                discussionId: reply.discussionId,
+                parentId:reply.parentId,
             }
         })
         return this.toDomain(data)

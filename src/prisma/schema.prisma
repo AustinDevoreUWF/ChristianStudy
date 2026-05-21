@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,10 +7,10 @@ datasource db {
 }
 
 model UserProfile {
-  userId      Int      @id
-  user        User     @relation(fields: [userId], references: [id])
-  profilePic  String?
-  tags        String[]
+  userId     Int      @id
+  profilePic String?
+  tags       String[]
+  user       User     @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -24,10 +18,10 @@ model User {
   userName     String       @unique
   userEmail    String       @unique
   passwordHash String
-  replies      Reply[]
-  discussions  Discussion[]
   createdAt    DateTime     @default(now())
   isAdmin      Boolean      @default(false)
+  discussions  Discussion[]
+  replies      Reply[]
   profile      UserProfile?
 }
 
@@ -36,21 +30,21 @@ model Reply {
   text         String
   title        String
   authorId     Int
-  author       User       @relation(fields: [authorId], references: [id])
   discussionId Int
-  discussion   Discussion @relation(fields: [discussionId], references: [id]) // ← add this
-  parentId     Int?
-  parent       Reply?   @relation("ReplyToReply", fields: [parentId], references: [id])
-  children     Reply[]    @relation("ReplyToReply")
   createdAt    DateTime   @default(now())
+  parentId     Int?
+  author       User       @relation(fields: [authorId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
+  children     Reply[]    @relation("ReplyToReply")
 }
 
 model Discussion {
   id        Int      @id @default(autoincrement())
   text      String
   authorId  Int
-  author    User?    @relation(fields: [authorId], references: [id])
   title     String
-  replys    Reply[]
   createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  replys    Reply[]
 }

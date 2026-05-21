@@ -1,15 +1,15 @@
-import prisma from "@/src/lib/prisma";
-import { PrismaUserRepository } from "@/repository/users";
-import { PrismaDiscussionRepo } from "@/repository/posts";
-import { PrismaReplyRepo } from "@/repository/posts";
-import { User } from "@/src/domain/users";
+import { PrismaUserRepository, PrismaUserProfileRepository } from "@/repository/users";
+import { PrismaDiscussionRepo, PrismaReplyRepo } from "@/repository/posts";
 import { Discussion, Reply } from "@/src/domain/posts";
 
 import {DiscussionDTO} from "@/src/dto/discussionDTO";
 import { ReplyDTO } from "@/src/dto/discussionDTO";
+
 const userRepo = new PrismaUserRepository();
+const profileRepo = new PrismaUserProfileRepository();
 const discussionRepo = new PrismaDiscussionRepo();
 const replyRepo = new PrismaReplyRepo();
+
 
     //Creates A New Discussion
 export async function createDiscussion(title:string, text:string,authorId:number):Promise<Discussion>{
@@ -53,9 +53,10 @@ export async function createReply(title:string, text:string, authorId:number, di
 
     //This is used to get all replies for a discussion
 export async function getAllReplies(id:number): Promise<ReplyDTO[]>{
-    const replies = await replyRepo.findAllReplies(id);
-    return Promise.all(replies.map( async (reply)=>{
-        const user = await userRepo.findUserById(reply.authorId)
+    const replies = await replyRepo.findAllReplies(id);//get all replies as array
+    return Promise.all(replies.map( async (reply)=>{//over each reply 
+        const user = await userRepo.findUserById(reply.authorId)//get user for each reply
+        const profileInfo = await profileRepo.getUserProfile(reply.authorId)//get the author of each reply
         return{
             id: reply.id,
             title: reply.title,
@@ -63,6 +64,8 @@ export async function getAllReplies(id:number): Promise<ReplyDTO[]>{
             authorId: reply.authorId,
             discussionId: reply.discussionId,
             userName: user!.userName,
+            profilePic: profileInfo?.profilePic ?? null,
+            parentId:reply?.parentId,
             createdAt: reply.createdAt,
         }
     }))

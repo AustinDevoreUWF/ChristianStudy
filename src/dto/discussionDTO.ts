@@ -15,5 +15,7 @@ export type ReplyDTO={
     authorId: number;
     discussionId: number;
     userName: string;
+    profilePic: string|null;
+    parentId?: number;
     createdAt?: Date;
 }

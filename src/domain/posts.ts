@@ -32,8 +32,9 @@ export class Reply{
     text: string;
     authorId: number;
     discussionId: number;
+    parentId?: number;
     createdAt?: Date;
-    constructor(replyTitle: string, replyText: string, authorId:number, discussionId: number,createdAt?: Date, id:number|null=null){
+    constructor(replyTitle: string, replyText: string, authorId:number, discussionId: number, parentId: number, createdAt?: Date, id:number|null=null){
         //checks
         if(!replyTitle)throw new Error("A replyTitle was now provided!");
         if(!replyText)throw new Error("A replyText was not provided");
@@ -45,6 +46,7 @@ export class Reply{
         this.text = replyText
         this.authorId = authorId
         this.discussionId = discussionId
+        this.parentId = parentId
         this.createdAt = createdAt
     }
     toString():string{

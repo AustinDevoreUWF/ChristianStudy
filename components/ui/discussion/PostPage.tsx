@@ -25,14 +25,14 @@ export default async function DiscussionPostPage({discussion,replies}:{
             <div style={{position:"fixed",left:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
             <div style={{position:"fixed",right:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
 
-            <div style={{ background: "#080808", minHeight: "100vh", padding: "10rem" }}>
-                <h1 style={{ fontFamily: "var(--fjont-cinzel)", color: "#ffffff", fontSize:"28px", fontWeight:"700"}}>
+            <div className="p-40 bg-[#080808] min-h-screen">
+                <h1 className="font-cinzel text-3xl text-white font-bold">
                     {discussion.title}
                 </h1>
-                <p style={{ fontFamily: "var(--font-garamond)", color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
+                <p className="font-garamond text-white/30 text-lg">
                     By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
                 </p>
-                <p style={{ fontFamily: "var(--font-garamond)", color: "#e8e8e8", marginTop: "2rem" }}>
+                <p className="font-garamond text-white mt-8">
                     {discussion.text}
                 </p>
                 <ReplyList replies={replies}/>

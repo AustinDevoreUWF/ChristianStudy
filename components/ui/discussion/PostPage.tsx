@@ -2,11 +2,13 @@ import prisma from "@/src/lib/prisma"
 import { DiscussionDTO, ReplyDTO } from "@/src/dto/discussionDTO";
 import ReplyList from "./replies/replyList";
 import ReplyButton from "./replies/replyButton";
+import CreateReply from "./replies/createReply";
 
 
-export default async function DiscussionPostPage({discussion,replies}:{
+export default async function DiscussionPostPage({discussion,replies,discussionId}:{
     discussion: DiscussionDTO,
-    replies: ReplyDTO[]
+    replies: ReplyDTO[],
+    discussionId:number,
 }){
 
  return (
@@ -24,8 +26,7 @@ export default async function DiscussionPostPage({discussion,replies}:{
                 <p className=" text-white mt-8">
                     {discussion.text}
                 </p>
-                <ReplyButton onReply={()=> onReply(discussion.id)}/>
-                <ReplyList replies={replies}/>
+                <ReplyList replies={replies} discussionId={discussionId}/>
             </div>
         </main>
  )

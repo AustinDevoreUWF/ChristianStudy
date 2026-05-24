@@ -18,14 +18,14 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             where: {id: id},
         });
         if(!data)return null;
-        return new Discussion(data.title!, data.text!, data.authorId!,data.createdAt,data.id, )
+        return new Discussion(data.title!, data.text!, data.authorId!, data.id, data.createdAt )
     }
     //Find by Title(Can return many)
     async findByTitle(title: string):Promise<Discussion[] | null>{
         const data = await prisma.discussion.findMany({
             where: { title },
         });
-        return data.map(d => new Discussion(d.title, d.text, d.authorId, d.createdAt, d.id)
+        return data.map(d => new Discussion(d.title, d.text, d.authorId, d.id, d.createdAt)
         )
     }
     //returns an array of all Discussions made by a User
@@ -34,7 +34,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             where: {authorId},
         });
         return data.map(d => 
-            new Discussion(d.title!, d.text!, d.authorId!, d.createdAt, d.id)
+            new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt)
   );
     }
     async save(discussion:Discussion):Promise<Discussion>{
@@ -45,13 +45,13 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
                 authorId: discussion.authorId,
             }
         })
-        return new Discussion(data.title, data.text, data.authorId, data.createdAt, data.id);
+        return new Discussion(data.title, data.text, data.authorId, data.id, data.createdAt,);
     }
     async findAll():Promise<Discussion[]>{
         const data = await prisma.discussion.findMany({
             orderBy:{createdAt:"asc"}
         });
-        return data.map(d => new Discussion(d.title!, d.text!, d.authorId!, d.createdAt, d.id))
+        return data.map(d => new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt))
     }
 
 }
@@ -70,8 +70,7 @@ export interface ReplyRepo{
 }
 export class PrismaReplyRepo implements ReplyRepo{
      private toDomain(data: any):Reply{
-         console.log("toDomain data:", data);
-            return new Reply(data.title, data.text, data.authorId, data.discussionId, data?.parentId ,data.createdAt, data.id || null);
+            return new Reply(data.title, data.text, data.authorId, data.discussionId, data.parentId||null , data.id || null,data.createdAt);
      }
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
@@ -111,7 +110,8 @@ export class PrismaReplyRepo implements ReplyRepo{
                 text: reply.text,
                 authorId: reply.authorId,
                 discussionId: reply.discussionId,
-                parentId:reply?.parentId,
+                parentId:reply.parentId,
+                createdAt:reply.createdAt,
             }
         })
         return this.toDomain(data)

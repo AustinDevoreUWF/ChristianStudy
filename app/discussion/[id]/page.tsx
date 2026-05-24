@@ -7,5 +7,5 @@ export default async function DiscussionPage({params}:{params: Promise<{id:strin
     const discussion = await getDiscussionById(Number(id));
       if (!discussion) return null;
     const replies = await getAllReplies(Number(id))
-    return <DiscussionPostPage discussion={discussion} replies={replies}/>
+    return <DiscussionPostPage discussion={discussion} replies={replies} discussionId={Number(id)}/>
 }

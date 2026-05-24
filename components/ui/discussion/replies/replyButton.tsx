@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-
+//pass in onReply, a function of type void to the button, so onClick runs onReply
 export default function ReplyButton({ onReply }: { onReply: () => void }) {
     return (
         <button

@@ -3,6 +3,7 @@ import { ReplyDTO } from "@/src/dto/discussionDTO";
 import { useState } from "react";
 import ReplyButton from "./replyButton";
 import Image from "next/image"
+import CreateReply from "./createReply";
 
 //returns a ReplyItem with its children 
 function ReplyItem({reply, replies, onReply, depth=0}:{
@@ -28,6 +29,7 @@ function ReplyItem({reply, replies, onReply, depth=0}:{
             </div>
             <p className="text-white text-xl font-semibold font-cinzel pb-1">{reply.title}</p>
             <p className="mx-2 text-white/70  pb-3 leading-relaxed mb-3">{reply.text}</p>
+            {/**Pass prop called onReply, with value of reply id, reply id is  */}
             <ReplyButton onReply={() => onReply(reply.id!)} />
             {children.map(child =>(
                 <ReplyItem key={child.id} reply={child} replies={replies} onReply={onReply} depth={depth + 1}/>
@@ -37,13 +39,23 @@ function ReplyItem({reply, replies, onReply, depth=0}:{
     )
 };
 //here will be the logic for when to display a ReplyItem, which can have children if they have children probably show then first?
-export default function ReplyList({ replies }: { replies: ReplyDTO[] }) {
+export default function ReplyList({ replies,discussionId }: { replies: ReplyDTO[],discussionId:number }) {
     const [parentId,setParentId] = useState<number|null>(null)
+    const [open, setOpen] = useState(false)
+
+    const handleReply = (id:number|null)=>{
+        console.log("replyId set as: ", id)
+        setParentId(id)
+        setOpen(true)
+    }
+
     //need to return root replies
     const topLevelReplies = replies.filter(x => x.parentId === null)
 
     return (
     <div className="mt-2 pt-2 border-t border-white/19">
+        <CreateReply discussionId={discussionId} parentId={parentId} open={open} setOpen={setOpen} />
+        <ReplyButton onReply={()=>handleReply(null)}/>
         <div className="">
             {replies.length === 0 ? (
                 <p>No replies yet. Want to start the conversation?</p>
@@ -53,7 +65,7 @@ export default function ReplyList({ replies }: { replies: ReplyDTO[] }) {
                         key={reply.id}
                         reply={reply}//the single reply
                         replies={replies}//the entire reply list(search for matching parent id to know children)
-                        onReply={setParentId}//when clicked, set the parentId
+                        onReply={handleReply}//when clicked, set the parentId
                     />
                 ))
             )}

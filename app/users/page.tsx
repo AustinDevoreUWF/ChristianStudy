@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react";
 import AuthForm from "@/components/auth/AuthForm";
 /*
 Create a page for non users to create a User Profile.
@@ -12,7 +11,6 @@ Needs to pass in a user Object for if the user is already registered
     -If NO fade into create Account popup
 */
 export default function usersPage(){
-  const [isLogin, setIsLogin] = useState(true)
 
   return (
     <main className="flex min-h-screen" style={{ background: "#080808" }}>

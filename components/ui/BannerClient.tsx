@@ -38,7 +38,7 @@ export default function BannerClient({
               lineHeight: 1,
             }}
           >
-            The Study of Faith
+            Studying Faith
           </span>
           <span
             style={{

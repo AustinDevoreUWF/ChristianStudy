@@ -17,7 +17,8 @@ function ReplyItem({reply, replies, onReply, depth=0}:{
         //Actual style goes here:
         const children = replies.filter(x => x.parentId === reply.id)
     return(
-            <div className={`pt-4 ${depth > 0 ?  "ml-8" : ""}`}>
+            <div className={`pt-4 ${depth > 0 &&depth<3 ?  "ml-8" : ""}`}>
+           <div className="border-l border-white/20 pl-4">
             <div className="flex items-center gap-1 pb-2">
                 
                 <div className="w-7 h-7 overflow-hidden rounded-full">
@@ -29,6 +30,7 @@ function ReplyItem({reply, replies, onReply, depth=0}:{
             </div>
             <p className="text-white text-xl font-semibold font-cinzel pb-1">{reply.title}</p>
             <p className="mx-2 text-white/70  pb-3 leading-relaxed mb-3">{reply.text}</p>
+            </div>
             {/**Pass prop called onReply, with value of reply id, reply id is  */}
             <ReplyButton onReply={() => onReply(reply.id!)} />
             {children.map(child =>(

@@ -10,7 +10,7 @@ export default function Home() {
       style={{backgroundImage: "url('/JohnBackground.jpg')" }}
       />
       {/*Dim the painting*/}
-      <div style={{position: "absolute", inset:0, background:"rgba(0,0,0,0.45)"}}></div>
+      <div style={{position: "absolute", inset:0, background:"rgba(0,0,0,0.01)"}}></div>
     </main>
     
   );

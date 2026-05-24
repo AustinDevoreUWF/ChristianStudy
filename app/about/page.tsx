@@ -15,7 +15,7 @@ export default function about(){
         />
         {/**Right side scrolling*/}
         <div className="w-full md:w-1/2 p-8 overflow-auto bg-black">
-        <p className="text-white py-8 text-center">Heres my Text hello!</p>
+        <p className="text-white py-8 text-center">Work in Progress</p>
         </div>
     </div>
     )

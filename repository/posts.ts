@@ -48,7 +48,9 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
         return new Discussion(data.title, data.text, data.authorId, data.createdAt, data.id);
     }
     async findAll():Promise<Discussion[]>{
-        const data = await prisma.discussion.findMany();
+        const data = await prisma.discussion.findMany({
+            orderBy:{createdAt:"asc"}
+        });
         return data.map(d => new Discussion(d.title!, d.text!, d.authorId!, d.createdAt, d.id))
     }
 
@@ -69,7 +71,7 @@ export interface ReplyRepo{
 export class PrismaReplyRepo implements ReplyRepo{
      private toDomain(data: any):Reply{
          console.log("toDomain data:", data);
-            return new Reply(data.title, data.text, data.authorId, data.discussionId, data.parentId ,data.createdAt, data.id || null);
+            return new Reply(data.title, data.text, data.authorId, data.discussionId, data?.parentId ,data.createdAt, data.id || null);
      }
     async findById(id:number):Promise<Reply|null>{
         const data = await prisma.reply.findUnique({
@@ -89,6 +91,7 @@ export class PrismaReplyRepo implements ReplyRepo{
     async findAllReplies(discussionId:number):Promise<Reply[]>{
         const data = await prisma.reply.findMany({
             where: {discussionId},
+            orderBy: {createdAt: "asc"}
         });
         if(!discussionId)return []
         return data.map(d=>
@@ -108,7 +111,7 @@ export class PrismaReplyRepo implements ReplyRepo{
                 text: reply.text,
                 authorId: reply.authorId,
                 discussionId: reply.discussionId,
-                parentId:reply.parentId,
+                parentId:reply?.parentId,
             }
         })
         return this.toDomain(data)

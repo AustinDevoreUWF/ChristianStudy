@@ -45,10 +45,10 @@ export async function getDiscussionById(id:number):Promise<DiscussionDTO | null>
             createdAt:discussion.createdAt,
         }
 }
-    //Create a reply (NEEDS SERIOUS REWORK)
-export async function createReply(title:string, text:string, authorId:number, discussionId:number):Promise<Reply>{
-    const newReply = new Reply(0,title,text,authorId, discussionId)
-    return await replyRepo.save(newReply);
+    //creates a reply, dont worry about DTO here
+export async function createReply(title:string, text:string,  authorId:number, discussionId:number ,parentId?:number):Promise<Reply|null>{
+    const newReply = new Reply(title, text,authorId,discussionId,parentId )
+    return await replyRepo.save(newReply)
 }
 
     //This is used to get all replies for a discussion

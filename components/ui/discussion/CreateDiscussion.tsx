@@ -30,18 +30,7 @@ export default function CreateDiscussion() {
 
   if(loading) return null;
 
-  if (!user?.isAdmin) {
-    return (
-      <p style={{
-        fontFamily: "var(--font-garamond)",
-        fontStyle: "italic",
-        color: "rgba(255,255,255,0.30)",
-        fontSize: "1rem",
-      }}>
-        You are not permitted to create a discussion.
-      </p>
-    )
-  }
+  if(!user) return null;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const title = titleRef.current?.value;

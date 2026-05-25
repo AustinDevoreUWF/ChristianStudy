@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Cinzel, EB_Garamond } from "next/font/google";
+import { Geist, Geist_Mono, Cinzel, EB_Garamond, Lora} from "next/font/google";
 import "./globals.css";
 import Banner from "@/components/ui/Banner"
 import { AuthProvider } from "@/components/ui/context/AuthContext";
@@ -20,6 +20,10 @@ const garamond = EB_Garamond({
   variable: "--font-garamond",
   subsets: ["latin"],
 });
+const lora = Lora({
+  variable: "--font-lora-serif",
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,9 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} ${lora.variable} antialiased`}>
         <AuthProvider>
-        <Banner links={[{label:"Home", href:"/"},{label:"About",href:"/about"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/>
+        <Banner links={[{label:"Home", href:"/"},{label:"References",href:"/refrences"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/>
         {children}
         </AuthProvider>
       </body>

@@ -23,7 +23,7 @@ export default async function DiscussionPostPage({discussion,replies,discussionI
                 <p className="font-garamond text-white/30 text-lg">
                     By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
                 </p>
-                <p className=" text-white mt-8">
+                <p className=" text-white/70 mt-8 whitespace-pre-wrap font-lora">
                     {discussion.text}
                 </p>
                 <ReplyList replies={replies} discussionId={discussionId}/>

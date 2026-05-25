@@ -29,7 +29,7 @@ function ReplyItem({reply, replies, onReply, depth=0}:{
                 <p className="text-xs text-white/19">{new Date(reply.createdAt!).toLocaleDateString()}</p>
             </div>
             <p className="text-white text-xl font-semibold font-cinzel pb-1">{reply.title}</p>
-            <p className="mx-2 text-white/70  pb-3 leading-relaxed mb-3">{reply.text}</p>
+            <p className="mx-2 text-white/70  pb-3 leading-relaxed mb-3 whitespace-pre-wrap font-lora">{reply.text}</p>
             </div>
             {/**Pass prop called onReply, with value of reply id, reply id is  */}
             <ReplyButton onReply={() => onReply(reply.id!)} />
@@ -60,7 +60,7 @@ export default function ReplyList({ replies,discussionId }: { replies: ReplyDTO[
         <ReplyButton onReply={()=>handleReply(null)}/>
         <div className="">
             {replies.length === 0 ? (
-                <p>No replies yet. Want to start the conversation?</p>
+                <p className="text-white/19 font-garamond">No replies yet. Want to start the conversation?</p>
             ) : (//go over each root reply and search for its children else display root.
                 topLevelReplies.map(reply=>(
                     <ReplyItem 

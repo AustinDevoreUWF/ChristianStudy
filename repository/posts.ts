@@ -25,7 +25,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
         const data = await prisma.discussion.findMany({
             where: { title },
         });
-        return data.map(d => new Discussion(d.title, d.text, d.authorId, d.id, d.createdAt)
+        return data.map((d:any) => new Discussion(d.title, d.text, d.authorId, d.id, d.createdAt)
         )
     }
     //returns an array of all Discussions made by a User
@@ -33,7 +33,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
         const data = await prisma.discussion.findMany({
             where: {authorId},
         });
-        return data.map(d => 
+        return data.map((d:any)=> 
             new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt)
   );
     }
@@ -51,7 +51,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
         const data = await prisma.discussion.findMany({
             orderBy:{createdAt:"asc"}
         });
-        return data.map(d => new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt))
+        return data.map((d:any)=> new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt))
     }
 
 }
@@ -82,8 +82,8 @@ export class PrismaReplyRepo implements ReplyRepo{
         const data = await prisma.reply.findMany({
             where: {authorId},
         });
-        return data.map(d=>
-            this.toDomain(data)
+        return data.map((d:any)=>
+            this.toDomain(d)
         )
     }
     //might return alot
@@ -93,7 +93,7 @@ export class PrismaReplyRepo implements ReplyRepo{
             orderBy: {createdAt: "asc"}
         });
         if(!discussionId)return []
-        return data.map(d=>
+        return data.map((d:any)=>
             this.toDomain(d)
         )
     }

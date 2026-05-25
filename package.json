@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate --schema=src/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/adapter-neon": "^7.5.0",
@@ -35,7 +36,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.5.0",
-    "eslint": "^10.4.0",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.15",
     "shadcn": "^3.8.5",

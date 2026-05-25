@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model UserProfile {
+  userId     Int      @id
+  profilePic String?
+  tags       String[]
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id           Int          @id @default(autoincrement())
+  userName     String       @unique
+  userEmail    String       @unique
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  isAdmin      Boolean      @default(false)
+  discussions  Discussion[]
+  replies      Reply[]
+  profile      UserProfile?
+}
+
+model Reply {
+  id           Int        @id @default(autoincrement())
+  text         String
+  title        String
+  authorId     Int
+  discussionId Int
+  createdAt    DateTime   @default(now())
+  parentId     Int?
+  author       User       @relation(fields: [authorId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
+  children     Reply[]    @relation("ReplyToReply")
+}
+
+model Discussion {
+  id        Int      @id @default(autoincrement())
+  text      String
+  authorId  Int
+  title     String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  replys    Reply[]
+}

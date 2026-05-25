@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import DiscussionPostPage from "@/components/ui/discussion/PostPage"
 import replyList from "@/components/ui/discussion/replies/replyList";
 import { getAllReplies, getDiscussionById } from "@/services/posts"

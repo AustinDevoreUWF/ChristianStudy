@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CreateDiscussion from "@/components/ui/discussion/CreateDiscussion";
 import DiscussionBoard from "@/components/ui/discussion/DiscussionBoard";
 

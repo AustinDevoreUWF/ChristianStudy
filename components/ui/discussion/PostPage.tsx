@@ -3,6 +3,7 @@ import { DiscussionDTO, ReplyDTO } from "@/src/dto/discussionDTO";
 import ReplyList from "./replies/replyList";
 import ReplyButton from "./replies/replyButton";
 import CreateReply from "./replies/createReply";
+import DeleteDiscussion from "./deleteDiscussion";
 
 
 export default async function DiscussionPostPage({discussion,replies,discussionId}:{
@@ -20,9 +21,12 @@ export default async function DiscussionPostPage({discussion,replies,discussionI
                 <h1 className="font-cinzel text-3xl text-white font-bold">
                     {discussion.title}
                 </h1>
-                <p className="font-garamond text-white/30 text-lg">
-                    By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
-                </p>
+                <div className="flex flex-row gap-3">
+                    <p className="font-garamond text-white/30 text-lg">
+                        By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
+                    </p>
+                    <DeleteDiscussion authorId={discussion.authorId} id={discussionId}/>
+                </div>
                 <p className=" text-white/70 mt-8 whitespace-pre-wrap font-lora">
                     {discussion.text}
                 </p>

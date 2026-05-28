@@ -45,6 +45,9 @@ export async function getDiscussionById(id:number):Promise<DiscussionDTO | null>
             createdAt:discussion.createdAt,
         }
 }
+export async function deleteDiscussion(id:number):Promise<Discussion>{
+    return await discussionRepo.deleteDiscussion(id)
+}
 //replyTitle: string, replyText: string, authorId: number, discussionId: number, createdAt?: Date | undefined, parentId?: number | null, id?: number | null
     //creates a reply, dont worry about DTO here
 export async function createReply(title:string, text:string,  authorId:number, discussionId:number ,parentId:number|null):Promise<Reply|null>{

@@ -39,7 +39,7 @@ export default function CreateDiscussion() {
     
     try {
       await createDiscussion(title, text, user.userId);
-        alert("Discussion created");
+        console.log("Discussion created");
         if (titleRef.current) titleRef.current.value = "";
         if (textRef.current) textRef.current.value = "";
         router.refresh();

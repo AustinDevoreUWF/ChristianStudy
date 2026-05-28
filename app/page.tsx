@@ -3,14 +3,18 @@ import Image from "next/image";
 export default function Home() {
   return (
     
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="relative min-h-screen fixed bg-black">
       {/*BackGround*/}
-      <div 
-      className="bg-center bg-cover min-h-screen opacity-100"
-      style={{backgroundImage: "url('/JohnBackground.jpg')" }}
-      />
+      <div className="flex items-center justify-end py-20 ">
+        <Image 
+          src="/angelTransparent.png"
+          width={400}
+          height={400}
+          alt="angel"
+          className="angel"
+        />
+      </div>
       {/*Dim the painting*/}
-      <div style={{position: "absolute", inset:0, background:"rgba(0,0,0,0.5)"}}></div>
     </main>
     
   );

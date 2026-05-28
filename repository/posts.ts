@@ -1,12 +1,14 @@
 import prisma from "@/src/lib/prisma";
 import { Discussion } from "@/src/domain/posts";
 import { Reply } from "@/src/domain/posts";
+import { deleteDiscussion } from "@/services/posts";
 
 export interface DiscussionRepo{
     //Find the discussion By Id
     findById(id: number): Promise<Discussion | null>
     findByTitle(title: string):Promise<Discussion[] | null>
     findByauthorId(authorId:number):Promise<Discussion[] | null>
+    deleteDiscussion(id: number):Promise<Discussion>
     save(discussion: Discussion):Promise<Discussion>
 }
 
@@ -52,6 +54,12 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
             orderBy:{createdAt:"asc"}
         });
         return data.map((d:any)=> new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt))
+    }
+    async deleteDiscussion(id:number):Promise<Discussion>{
+        const data = await prisma.discussion.delete({
+            where: {id}
+        })
+        return new Discussion(data.title!, data.text!, data.authorId!, data.id, data.createdAt);
     }
 
 }
@@ -103,6 +111,7 @@ export class PrismaReplyRepo implements ReplyRepo{
         return 
     }
   */
+
     async save(reply:Reply):Promise<Reply>{
         const data = await prisma.reply.create({
             data: {

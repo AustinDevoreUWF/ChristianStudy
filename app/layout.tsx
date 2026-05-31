@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Cinzel, EB_Garamond, Lora} from "next/font/google";
+import { Geist, Geist_Mono, Cinzel, EB_Garamond, Lora, Noticia_Text} from "next/font/google";
 import "./globals.css";
 import Banner from "@/components/ui/Banner"
 import { AuthProvider } from "@/components/ui/context/AuthContext";
@@ -24,6 +24,11 @@ const lora = Lora({
   variable: "--font-lora-serif",
   subsets: ["latin"],
 })
+const noticia = Noticia_Text({
+  variable:"--font-noticia-serif",
+  subsets: ["latin"], 
+  weight: ["400", "700"],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,9 +41,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} ${lora.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} ${lora.variable} ${noticia.variable} antialiased`}>
         <AuthProvider>
         <Banner links={[{label:"Home", href:"/"},{label:"References",href:"/refrences"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/>
         {children}

@@ -12,7 +12,7 @@
   100% { transform: translateY(0px); }
 }
 .angel {
-  animation: descend 3s ease-out forwards, float 4s ease-in-out 2.7s infinite;
+  animation: descend 3s ease-out forwards, float 4s ease-in-out 3s infinite;
 }
 
 .float {
@@ -139,6 +139,19 @@
     @apply bg-background text-foreground;
   }
 }
-.font-cinzel { font-family: 'Cinzel', serif; }
-.font-garamond { font-family: 'Garamond', sans; }
-.font-lora {font-family:'Lora', serif;}
+/*FONTS*/
+.font-cinzel {
+  font-family: var(--font-cinzel), serif;
+}
+
+.font-garamond {
+  font-family: var(--font-garamond), serif;
+}
+
+.font-lora {
+  font-family: var(--font-lora-serif), serif;
+}
+
+.font-noticia {
+  font-family: var(--font-noticia-serif), serif;
+}

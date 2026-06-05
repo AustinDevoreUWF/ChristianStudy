@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../context/AuthContext";
+import { WeeklyHome } from "../bible/WeeklyHome";
 
 export default function ProfilePage() {
   const [preview, setPreview] = useState<string | null>(null);
@@ -141,7 +142,9 @@ export default function ProfilePage() {
       {status && (
         <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.30)", fontFamily: "var(--font-garamond)", letterSpacing: "0.1em", margin: 0 }}>{status}</p>
       )}
-
+      <div className="">
+        <WeeklyHome />
+      </div>
     </div>
   );
 }

@@ -49,3 +49,13 @@ model Discussion {
   author    User     @relation(fields: [authorId], references: [id])
   replys    Reply[]
 }
+
+model Weekly {
+  id               Int    @id
+  scriptureChapter String
+  scriptureVerse   String
+  scriptureBook    String
+  saintName        String
+  saintDescription String
+  saintFeastDay    String
+}

@@ -33,6 +33,11 @@ export type Reply = $Result.DefaultSelection<Prisma.$ReplyPayload>
  * 
  */
 export type Discussion = $Result.DefaultSelection<Prisma.$DiscussionPayload>
+/**
+ * Model Weekly
+ * 
+ */
+export type Weekly = $Result.DefaultSelection<Prisma.$WeeklyPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -194,6 +199,16 @@ export class PrismaClient<
     * ```
     */
   get discussion(): Prisma.DiscussionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.weekly`: Exposes CRUD operations for the **Weekly** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Weeklies
+    * const weeklies = await prisma.weekly.findMany()
+    * ```
+    */
+  get weekly(): Prisma.WeeklyDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -631,7 +646,8 @@ export namespace Prisma {
     UserProfile: 'UserProfile',
     User: 'User',
     Reply: 'Reply',
-    Discussion: 'Discussion'
+    Discussion: 'Discussion',
+    Weekly: 'Weekly'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -647,7 +663,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "userProfile" | "user" | "reply" | "discussion"
+      modelProps: "userProfile" | "user" | "reply" | "discussion" | "weekly"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -947,6 +963,80 @@ export namespace Prisma {
           }
         }
       }
+      Weekly: {
+        payload: Prisma.$WeeklyPayload<ExtArgs>
+        fields: Prisma.WeeklyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WeeklyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WeeklyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          findFirst: {
+            args: Prisma.WeeklyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WeeklyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          findMany: {
+            args: Prisma.WeeklyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>[]
+          }
+          create: {
+            args: Prisma.WeeklyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          createMany: {
+            args: Prisma.WeeklyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WeeklyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>[]
+          }
+          delete: {
+            args: Prisma.WeeklyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          update: {
+            args: Prisma.WeeklyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          deleteMany: {
+            args: Prisma.WeeklyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WeeklyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WeeklyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>[]
+          }
+          upsert: {
+            args: Prisma.WeeklyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeeklyPayload>
+          }
+          aggregate: {
+            args: Prisma.WeeklyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWeekly>
+          }
+          groupBy: {
+            args: Prisma.WeeklyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WeeklyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WeeklyCountArgs<ExtArgs>
+            result: $Utils.Optional<WeeklyCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1059,6 +1149,7 @@ export namespace Prisma {
     user?: UserOmit
     reply?: ReplyOmit
     discussion?: DiscussionOmit
+    weekly?: WeeklyOmit
   }
 
   /* Types for Logging */
@@ -5812,6 +5903,1066 @@ export namespace Prisma {
 
 
   /**
+   * Model Weekly
+   */
+
+  export type AggregateWeekly = {
+    _count: WeeklyCountAggregateOutputType | null
+    _avg: WeeklyAvgAggregateOutputType | null
+    _sum: WeeklySumAggregateOutputType | null
+    _min: WeeklyMinAggregateOutputType | null
+    _max: WeeklyMaxAggregateOutputType | null
+  }
+
+  export type WeeklyAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type WeeklySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type WeeklyMinAggregateOutputType = {
+    id: number | null
+    scriptureChapter: string | null
+    scriptureVerse: string | null
+    scriptureBook: string | null
+    saintName: string | null
+    saintDescription: string | null
+    saintFeastDay: string | null
+  }
+
+  export type WeeklyMaxAggregateOutputType = {
+    id: number | null
+    scriptureChapter: string | null
+    scriptureVerse: string | null
+    scriptureBook: string | null
+    saintName: string | null
+    saintDescription: string | null
+    saintFeastDay: string | null
+  }
+
+  export type WeeklyCountAggregateOutputType = {
+    id: number
+    scriptureChapter: number
+    scriptureVerse: number
+    scriptureBook: number
+    saintName: number
+    saintDescription: number
+    saintFeastDay: number
+    _all: number
+  }
+
+
+  export type WeeklyAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type WeeklySumAggregateInputType = {
+    id?: true
+  }
+
+  export type WeeklyMinAggregateInputType = {
+    id?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    scriptureBook?: true
+    saintName?: true
+    saintDescription?: true
+    saintFeastDay?: true
+  }
+
+  export type WeeklyMaxAggregateInputType = {
+    id?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    scriptureBook?: true
+    saintName?: true
+    saintDescription?: true
+    saintFeastDay?: true
+  }
+
+  export type WeeklyCountAggregateInputType = {
+    id?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    scriptureBook?: true
+    saintName?: true
+    saintDescription?: true
+    saintFeastDay?: true
+    _all?: true
+  }
+
+  export type WeeklyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Weekly to aggregate.
+     */
+    where?: WeeklyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Weeklies to fetch.
+     */
+    orderBy?: WeeklyOrderByWithRelationInput | WeeklyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WeeklyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Weeklies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Weeklies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Weeklies
+    **/
+    _count?: true | WeeklyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WeeklyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WeeklySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WeeklyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WeeklyMaxAggregateInputType
+  }
+
+  export type GetWeeklyAggregateType<T extends WeeklyAggregateArgs> = {
+        [P in keyof T & keyof AggregateWeekly]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWeekly[P]>
+      : GetScalarType<T[P], AggregateWeekly[P]>
+  }
+
+
+
+
+  export type WeeklyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WeeklyWhereInput
+    orderBy?: WeeklyOrderByWithAggregationInput | WeeklyOrderByWithAggregationInput[]
+    by: WeeklyScalarFieldEnum[] | WeeklyScalarFieldEnum
+    having?: WeeklyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WeeklyCountAggregateInputType | true
+    _avg?: WeeklyAvgAggregateInputType
+    _sum?: WeeklySumAggregateInputType
+    _min?: WeeklyMinAggregateInputType
+    _max?: WeeklyMaxAggregateInputType
+  }
+
+  export type WeeklyGroupByOutputType = {
+    id: number
+    scriptureChapter: string
+    scriptureVerse: string
+    scriptureBook: string
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+    _count: WeeklyCountAggregateOutputType | null
+    _avg: WeeklyAvgAggregateOutputType | null
+    _sum: WeeklySumAggregateOutputType | null
+    _min: WeeklyMinAggregateOutputType | null
+    _max: WeeklyMaxAggregateOutputType | null
+  }
+
+  type GetWeeklyGroupByPayload<T extends WeeklyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WeeklyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WeeklyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WeeklyGroupByOutputType[P]>
+            : GetScalarType<T[P], WeeklyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WeeklySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    scriptureBook?: boolean
+    saintName?: boolean
+    saintDescription?: boolean
+    saintFeastDay?: boolean
+  }, ExtArgs["result"]["weekly"]>
+
+  export type WeeklySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    scriptureBook?: boolean
+    saintName?: boolean
+    saintDescription?: boolean
+    saintFeastDay?: boolean
+  }, ExtArgs["result"]["weekly"]>
+
+  export type WeeklySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    scriptureBook?: boolean
+    saintName?: boolean
+    saintDescription?: boolean
+    saintFeastDay?: boolean
+  }, ExtArgs["result"]["weekly"]>
+
+  export type WeeklySelectScalar = {
+    id?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    scriptureBook?: boolean
+    saintName?: boolean
+    saintDescription?: boolean
+    saintFeastDay?: boolean
+  }
+
+  export type WeeklyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "scriptureChapter" | "scriptureVerse" | "scriptureBook" | "saintName" | "saintDescription" | "saintFeastDay", ExtArgs["result"]["weekly"]>
+
+  export type $WeeklyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Weekly"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      scriptureChapter: string
+      scriptureVerse: string
+      scriptureBook: string
+      saintName: string
+      saintDescription: string
+      saintFeastDay: string
+    }, ExtArgs["result"]["weekly"]>
+    composites: {}
+  }
+
+  type WeeklyGetPayload<S extends boolean | null | undefined | WeeklyDefaultArgs> = $Result.GetResult<Prisma.$WeeklyPayload, S>
+
+  type WeeklyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WeeklyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WeeklyCountAggregateInputType | true
+    }
+
+  export interface WeeklyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Weekly'], meta: { name: 'Weekly' } }
+    /**
+     * Find zero or one Weekly that matches the filter.
+     * @param {WeeklyFindUniqueArgs} args - Arguments to find a Weekly
+     * @example
+     * // Get one Weekly
+     * const weekly = await prisma.weekly.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WeeklyFindUniqueArgs>(args: SelectSubset<T, WeeklyFindUniqueArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Weekly that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WeeklyFindUniqueOrThrowArgs} args - Arguments to find a Weekly
+     * @example
+     * // Get one Weekly
+     * const weekly = await prisma.weekly.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WeeklyFindUniqueOrThrowArgs>(args: SelectSubset<T, WeeklyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Weekly that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyFindFirstArgs} args - Arguments to find a Weekly
+     * @example
+     * // Get one Weekly
+     * const weekly = await prisma.weekly.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WeeklyFindFirstArgs>(args?: SelectSubset<T, WeeklyFindFirstArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Weekly that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyFindFirstOrThrowArgs} args - Arguments to find a Weekly
+     * @example
+     * // Get one Weekly
+     * const weekly = await prisma.weekly.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WeeklyFindFirstOrThrowArgs>(args?: SelectSubset<T, WeeklyFindFirstOrThrowArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Weeklies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Weeklies
+     * const weeklies = await prisma.weekly.findMany()
+     * 
+     * // Get first 10 Weeklies
+     * const weeklies = await prisma.weekly.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const weeklyWithIdOnly = await prisma.weekly.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WeeklyFindManyArgs>(args?: SelectSubset<T, WeeklyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Weekly.
+     * @param {WeeklyCreateArgs} args - Arguments to create a Weekly.
+     * @example
+     * // Create one Weekly
+     * const Weekly = await prisma.weekly.create({
+     *   data: {
+     *     // ... data to create a Weekly
+     *   }
+     * })
+     * 
+     */
+    create<T extends WeeklyCreateArgs>(args: SelectSubset<T, WeeklyCreateArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Weeklies.
+     * @param {WeeklyCreateManyArgs} args - Arguments to create many Weeklies.
+     * @example
+     * // Create many Weeklies
+     * const weekly = await prisma.weekly.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WeeklyCreateManyArgs>(args?: SelectSubset<T, WeeklyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Weeklies and returns the data saved in the database.
+     * @param {WeeklyCreateManyAndReturnArgs} args - Arguments to create many Weeklies.
+     * @example
+     * // Create many Weeklies
+     * const weekly = await prisma.weekly.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Weeklies and only return the `id`
+     * const weeklyWithIdOnly = await prisma.weekly.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WeeklyCreateManyAndReturnArgs>(args?: SelectSubset<T, WeeklyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Weekly.
+     * @param {WeeklyDeleteArgs} args - Arguments to delete one Weekly.
+     * @example
+     * // Delete one Weekly
+     * const Weekly = await prisma.weekly.delete({
+     *   where: {
+     *     // ... filter to delete one Weekly
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WeeklyDeleteArgs>(args: SelectSubset<T, WeeklyDeleteArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Weekly.
+     * @param {WeeklyUpdateArgs} args - Arguments to update one Weekly.
+     * @example
+     * // Update one Weekly
+     * const weekly = await prisma.weekly.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WeeklyUpdateArgs>(args: SelectSubset<T, WeeklyUpdateArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Weeklies.
+     * @param {WeeklyDeleteManyArgs} args - Arguments to filter Weeklies to delete.
+     * @example
+     * // Delete a few Weeklies
+     * const { count } = await prisma.weekly.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WeeklyDeleteManyArgs>(args?: SelectSubset<T, WeeklyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Weeklies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Weeklies
+     * const weekly = await prisma.weekly.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WeeklyUpdateManyArgs>(args: SelectSubset<T, WeeklyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Weeklies and returns the data updated in the database.
+     * @param {WeeklyUpdateManyAndReturnArgs} args - Arguments to update many Weeklies.
+     * @example
+     * // Update many Weeklies
+     * const weekly = await prisma.weekly.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Weeklies and only return the `id`
+     * const weeklyWithIdOnly = await prisma.weekly.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WeeklyUpdateManyAndReturnArgs>(args: SelectSubset<T, WeeklyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Weekly.
+     * @param {WeeklyUpsertArgs} args - Arguments to update or create a Weekly.
+     * @example
+     * // Update or create a Weekly
+     * const weekly = await prisma.weekly.upsert({
+     *   create: {
+     *     // ... data to create a Weekly
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Weekly we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WeeklyUpsertArgs>(args: SelectSubset<T, WeeklyUpsertArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Weeklies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyCountArgs} args - Arguments to filter Weeklies to count.
+     * @example
+     * // Count the number of Weeklies
+     * const count = await prisma.weekly.count({
+     *   where: {
+     *     // ... the filter for the Weeklies we want to count
+     *   }
+     * })
+    **/
+    count<T extends WeeklyCountArgs>(
+      args?: Subset<T, WeeklyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WeeklyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Weekly.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WeeklyAggregateArgs>(args: Subset<T, WeeklyAggregateArgs>): Prisma.PrismaPromise<GetWeeklyAggregateType<T>>
+
+    /**
+     * Group by Weekly.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeeklyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WeeklyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WeeklyGroupByArgs['orderBy'] }
+        : { orderBy?: WeeklyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WeeklyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWeeklyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Weekly model
+   */
+  readonly fields: WeeklyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Weekly.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WeeklyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Weekly model
+   */
+  interface WeeklyFieldRefs {
+    readonly id: FieldRef<"Weekly", 'Int'>
+    readonly scriptureChapter: FieldRef<"Weekly", 'String'>
+    readonly scriptureVerse: FieldRef<"Weekly", 'String'>
+    readonly scriptureBook: FieldRef<"Weekly", 'String'>
+    readonly saintName: FieldRef<"Weekly", 'String'>
+    readonly saintDescription: FieldRef<"Weekly", 'String'>
+    readonly saintFeastDay: FieldRef<"Weekly", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Weekly findUnique
+   */
+  export type WeeklyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter, which Weekly to fetch.
+     */
+    where: WeeklyWhereUniqueInput
+  }
+
+  /**
+   * Weekly findUniqueOrThrow
+   */
+  export type WeeklyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter, which Weekly to fetch.
+     */
+    where: WeeklyWhereUniqueInput
+  }
+
+  /**
+   * Weekly findFirst
+   */
+  export type WeeklyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter, which Weekly to fetch.
+     */
+    where?: WeeklyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Weeklies to fetch.
+     */
+    orderBy?: WeeklyOrderByWithRelationInput | WeeklyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Weeklies.
+     */
+    cursor?: WeeklyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Weeklies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Weeklies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Weeklies.
+     */
+    distinct?: WeeklyScalarFieldEnum | WeeklyScalarFieldEnum[]
+  }
+
+  /**
+   * Weekly findFirstOrThrow
+   */
+  export type WeeklyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter, which Weekly to fetch.
+     */
+    where?: WeeklyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Weeklies to fetch.
+     */
+    orderBy?: WeeklyOrderByWithRelationInput | WeeklyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Weeklies.
+     */
+    cursor?: WeeklyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Weeklies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Weeklies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Weeklies.
+     */
+    distinct?: WeeklyScalarFieldEnum | WeeklyScalarFieldEnum[]
+  }
+
+  /**
+   * Weekly findMany
+   */
+  export type WeeklyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter, which Weeklies to fetch.
+     */
+    where?: WeeklyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Weeklies to fetch.
+     */
+    orderBy?: WeeklyOrderByWithRelationInput | WeeklyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Weeklies.
+     */
+    cursor?: WeeklyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Weeklies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Weeklies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Weeklies.
+     */
+    distinct?: WeeklyScalarFieldEnum | WeeklyScalarFieldEnum[]
+  }
+
+  /**
+   * Weekly create
+   */
+  export type WeeklyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Weekly.
+     */
+    data: XOR<WeeklyCreateInput, WeeklyUncheckedCreateInput>
+  }
+
+  /**
+   * Weekly createMany
+   */
+  export type WeeklyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Weeklies.
+     */
+    data: WeeklyCreateManyInput | WeeklyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Weekly createManyAndReturn
+   */
+  export type WeeklyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * The data used to create many Weeklies.
+     */
+    data: WeeklyCreateManyInput | WeeklyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Weekly update
+   */
+  export type WeeklyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Weekly.
+     */
+    data: XOR<WeeklyUpdateInput, WeeklyUncheckedUpdateInput>
+    /**
+     * Choose, which Weekly to update.
+     */
+    where: WeeklyWhereUniqueInput
+  }
+
+  /**
+   * Weekly updateMany
+   */
+  export type WeeklyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Weeklies.
+     */
+    data: XOR<WeeklyUpdateManyMutationInput, WeeklyUncheckedUpdateManyInput>
+    /**
+     * Filter which Weeklies to update
+     */
+    where?: WeeklyWhereInput
+    /**
+     * Limit how many Weeklies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Weekly updateManyAndReturn
+   */
+  export type WeeklyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * The data used to update Weeklies.
+     */
+    data: XOR<WeeklyUpdateManyMutationInput, WeeklyUncheckedUpdateManyInput>
+    /**
+     * Filter which Weeklies to update
+     */
+    where?: WeeklyWhereInput
+    /**
+     * Limit how many Weeklies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Weekly upsert
+   */
+  export type WeeklyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Weekly to update in case it exists.
+     */
+    where: WeeklyWhereUniqueInput
+    /**
+     * In case the Weekly found by the `where` argument doesn't exist, create a new Weekly with this data.
+     */
+    create: XOR<WeeklyCreateInput, WeeklyUncheckedCreateInput>
+    /**
+     * In case the Weekly was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WeeklyUpdateInput, WeeklyUncheckedUpdateInput>
+  }
+
+  /**
+   * Weekly delete
+   */
+  export type WeeklyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Filter which Weekly to delete.
+     */
+    where: WeeklyWhereUniqueInput
+  }
+
+  /**
+   * Weekly deleteMany
+   */
+  export type WeeklyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Weeklies to delete
+     */
+    where?: WeeklyWhereInput
+    /**
+     * Limit how many Weeklies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Weekly without action
+   */
+  export type WeeklyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5868,6 +7019,19 @@ export namespace Prisma {
   };
 
   export type DiscussionScalarFieldEnum = (typeof DiscussionScalarFieldEnum)[keyof typeof DiscussionScalarFieldEnum]
+
+
+  export const WeeklyScalarFieldEnum: {
+    id: 'id',
+    scriptureChapter: 'scriptureChapter',
+    scriptureVerse: 'scriptureVerse',
+    scriptureBook: 'scriptureBook',
+    saintName: 'saintName',
+    saintDescription: 'saintDescription',
+    saintFeastDay: 'saintFeastDay'
+  };
+
+  export type WeeklyScalarFieldEnum = (typeof WeeklyScalarFieldEnum)[keyof typeof WeeklyScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6216,6 +7380,70 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Discussion"> | Date | string
   }
 
+  export type WeeklyWhereInput = {
+    AND?: WeeklyWhereInput | WeeklyWhereInput[]
+    OR?: WeeklyWhereInput[]
+    NOT?: WeeklyWhereInput | WeeklyWhereInput[]
+    id?: IntFilter<"Weekly"> | number
+    scriptureChapter?: StringFilter<"Weekly"> | string
+    scriptureVerse?: StringFilter<"Weekly"> | string
+    scriptureBook?: StringFilter<"Weekly"> | string
+    saintName?: StringFilter<"Weekly"> | string
+    saintDescription?: StringFilter<"Weekly"> | string
+    saintFeastDay?: StringFilter<"Weekly"> | string
+  }
+
+  export type WeeklyOrderByWithRelationInput = {
+    id?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    scriptureBook?: SortOrder
+    saintName?: SortOrder
+    saintDescription?: SortOrder
+    saintFeastDay?: SortOrder
+  }
+
+  export type WeeklyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: WeeklyWhereInput | WeeklyWhereInput[]
+    OR?: WeeklyWhereInput[]
+    NOT?: WeeklyWhereInput | WeeklyWhereInput[]
+    scriptureChapter?: StringFilter<"Weekly"> | string
+    scriptureVerse?: StringFilter<"Weekly"> | string
+    scriptureBook?: StringFilter<"Weekly"> | string
+    saintName?: StringFilter<"Weekly"> | string
+    saintDescription?: StringFilter<"Weekly"> | string
+    saintFeastDay?: StringFilter<"Weekly"> | string
+  }, "id">
+
+  export type WeeklyOrderByWithAggregationInput = {
+    id?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    scriptureBook?: SortOrder
+    saintName?: SortOrder
+    saintDescription?: SortOrder
+    saintFeastDay?: SortOrder
+    _count?: WeeklyCountOrderByAggregateInput
+    _avg?: WeeklyAvgOrderByAggregateInput
+    _max?: WeeklyMaxOrderByAggregateInput
+    _min?: WeeklyMinOrderByAggregateInput
+    _sum?: WeeklySumOrderByAggregateInput
+  }
+
+  export type WeeklyScalarWhereWithAggregatesInput = {
+    AND?: WeeklyScalarWhereWithAggregatesInput | WeeklyScalarWhereWithAggregatesInput[]
+    OR?: WeeklyScalarWhereWithAggregatesInput[]
+    NOT?: WeeklyScalarWhereWithAggregatesInput | WeeklyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Weekly"> | number
+    scriptureChapter?: StringWithAggregatesFilter<"Weekly"> | string
+    scriptureVerse?: StringWithAggregatesFilter<"Weekly"> | string
+    scriptureBook?: StringWithAggregatesFilter<"Weekly"> | string
+    saintName?: StringWithAggregatesFilter<"Weekly"> | string
+    saintDescription?: StringWithAggregatesFilter<"Weekly"> | string
+    saintFeastDay?: StringWithAggregatesFilter<"Weekly"> | string
+  }
+
   export type UserProfileCreateInput = {
     profilePic?: string | null
     tags?: UserProfileCreatetagsInput | string[]
@@ -6451,6 +7679,76 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WeeklyCreateInput = {
+    id: number
+    scriptureChapter: string
+    scriptureVerse: string
+    scriptureBook: string
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+  }
+
+  export type WeeklyUncheckedCreateInput = {
+    id: number
+    scriptureChapter: string
+    scriptureVerse: string
+    scriptureBook: string
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+  }
+
+  export type WeeklyUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WeeklyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WeeklyCreateManyInput = {
+    id: number
+    scriptureChapter: string
+    scriptureVerse: string
+    scriptureBook: string
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+  }
+
+  export type WeeklyUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WeeklyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6799,6 +8097,44 @@ export namespace Prisma {
   export type DiscussionSumOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
+  }
+
+  export type WeeklyCountOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    scriptureBook?: SortOrder
+    saintName?: SortOrder
+    saintDescription?: SortOrder
+    saintFeastDay?: SortOrder
+  }
+
+  export type WeeklyAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type WeeklyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    scriptureBook?: SortOrder
+    saintName?: SortOrder
+    saintDescription?: SortOrder
+    saintFeastDay?: SortOrder
+  }
+
+  export type WeeklyMinOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    scriptureBook?: SortOrder
+    saintName?: SortOrder
+    saintDescription?: SortOrder
+    saintFeastDay?: SortOrder
+  }
+
+  export type WeeklySumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type UserProfileCreatetagsInput = {

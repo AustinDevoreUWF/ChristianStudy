@@ -19,3 +19,11 @@ export type ReplyDTO={
     parentId: number|null;
     createdAt?: Date;
 }
+export type WeeklyDTO={
+    scriptureChapter: string;
+    scriptureVerse: string;
+    scriptureBook: string;
+    saintName: string;
+    saintDescription: string;
+    saintFeastDay: string;
+}

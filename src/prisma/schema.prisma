@@ -22,6 +22,7 @@ model User {
   isAdmin      Boolean      @default(false)
   discussions  Discussion[]
   replies      Reply[]
+  essays       Essay[]
   profile      UserProfile?
 }
 
@@ -47,4 +48,37 @@ model Discussion {
   createdAt DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
   replys    Reply[]
+}
+
+model Weekly {
+  id               Int                 @id @default(autoincrement())
+  saintName        String
+  saintDescription String
+  saintFeastDay    String
+  // 1-to-Many: A week can have multiple scripture citations
+  citation         ScriptureCitation[]
+  // Many-to-Many: Implicit relation link to featured essays
+  featuredEssays   Essay[]             
+}
+
+model Essay {
+  id         Int      @id @default(autoincrement())
+  title      String
+  category   String
+  text       String
+  createdAt  DateTime @default(now())
+  
+  authorId   Int
+  author     User     @relation(fields: [authorId], references: [id])
+
+  // Many-to-Many: Connects back to the Weekly models that feature it
+  featuredIn Weekly[] 
+}
+
+model ScriptureCitation {
+  id               Int      @id @default(autoincrement())
+  scriptureBook    String
+  scriptureChapter String
+  scriptureVerse   String
+  featuredInWeeks  Weekly[] 
 }

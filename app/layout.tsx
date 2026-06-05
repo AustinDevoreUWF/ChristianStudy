@@ -40,13 +40,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //{<Banner links={[{label:"Home", href:"/"},{label:"References",href:"/refrences"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/> */}
   return (
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} ${lora.variable} ${noticia.variable} antialiased`}>
         <AuthProvider>
-        <Banner links={[{label:"Home", href:"/"},{label:"References",href:"/refrences"},{label:"Discuss",href:"/discussion"},{label:"Users",href:"/users"},]}/>
-        {children}
+                {children}
         </AuthProvider>
       </body>
     </html>

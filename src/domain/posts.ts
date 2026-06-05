@@ -11,7 +11,7 @@ export class Discussion {
     constructor(discussionTitle:string, discussionText:string, authorId:number, id:number|null=null,createdAt?: Date){
         if(!authorId)throw new Error("A authorId was not provided, Im low Level!");
         if(!discussionTitle)throw new Error("A discussionTitle was not provided!");
-        if(!discussionText) throw new Error("Discussion Text was not provided!")
+        if(!discussionText) throw new Error("Discussion Text was not provided!");
         
         //mapping
         this.id = id;

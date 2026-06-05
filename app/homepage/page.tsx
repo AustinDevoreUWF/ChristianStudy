@@ -40,7 +40,7 @@
       </div>
 
       {/* ── Three Columns ── */}
-      <div className="grid grid-cols-[1fr_1px_1.7fr_1px_1fr] px-10 border-b border-white/[0.06] mb-5">
+      <div className="grid grid-cols-[1fr_1px_1.7fr_1px_1fr] px-10 border-b border-white/[0.06]">
 
         {/* ── Left: Weekly ── */}
         <div className="py-8 pr-6">

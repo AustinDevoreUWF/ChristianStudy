@@ -12,7 +12,7 @@ export default function useCreateReply(){
     setIsLoading(true);
     setError(null);
         try{
-        const res = await fetch("/api/discussion/createReply",{
+        const res = await fetch(`/api/discussions/${discussionId}/replies`,{
             method:"POST",
             body: JSON.stringify({title,text,authorId,discussionId,parentId}),
         })

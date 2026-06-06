@@ -35,7 +35,7 @@ model Reply {
   createdAt    DateTime   @default(now())
   parentId     Int?
   author       User       @relation(fields: [authorId], references: [id])
-  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
   parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
   children     Reply[]    @relation("ReplyToReply")
 }
@@ -47,7 +47,7 @@ model Discussion {
   title     String
   createdAt DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
-  replys    Reply[]
+  replies    Reply[]
 }
 
 model Weekly {
@@ -80,5 +80,6 @@ model ScriptureCitation {
   scriptureBook    String
   scriptureChapter String
   scriptureVerse   String
-  featuredInWeeks  Weekly[] 
+  weeklyId         Int
+  weekly           Weekly   @relation(fields: [weeklyId], references: [id], onDelete: Cascade)
 }

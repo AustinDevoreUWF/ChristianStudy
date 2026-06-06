@@ -14,7 +14,7 @@ export default function useLogin(){
         setIsLoading(true);
         setError(null);
         try{
-            const res = await fetch("/api/users/login",{
+            const res = await fetch("/api/users/auth/login",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({userEmail: email, password})

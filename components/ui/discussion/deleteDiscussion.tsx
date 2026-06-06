@@ -11,7 +11,7 @@ export default function DeleteDiscussion({authorId,id}:{authorId:number,id:numbe
 
     async function handleDelete(){
         try{
-            const res = await fetch(`/api/discussion/deleteDiscussion?id=${id}`,{
+            const res = await fetch(`/api/discussions/${id}`,{
                 method:'DELETE'
             });
             //simply the deleted info incase we need it

@@ -1,5 +1,4 @@
 import {loginUser} from "@/services/users"
-import { useAuth } from "@/components/ui/context/AuthContext";
 
 //req is given name to the data sent to the route.
 export async function POST(req:Request){

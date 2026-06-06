@@ -38,6 +38,16 @@ export type Discussion = $Result.DefaultSelection<Prisma.$DiscussionPayload>
  * 
  */
 export type Weekly = $Result.DefaultSelection<Prisma.$WeeklyPayload>
+/**
+ * Model Essay
+ * 
+ */
+export type Essay = $Result.DefaultSelection<Prisma.$EssayPayload>
+/**
+ * Model ScriptureCitation
+ * 
+ */
+export type ScriptureCitation = $Result.DefaultSelection<Prisma.$ScriptureCitationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -209,6 +219,26 @@ export class PrismaClient<
     * ```
     */
   get weekly(): Prisma.WeeklyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.essay`: Exposes CRUD operations for the **Essay** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Essays
+    * const essays = await prisma.essay.findMany()
+    * ```
+    */
+  get essay(): Prisma.EssayDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.scriptureCitation`: Exposes CRUD operations for the **ScriptureCitation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ScriptureCitations
+    * const scriptureCitations = await prisma.scriptureCitation.findMany()
+    * ```
+    */
+  get scriptureCitation(): Prisma.ScriptureCitationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -647,7 +677,9 @@ export namespace Prisma {
     User: 'User',
     Reply: 'Reply',
     Discussion: 'Discussion',
-    Weekly: 'Weekly'
+    Weekly: 'Weekly',
+    Essay: 'Essay',
+    ScriptureCitation: 'ScriptureCitation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -663,7 +695,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "userProfile" | "user" | "reply" | "discussion" | "weekly"
+      modelProps: "userProfile" | "user" | "reply" | "discussion" | "weekly" | "essay" | "scriptureCitation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1037,6 +1069,154 @@ export namespace Prisma {
           }
         }
       }
+      Essay: {
+        payload: Prisma.$EssayPayload<ExtArgs>
+        fields: Prisma.EssayFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EssayFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EssayFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          findFirst: {
+            args: Prisma.EssayFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EssayFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          findMany: {
+            args: Prisma.EssayFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>[]
+          }
+          create: {
+            args: Prisma.EssayCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          createMany: {
+            args: Prisma.EssayCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EssayCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>[]
+          }
+          delete: {
+            args: Prisma.EssayDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          update: {
+            args: Prisma.EssayUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          deleteMany: {
+            args: Prisma.EssayDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EssayUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EssayUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>[]
+          }
+          upsert: {
+            args: Prisma.EssayUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EssayPayload>
+          }
+          aggregate: {
+            args: Prisma.EssayAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEssay>
+          }
+          groupBy: {
+            args: Prisma.EssayGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EssayGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EssayCountArgs<ExtArgs>
+            result: $Utils.Optional<EssayCountAggregateOutputType> | number
+          }
+        }
+      }
+      ScriptureCitation: {
+        payload: Prisma.$ScriptureCitationPayload<ExtArgs>
+        fields: Prisma.ScriptureCitationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ScriptureCitationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ScriptureCitationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          findFirst: {
+            args: Prisma.ScriptureCitationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ScriptureCitationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          findMany: {
+            args: Prisma.ScriptureCitationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>[]
+          }
+          create: {
+            args: Prisma.ScriptureCitationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          createMany: {
+            args: Prisma.ScriptureCitationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ScriptureCitationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>[]
+          }
+          delete: {
+            args: Prisma.ScriptureCitationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          update: {
+            args: Prisma.ScriptureCitationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ScriptureCitationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ScriptureCitationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ScriptureCitationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ScriptureCitationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScriptureCitationPayload>
+          }
+          aggregate: {
+            args: Prisma.ScriptureCitationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateScriptureCitation>
+          }
+          groupBy: {
+            args: Prisma.ScriptureCitationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ScriptureCitationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ScriptureCitationCountArgs<ExtArgs>
+            result: $Utils.Optional<ScriptureCitationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1150,6 +1330,8 @@ export namespace Prisma {
     reply?: ReplyOmit
     discussion?: DiscussionOmit
     weekly?: WeeklyOmit
+    essay?: EssayOmit
+    scriptureCitation?: ScriptureCitationOmit
   }
 
   /* Types for Logging */
@@ -1232,11 +1414,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     discussions: number
     replies: number
+    essays: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     discussions?: boolean | UserCountOutputTypeCountDiscussionsArgs
     replies?: boolean | UserCountOutputTypeCountRepliesArgs
+    essays?: boolean | UserCountOutputTypeCountEssaysArgs
   }
 
   // Custom InputTypes
@@ -1262,6 +1446,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReplyWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEssaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EssayWhereInput
   }
 
 
@@ -1301,11 +1492,11 @@ export namespace Prisma {
    */
 
   export type DiscussionCountOutputType = {
-    replys: number
+    replies: number
   }
 
   export type DiscussionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    replys?: boolean | DiscussionCountOutputTypeCountReplysArgs
+    replies?: boolean | DiscussionCountOutputTypeCountRepliesArgs
   }
 
   // Custom InputTypes
@@ -1322,8 +1513,79 @@ export namespace Prisma {
   /**
    * DiscussionCountOutputType without action
    */
-  export type DiscussionCountOutputTypeCountReplysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiscussionCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReplyWhereInput
+  }
+
+
+  /**
+   * Count Type WeeklyCountOutputType
+   */
+
+  export type WeeklyCountOutputType = {
+    citation: number
+    featuredEssays: number
+  }
+
+  export type WeeklyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    citation?: boolean | WeeklyCountOutputTypeCountCitationArgs
+    featuredEssays?: boolean | WeeklyCountOutputTypeCountFeaturedEssaysArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WeeklyCountOutputType without action
+   */
+  export type WeeklyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeeklyCountOutputType
+     */
+    select?: WeeklyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WeeklyCountOutputType without action
+   */
+  export type WeeklyCountOutputTypeCountCitationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScriptureCitationWhereInput
+  }
+
+  /**
+   * WeeklyCountOutputType without action
+   */
+  export type WeeklyCountOutputTypeCountFeaturedEssaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EssayWhereInput
+  }
+
+
+  /**
+   * Count Type EssayCountOutputType
+   */
+
+  export type EssayCountOutputType = {
+    featuredIn: number
+  }
+
+  export type EssayCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    featuredIn?: boolean | EssayCountOutputTypeCountFeaturedInArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EssayCountOutputType without action
+   */
+  export type EssayCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EssayCountOutputType
+     */
+    select?: EssayCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EssayCountOutputType without action
+   */
+  export type EssayCountOutputTypeCountFeaturedInArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WeeklyWhereInput
   }
 
 
@@ -2606,6 +2868,7 @@ export namespace Prisma {
     isAdmin?: boolean
     discussions?: boolean | User$discussionsArgs<ExtArgs>
     replies?: boolean | User$repliesArgs<ExtArgs>
+    essays?: boolean | User$essaysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2641,6 +2904,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     discussions?: boolean | User$discussionsArgs<ExtArgs>
     replies?: boolean | User$repliesArgs<ExtArgs>
+    essays?: boolean | User$essaysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2652,6 +2916,7 @@ export namespace Prisma {
     objects: {
       discussions: Prisma.$DiscussionPayload<ExtArgs>[]
       replies: Prisma.$ReplyPayload<ExtArgs>[]
+      essays: Prisma.$EssayPayload<ExtArgs>[]
       profile: Prisma.$UserProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3057,6 +3322,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     discussions<T extends User$discussionsArgs<ExtArgs> = {}>(args?: Subset<T, User$discussionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     replies<T extends User$repliesArgs<ExtArgs> = {}>(args?: Subset<T, User$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    essays<T extends User$essaysArgs<ExtArgs> = {}>(args?: Subset<T, User$essaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3531,6 +3797,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReplyScalarFieldEnum | ReplyScalarFieldEnum[]
+  }
+
+  /**
+   * User.essays
+   */
+  export type User$essaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    where?: EssayWhereInput
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    cursor?: EssayWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EssayScalarFieldEnum | EssayScalarFieldEnum[]
   }
 
   /**
@@ -4974,7 +5264,7 @@ export namespace Prisma {
     title?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
-    replys?: boolean | Discussion$replysArgs<ExtArgs>
+    replies?: boolean | Discussion$repliesArgs<ExtArgs>
     _count?: boolean | DiscussionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["discussion"]>
 
@@ -5007,7 +5297,7 @@ export namespace Prisma {
   export type DiscussionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "authorId" | "title" | "createdAt", ExtArgs["result"]["discussion"]>
   export type DiscussionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
-    replys?: boolean | Discussion$replysArgs<ExtArgs>
+    replies?: boolean | Discussion$repliesArgs<ExtArgs>
     _count?: boolean | DiscussionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DiscussionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5021,7 +5311,7 @@ export namespace Prisma {
     name: "Discussion"
     objects: {
       author: Prisma.$UserPayload<ExtArgs>
-      replys: Prisma.$ReplyPayload<ExtArgs>[]
+      replies: Prisma.$ReplyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5424,7 +5714,7 @@ export namespace Prisma {
   export interface Prisma__DiscussionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    replys<T extends Discussion$replysArgs<ExtArgs> = {}>(args?: Subset<T, Discussion$replysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    replies<T extends Discussion$repliesArgs<ExtArgs> = {}>(args?: Subset<T, Discussion$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5860,9 +6150,9 @@ export namespace Prisma {
   }
 
   /**
-   * Discussion.replys
+   * Discussion.replies
    */
-  export type Discussion$replysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Discussion$repliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Reply
      */
@@ -5924,9 +6214,6 @@ export namespace Prisma {
 
   export type WeeklyMinAggregateOutputType = {
     id: number | null
-    scriptureChapter: string | null
-    scriptureVerse: string | null
-    scriptureBook: string | null
     saintName: string | null
     saintDescription: string | null
     saintFeastDay: string | null
@@ -5934,9 +6221,6 @@ export namespace Prisma {
 
   export type WeeklyMaxAggregateOutputType = {
     id: number | null
-    scriptureChapter: string | null
-    scriptureVerse: string | null
-    scriptureBook: string | null
     saintName: string | null
     saintDescription: string | null
     saintFeastDay: string | null
@@ -5944,9 +6228,6 @@ export namespace Prisma {
 
   export type WeeklyCountAggregateOutputType = {
     id: number
-    scriptureChapter: number
-    scriptureVerse: number
-    scriptureBook: number
     saintName: number
     saintDescription: number
     saintFeastDay: number
@@ -5964,9 +6245,6 @@ export namespace Prisma {
 
   export type WeeklyMinAggregateInputType = {
     id?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
-    scriptureBook?: true
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
@@ -5974,9 +6252,6 @@ export namespace Prisma {
 
   export type WeeklyMaxAggregateInputType = {
     id?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
-    scriptureBook?: true
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
@@ -5984,9 +6259,6 @@ export namespace Prisma {
 
   export type WeeklyCountAggregateInputType = {
     id?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
-    scriptureBook?: true
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
@@ -6081,9 +6353,6 @@ export namespace Prisma {
 
   export type WeeklyGroupByOutputType = {
     id: number
-    scriptureChapter: string
-    scriptureVerse: string
-    scriptureBook: string
     saintName: string
     saintDescription: string
     saintFeastDay: string
@@ -6110,19 +6379,16 @@ export namespace Prisma {
 
   export type WeeklySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
-    scriptureBook?: boolean
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
+    citation?: boolean | Weekly$citationArgs<ExtArgs>
+    featuredEssays?: boolean | Weekly$featuredEssaysArgs<ExtArgs>
+    _count?: boolean | WeeklyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["weekly"]>
 
   export type WeeklySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
-    scriptureBook?: boolean
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
@@ -6130,9 +6396,6 @@ export namespace Prisma {
 
   export type WeeklySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
-    scriptureBook?: boolean
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
@@ -6140,24 +6403,28 @@ export namespace Prisma {
 
   export type WeeklySelectScalar = {
     id?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
-    scriptureBook?: boolean
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
   }
 
-  export type WeeklyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "scriptureChapter" | "scriptureVerse" | "scriptureBook" | "saintName" | "saintDescription" | "saintFeastDay", ExtArgs["result"]["weekly"]>
+  export type WeeklyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "saintName" | "saintDescription" | "saintFeastDay", ExtArgs["result"]["weekly"]>
+  export type WeeklyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    citation?: boolean | Weekly$citationArgs<ExtArgs>
+    featuredEssays?: boolean | Weekly$featuredEssaysArgs<ExtArgs>
+    _count?: boolean | WeeklyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WeeklyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type WeeklyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $WeeklyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Weekly"
-    objects: {}
+    objects: {
+      citation: Prisma.$ScriptureCitationPayload<ExtArgs>[]
+      featuredEssays: Prisma.$EssayPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      scriptureChapter: string
-      scriptureVerse: string
-      scriptureBook: string
       saintName: string
       saintDescription: string
       saintFeastDay: string
@@ -6555,6 +6822,8 @@ export namespace Prisma {
    */
   export interface Prisma__WeeklyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    citation<T extends Weekly$citationArgs<ExtArgs> = {}>(args?: Subset<T, Weekly$citationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    featuredEssays<T extends Weekly$featuredEssaysArgs<ExtArgs> = {}>(args?: Subset<T, Weekly$featuredEssaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6585,9 +6854,6 @@ export namespace Prisma {
    */
   interface WeeklyFieldRefs {
     readonly id: FieldRef<"Weekly", 'Int'>
-    readonly scriptureChapter: FieldRef<"Weekly", 'String'>
-    readonly scriptureVerse: FieldRef<"Weekly", 'String'>
-    readonly scriptureBook: FieldRef<"Weekly", 'String'>
     readonly saintName: FieldRef<"Weekly", 'String'>
     readonly saintDescription: FieldRef<"Weekly", 'String'>
     readonly saintFeastDay: FieldRef<"Weekly", 'String'>
@@ -6608,6 +6874,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * Filter, which Weekly to fetch.
      */
     where: WeeklyWhereUniqueInput
@@ -6626,6 +6896,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * Filter, which Weekly to fetch.
      */
     where: WeeklyWhereUniqueInput
@@ -6643,6 +6917,10 @@ export namespace Prisma {
      * Omit specific fields from the Weekly
      */
     omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
     /**
      * Filter, which Weekly to fetch.
      */
@@ -6692,6 +6970,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * Filter, which Weekly to fetch.
      */
     where?: WeeklyWhereInput
@@ -6739,6 +7021,10 @@ export namespace Prisma {
      * Omit specific fields from the Weekly
      */
     omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
     /**
      * Filter, which Weeklies to fetch.
      */
@@ -6788,6 +7074,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * The data needed to create a Weekly.
      */
     data: XOR<WeeklyCreateInput, WeeklyUncheckedCreateInput>
@@ -6835,6 +7125,10 @@ export namespace Prisma {
      * Omit specific fields from the Weekly
      */
     omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
     /**
      * The data needed to update a Weekly.
      */
@@ -6902,6 +7196,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * The filter to search for the Weekly to update in case it exists.
      */
     where: WeeklyWhereUniqueInput
@@ -6928,6 +7226,10 @@ export namespace Prisma {
      */
     omit?: WeeklyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    /**
      * Filter which Weekly to delete.
      */
     where: WeeklyWhereUniqueInput
@@ -6948,6 +7250,54 @@ export namespace Prisma {
   }
 
   /**
+   * Weekly.citation
+   */
+  export type Weekly$citationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    where?: ScriptureCitationWhereInput
+    orderBy?: ScriptureCitationOrderByWithRelationInput | ScriptureCitationOrderByWithRelationInput[]
+    cursor?: ScriptureCitationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScriptureCitationScalarFieldEnum | ScriptureCitationScalarFieldEnum[]
+  }
+
+  /**
+   * Weekly.featuredEssays
+   */
+  export type Weekly$featuredEssaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    where?: EssayWhereInput
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    cursor?: EssayWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EssayScalarFieldEnum | EssayScalarFieldEnum[]
+  }
+
+  /**
    * Weekly without action
    */
   export type WeeklyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6959,6 +7309,2255 @@ export namespace Prisma {
      * Omit specific fields from the Weekly
      */
     omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Essay
+   */
+
+  export type AggregateEssay = {
+    _count: EssayCountAggregateOutputType | null
+    _avg: EssayAvgAggregateOutputType | null
+    _sum: EssaySumAggregateOutputType | null
+    _min: EssayMinAggregateOutputType | null
+    _max: EssayMaxAggregateOutputType | null
+  }
+
+  export type EssayAvgAggregateOutputType = {
+    id: number | null
+    authorId: number | null
+  }
+
+  export type EssaySumAggregateOutputType = {
+    id: number | null
+    authorId: number | null
+  }
+
+  export type EssayMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    category: string | null
+    text: string | null
+    createdAt: Date | null
+    authorId: number | null
+  }
+
+  export type EssayMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    category: string | null
+    text: string | null
+    createdAt: Date | null
+    authorId: number | null
+  }
+
+  export type EssayCountAggregateOutputType = {
+    id: number
+    title: number
+    category: number
+    text: number
+    createdAt: number
+    authorId: number
+    _all: number
+  }
+
+
+  export type EssayAvgAggregateInputType = {
+    id?: true
+    authorId?: true
+  }
+
+  export type EssaySumAggregateInputType = {
+    id?: true
+    authorId?: true
+  }
+
+  export type EssayMinAggregateInputType = {
+    id?: true
+    title?: true
+    category?: true
+    text?: true
+    createdAt?: true
+    authorId?: true
+  }
+
+  export type EssayMaxAggregateInputType = {
+    id?: true
+    title?: true
+    category?: true
+    text?: true
+    createdAt?: true
+    authorId?: true
+  }
+
+  export type EssayCountAggregateInputType = {
+    id?: true
+    title?: true
+    category?: true
+    text?: true
+    createdAt?: true
+    authorId?: true
+    _all?: true
+  }
+
+  export type EssayAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Essay to aggregate.
+     */
+    where?: EssayWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Essays to fetch.
+     */
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EssayWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Essays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Essays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Essays
+    **/
+    _count?: true | EssayCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EssayAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EssaySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EssayMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EssayMaxAggregateInputType
+  }
+
+  export type GetEssayAggregateType<T extends EssayAggregateArgs> = {
+        [P in keyof T & keyof AggregateEssay]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEssay[P]>
+      : GetScalarType<T[P], AggregateEssay[P]>
+  }
+
+
+
+
+  export type EssayGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EssayWhereInput
+    orderBy?: EssayOrderByWithAggregationInput | EssayOrderByWithAggregationInput[]
+    by: EssayScalarFieldEnum[] | EssayScalarFieldEnum
+    having?: EssayScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EssayCountAggregateInputType | true
+    _avg?: EssayAvgAggregateInputType
+    _sum?: EssaySumAggregateInputType
+    _min?: EssayMinAggregateInputType
+    _max?: EssayMaxAggregateInputType
+  }
+
+  export type EssayGroupByOutputType = {
+    id: number
+    title: string
+    category: string
+    text: string
+    createdAt: Date
+    authorId: number
+    _count: EssayCountAggregateOutputType | null
+    _avg: EssayAvgAggregateOutputType | null
+    _sum: EssaySumAggregateOutputType | null
+    _min: EssayMinAggregateOutputType | null
+    _max: EssayMaxAggregateOutputType | null
+  }
+
+  type GetEssayGroupByPayload<T extends EssayGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EssayGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EssayGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EssayGroupByOutputType[P]>
+            : GetScalarType<T[P], EssayGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EssaySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    category?: boolean
+    text?: boolean
+    createdAt?: boolean
+    authorId?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    featuredIn?: boolean | Essay$featuredInArgs<ExtArgs>
+    _count?: boolean | EssayCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["essay"]>
+
+  export type EssaySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    category?: boolean
+    text?: boolean
+    createdAt?: boolean
+    authorId?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["essay"]>
+
+  export type EssaySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    category?: boolean
+    text?: boolean
+    createdAt?: boolean
+    authorId?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["essay"]>
+
+  export type EssaySelectScalar = {
+    id?: boolean
+    title?: boolean
+    category?: boolean
+    text?: boolean
+    createdAt?: boolean
+    authorId?: boolean
+  }
+
+  export type EssayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "category" | "text" | "createdAt" | "authorId", ExtArgs["result"]["essay"]>
+  export type EssayInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    featuredIn?: boolean | Essay$featuredInArgs<ExtArgs>
+    _count?: boolean | EssayCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EssayIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type EssayIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $EssayPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Essay"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+      featuredIn: Prisma.$WeeklyPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      category: string
+      text: string
+      createdAt: Date
+      authorId: number
+    }, ExtArgs["result"]["essay"]>
+    composites: {}
+  }
+
+  type EssayGetPayload<S extends boolean | null | undefined | EssayDefaultArgs> = $Result.GetResult<Prisma.$EssayPayload, S>
+
+  type EssayCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EssayFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EssayCountAggregateInputType | true
+    }
+
+  export interface EssayDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Essay'], meta: { name: 'Essay' } }
+    /**
+     * Find zero or one Essay that matches the filter.
+     * @param {EssayFindUniqueArgs} args - Arguments to find a Essay
+     * @example
+     * // Get one Essay
+     * const essay = await prisma.essay.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EssayFindUniqueArgs>(args: SelectSubset<T, EssayFindUniqueArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Essay that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EssayFindUniqueOrThrowArgs} args - Arguments to find a Essay
+     * @example
+     * // Get one Essay
+     * const essay = await prisma.essay.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EssayFindUniqueOrThrowArgs>(args: SelectSubset<T, EssayFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Essay that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayFindFirstArgs} args - Arguments to find a Essay
+     * @example
+     * // Get one Essay
+     * const essay = await prisma.essay.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EssayFindFirstArgs>(args?: SelectSubset<T, EssayFindFirstArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Essay that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayFindFirstOrThrowArgs} args - Arguments to find a Essay
+     * @example
+     * // Get one Essay
+     * const essay = await prisma.essay.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EssayFindFirstOrThrowArgs>(args?: SelectSubset<T, EssayFindFirstOrThrowArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Essays that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Essays
+     * const essays = await prisma.essay.findMany()
+     * 
+     * // Get first 10 Essays
+     * const essays = await prisma.essay.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const essayWithIdOnly = await prisma.essay.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EssayFindManyArgs>(args?: SelectSubset<T, EssayFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Essay.
+     * @param {EssayCreateArgs} args - Arguments to create a Essay.
+     * @example
+     * // Create one Essay
+     * const Essay = await prisma.essay.create({
+     *   data: {
+     *     // ... data to create a Essay
+     *   }
+     * })
+     * 
+     */
+    create<T extends EssayCreateArgs>(args: SelectSubset<T, EssayCreateArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Essays.
+     * @param {EssayCreateManyArgs} args - Arguments to create many Essays.
+     * @example
+     * // Create many Essays
+     * const essay = await prisma.essay.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EssayCreateManyArgs>(args?: SelectSubset<T, EssayCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Essays and returns the data saved in the database.
+     * @param {EssayCreateManyAndReturnArgs} args - Arguments to create many Essays.
+     * @example
+     * // Create many Essays
+     * const essay = await prisma.essay.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Essays and only return the `id`
+     * const essayWithIdOnly = await prisma.essay.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EssayCreateManyAndReturnArgs>(args?: SelectSubset<T, EssayCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Essay.
+     * @param {EssayDeleteArgs} args - Arguments to delete one Essay.
+     * @example
+     * // Delete one Essay
+     * const Essay = await prisma.essay.delete({
+     *   where: {
+     *     // ... filter to delete one Essay
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EssayDeleteArgs>(args: SelectSubset<T, EssayDeleteArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Essay.
+     * @param {EssayUpdateArgs} args - Arguments to update one Essay.
+     * @example
+     * // Update one Essay
+     * const essay = await prisma.essay.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EssayUpdateArgs>(args: SelectSubset<T, EssayUpdateArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Essays.
+     * @param {EssayDeleteManyArgs} args - Arguments to filter Essays to delete.
+     * @example
+     * // Delete a few Essays
+     * const { count } = await prisma.essay.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EssayDeleteManyArgs>(args?: SelectSubset<T, EssayDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Essays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Essays
+     * const essay = await prisma.essay.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EssayUpdateManyArgs>(args: SelectSubset<T, EssayUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Essays and returns the data updated in the database.
+     * @param {EssayUpdateManyAndReturnArgs} args - Arguments to update many Essays.
+     * @example
+     * // Update many Essays
+     * const essay = await prisma.essay.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Essays and only return the `id`
+     * const essayWithIdOnly = await prisma.essay.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EssayUpdateManyAndReturnArgs>(args: SelectSubset<T, EssayUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Essay.
+     * @param {EssayUpsertArgs} args - Arguments to update or create a Essay.
+     * @example
+     * // Update or create a Essay
+     * const essay = await prisma.essay.upsert({
+     *   create: {
+     *     // ... data to create a Essay
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Essay we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EssayUpsertArgs>(args: SelectSubset<T, EssayUpsertArgs<ExtArgs>>): Prisma__EssayClient<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Essays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayCountArgs} args - Arguments to filter Essays to count.
+     * @example
+     * // Count the number of Essays
+     * const count = await prisma.essay.count({
+     *   where: {
+     *     // ... the filter for the Essays we want to count
+     *   }
+     * })
+    **/
+    count<T extends EssayCountArgs>(
+      args?: Subset<T, EssayCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EssayCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Essay.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EssayAggregateArgs>(args: Subset<T, EssayAggregateArgs>): Prisma.PrismaPromise<GetEssayAggregateType<T>>
+
+    /**
+     * Group by Essay.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EssayGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EssayGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EssayGroupByArgs['orderBy'] }
+        : { orderBy?: EssayGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EssayGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEssayGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Essay model
+   */
+  readonly fields: EssayFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Essay.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EssayClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    featuredIn<T extends Essay$featuredInArgs<ExtArgs> = {}>(args?: Subset<T, Essay$featuredInArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Essay model
+   */
+  interface EssayFieldRefs {
+    readonly id: FieldRef<"Essay", 'Int'>
+    readonly title: FieldRef<"Essay", 'String'>
+    readonly category: FieldRef<"Essay", 'String'>
+    readonly text: FieldRef<"Essay", 'String'>
+    readonly createdAt: FieldRef<"Essay", 'DateTime'>
+    readonly authorId: FieldRef<"Essay", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Essay findUnique
+   */
+  export type EssayFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter, which Essay to fetch.
+     */
+    where: EssayWhereUniqueInput
+  }
+
+  /**
+   * Essay findUniqueOrThrow
+   */
+  export type EssayFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter, which Essay to fetch.
+     */
+    where: EssayWhereUniqueInput
+  }
+
+  /**
+   * Essay findFirst
+   */
+  export type EssayFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter, which Essay to fetch.
+     */
+    where?: EssayWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Essays to fetch.
+     */
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Essays.
+     */
+    cursor?: EssayWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Essays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Essays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Essays.
+     */
+    distinct?: EssayScalarFieldEnum | EssayScalarFieldEnum[]
+  }
+
+  /**
+   * Essay findFirstOrThrow
+   */
+  export type EssayFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter, which Essay to fetch.
+     */
+    where?: EssayWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Essays to fetch.
+     */
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Essays.
+     */
+    cursor?: EssayWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Essays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Essays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Essays.
+     */
+    distinct?: EssayScalarFieldEnum | EssayScalarFieldEnum[]
+  }
+
+  /**
+   * Essay findMany
+   */
+  export type EssayFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter, which Essays to fetch.
+     */
+    where?: EssayWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Essays to fetch.
+     */
+    orderBy?: EssayOrderByWithRelationInput | EssayOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Essays.
+     */
+    cursor?: EssayWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Essays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Essays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Essays.
+     */
+    distinct?: EssayScalarFieldEnum | EssayScalarFieldEnum[]
+  }
+
+  /**
+   * Essay create
+   */
+  export type EssayCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Essay.
+     */
+    data: XOR<EssayCreateInput, EssayUncheckedCreateInput>
+  }
+
+  /**
+   * Essay createMany
+   */
+  export type EssayCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Essays.
+     */
+    data: EssayCreateManyInput | EssayCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Essay createManyAndReturn
+   */
+  export type EssayCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * The data used to create many Essays.
+     */
+    data: EssayCreateManyInput | EssayCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Essay update
+   */
+  export type EssayUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Essay.
+     */
+    data: XOR<EssayUpdateInput, EssayUncheckedUpdateInput>
+    /**
+     * Choose, which Essay to update.
+     */
+    where: EssayWhereUniqueInput
+  }
+
+  /**
+   * Essay updateMany
+   */
+  export type EssayUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Essays.
+     */
+    data: XOR<EssayUpdateManyMutationInput, EssayUncheckedUpdateManyInput>
+    /**
+     * Filter which Essays to update
+     */
+    where?: EssayWhereInput
+    /**
+     * Limit how many Essays to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Essay updateManyAndReturn
+   */
+  export type EssayUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * The data used to update Essays.
+     */
+    data: XOR<EssayUpdateManyMutationInput, EssayUncheckedUpdateManyInput>
+    /**
+     * Filter which Essays to update
+     */
+    where?: EssayWhereInput
+    /**
+     * Limit how many Essays to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Essay upsert
+   */
+  export type EssayUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Essay to update in case it exists.
+     */
+    where: EssayWhereUniqueInput
+    /**
+     * In case the Essay found by the `where` argument doesn't exist, create a new Essay with this data.
+     */
+    create: XOR<EssayCreateInput, EssayUncheckedCreateInput>
+    /**
+     * In case the Essay was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EssayUpdateInput, EssayUncheckedUpdateInput>
+  }
+
+  /**
+   * Essay delete
+   */
+  export type EssayDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+    /**
+     * Filter which Essay to delete.
+     */
+    where: EssayWhereUniqueInput
+  }
+
+  /**
+   * Essay deleteMany
+   */
+  export type EssayDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Essays to delete
+     */
+    where?: EssayWhereInput
+    /**
+     * Limit how many Essays to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Essay.featuredIn
+   */
+  export type Essay$featuredInArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Weekly
+     */
+    select?: WeeklySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Weekly
+     */
+    omit?: WeeklyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeeklyInclude<ExtArgs> | null
+    where?: WeeklyWhereInput
+    orderBy?: WeeklyOrderByWithRelationInput | WeeklyOrderByWithRelationInput[]
+    cursor?: WeeklyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WeeklyScalarFieldEnum | WeeklyScalarFieldEnum[]
+  }
+
+  /**
+   * Essay without action
+   */
+  export type EssayDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Essay
+     */
+    select?: EssaySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Essay
+     */
+    omit?: EssayOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EssayInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ScriptureCitation
+   */
+
+  export type AggregateScriptureCitation = {
+    _count: ScriptureCitationCountAggregateOutputType | null
+    _avg: ScriptureCitationAvgAggregateOutputType | null
+    _sum: ScriptureCitationSumAggregateOutputType | null
+    _min: ScriptureCitationMinAggregateOutputType | null
+    _max: ScriptureCitationMaxAggregateOutputType | null
+  }
+
+  export type ScriptureCitationAvgAggregateOutputType = {
+    id: number | null
+    weeklyId: number | null
+  }
+
+  export type ScriptureCitationSumAggregateOutputType = {
+    id: number | null
+    weeklyId: number | null
+  }
+
+  export type ScriptureCitationMinAggregateOutputType = {
+    id: number | null
+    scriptureBook: string | null
+    scriptureChapter: string | null
+    scriptureVerse: string | null
+    weeklyId: number | null
+  }
+
+  export type ScriptureCitationMaxAggregateOutputType = {
+    id: number | null
+    scriptureBook: string | null
+    scriptureChapter: string | null
+    scriptureVerse: string | null
+    weeklyId: number | null
+  }
+
+  export type ScriptureCitationCountAggregateOutputType = {
+    id: number
+    scriptureBook: number
+    scriptureChapter: number
+    scriptureVerse: number
+    weeklyId: number
+    _all: number
+  }
+
+
+  export type ScriptureCitationAvgAggregateInputType = {
+    id?: true
+    weeklyId?: true
+  }
+
+  export type ScriptureCitationSumAggregateInputType = {
+    id?: true
+    weeklyId?: true
+  }
+
+  export type ScriptureCitationMinAggregateInputType = {
+    id?: true
+    scriptureBook?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    weeklyId?: true
+  }
+
+  export type ScriptureCitationMaxAggregateInputType = {
+    id?: true
+    scriptureBook?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    weeklyId?: true
+  }
+
+  export type ScriptureCitationCountAggregateInputType = {
+    id?: true
+    scriptureBook?: true
+    scriptureChapter?: true
+    scriptureVerse?: true
+    weeklyId?: true
+    _all?: true
+  }
+
+  export type ScriptureCitationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ScriptureCitation to aggregate.
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScriptureCitations to fetch.
+     */
+    orderBy?: ScriptureCitationOrderByWithRelationInput | ScriptureCitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ScriptureCitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScriptureCitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScriptureCitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ScriptureCitations
+    **/
+    _count?: true | ScriptureCitationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ScriptureCitationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ScriptureCitationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ScriptureCitationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ScriptureCitationMaxAggregateInputType
+  }
+
+  export type GetScriptureCitationAggregateType<T extends ScriptureCitationAggregateArgs> = {
+        [P in keyof T & keyof AggregateScriptureCitation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateScriptureCitation[P]>
+      : GetScalarType<T[P], AggregateScriptureCitation[P]>
+  }
+
+
+
+
+  export type ScriptureCitationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScriptureCitationWhereInput
+    orderBy?: ScriptureCitationOrderByWithAggregationInput | ScriptureCitationOrderByWithAggregationInput[]
+    by: ScriptureCitationScalarFieldEnum[] | ScriptureCitationScalarFieldEnum
+    having?: ScriptureCitationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ScriptureCitationCountAggregateInputType | true
+    _avg?: ScriptureCitationAvgAggregateInputType
+    _sum?: ScriptureCitationSumAggregateInputType
+    _min?: ScriptureCitationMinAggregateInputType
+    _max?: ScriptureCitationMaxAggregateInputType
+  }
+
+  export type ScriptureCitationGroupByOutputType = {
+    id: number
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+    weeklyId: number
+    _count: ScriptureCitationCountAggregateOutputType | null
+    _avg: ScriptureCitationAvgAggregateOutputType | null
+    _sum: ScriptureCitationSumAggregateOutputType | null
+    _min: ScriptureCitationMinAggregateOutputType | null
+    _max: ScriptureCitationMaxAggregateOutputType | null
+  }
+
+  type GetScriptureCitationGroupByPayload<T extends ScriptureCitationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ScriptureCitationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ScriptureCitationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ScriptureCitationGroupByOutputType[P]>
+            : GetScalarType<T[P], ScriptureCitationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ScriptureCitationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureBook?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    weeklyId?: boolean
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scriptureCitation"]>
+
+  export type ScriptureCitationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureBook?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    weeklyId?: boolean
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scriptureCitation"]>
+
+  export type ScriptureCitationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    scriptureBook?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    weeklyId?: boolean
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scriptureCitation"]>
+
+  export type ScriptureCitationSelectScalar = {
+    id?: boolean
+    scriptureBook?: boolean
+    scriptureChapter?: boolean
+    scriptureVerse?: boolean
+    weeklyId?: boolean
+  }
+
+  export type ScriptureCitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "scriptureBook" | "scriptureChapter" | "scriptureVerse" | "weeklyId", ExtArgs["result"]["scriptureCitation"]>
+  export type ScriptureCitationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }
+  export type ScriptureCitationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }
+  export type ScriptureCitationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
+  }
+
+  export type $ScriptureCitationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ScriptureCitation"
+    objects: {
+      weekly: Prisma.$WeeklyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      scriptureBook: string
+      scriptureChapter: string
+      scriptureVerse: string
+      weeklyId: number
+    }, ExtArgs["result"]["scriptureCitation"]>
+    composites: {}
+  }
+
+  type ScriptureCitationGetPayload<S extends boolean | null | undefined | ScriptureCitationDefaultArgs> = $Result.GetResult<Prisma.$ScriptureCitationPayload, S>
+
+  type ScriptureCitationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ScriptureCitationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ScriptureCitationCountAggregateInputType | true
+    }
+
+  export interface ScriptureCitationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ScriptureCitation'], meta: { name: 'ScriptureCitation' } }
+    /**
+     * Find zero or one ScriptureCitation that matches the filter.
+     * @param {ScriptureCitationFindUniqueArgs} args - Arguments to find a ScriptureCitation
+     * @example
+     * // Get one ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ScriptureCitationFindUniqueArgs>(args: SelectSubset<T, ScriptureCitationFindUniqueArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ScriptureCitation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ScriptureCitationFindUniqueOrThrowArgs} args - Arguments to find a ScriptureCitation
+     * @example
+     * // Get one ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ScriptureCitationFindUniqueOrThrowArgs>(args: SelectSubset<T, ScriptureCitationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ScriptureCitation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationFindFirstArgs} args - Arguments to find a ScriptureCitation
+     * @example
+     * // Get one ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ScriptureCitationFindFirstArgs>(args?: SelectSubset<T, ScriptureCitationFindFirstArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ScriptureCitation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationFindFirstOrThrowArgs} args - Arguments to find a ScriptureCitation
+     * @example
+     * // Get one ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ScriptureCitationFindFirstOrThrowArgs>(args?: SelectSubset<T, ScriptureCitationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ScriptureCitations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ScriptureCitations
+     * const scriptureCitations = await prisma.scriptureCitation.findMany()
+     * 
+     * // Get first 10 ScriptureCitations
+     * const scriptureCitations = await prisma.scriptureCitation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const scriptureCitationWithIdOnly = await prisma.scriptureCitation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ScriptureCitationFindManyArgs>(args?: SelectSubset<T, ScriptureCitationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ScriptureCitation.
+     * @param {ScriptureCitationCreateArgs} args - Arguments to create a ScriptureCitation.
+     * @example
+     * // Create one ScriptureCitation
+     * const ScriptureCitation = await prisma.scriptureCitation.create({
+     *   data: {
+     *     // ... data to create a ScriptureCitation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ScriptureCitationCreateArgs>(args: SelectSubset<T, ScriptureCitationCreateArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ScriptureCitations.
+     * @param {ScriptureCitationCreateManyArgs} args - Arguments to create many ScriptureCitations.
+     * @example
+     * // Create many ScriptureCitations
+     * const scriptureCitation = await prisma.scriptureCitation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ScriptureCitationCreateManyArgs>(args?: SelectSubset<T, ScriptureCitationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ScriptureCitations and returns the data saved in the database.
+     * @param {ScriptureCitationCreateManyAndReturnArgs} args - Arguments to create many ScriptureCitations.
+     * @example
+     * // Create many ScriptureCitations
+     * const scriptureCitation = await prisma.scriptureCitation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ScriptureCitations and only return the `id`
+     * const scriptureCitationWithIdOnly = await prisma.scriptureCitation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ScriptureCitationCreateManyAndReturnArgs>(args?: SelectSubset<T, ScriptureCitationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ScriptureCitation.
+     * @param {ScriptureCitationDeleteArgs} args - Arguments to delete one ScriptureCitation.
+     * @example
+     * // Delete one ScriptureCitation
+     * const ScriptureCitation = await prisma.scriptureCitation.delete({
+     *   where: {
+     *     // ... filter to delete one ScriptureCitation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ScriptureCitationDeleteArgs>(args: SelectSubset<T, ScriptureCitationDeleteArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ScriptureCitation.
+     * @param {ScriptureCitationUpdateArgs} args - Arguments to update one ScriptureCitation.
+     * @example
+     * // Update one ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ScriptureCitationUpdateArgs>(args: SelectSubset<T, ScriptureCitationUpdateArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ScriptureCitations.
+     * @param {ScriptureCitationDeleteManyArgs} args - Arguments to filter ScriptureCitations to delete.
+     * @example
+     * // Delete a few ScriptureCitations
+     * const { count } = await prisma.scriptureCitation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ScriptureCitationDeleteManyArgs>(args?: SelectSubset<T, ScriptureCitationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ScriptureCitations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ScriptureCitations
+     * const scriptureCitation = await prisma.scriptureCitation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ScriptureCitationUpdateManyArgs>(args: SelectSubset<T, ScriptureCitationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ScriptureCitations and returns the data updated in the database.
+     * @param {ScriptureCitationUpdateManyAndReturnArgs} args - Arguments to update many ScriptureCitations.
+     * @example
+     * // Update many ScriptureCitations
+     * const scriptureCitation = await prisma.scriptureCitation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ScriptureCitations and only return the `id`
+     * const scriptureCitationWithIdOnly = await prisma.scriptureCitation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ScriptureCitationUpdateManyAndReturnArgs>(args: SelectSubset<T, ScriptureCitationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ScriptureCitation.
+     * @param {ScriptureCitationUpsertArgs} args - Arguments to update or create a ScriptureCitation.
+     * @example
+     * // Update or create a ScriptureCitation
+     * const scriptureCitation = await prisma.scriptureCitation.upsert({
+     *   create: {
+     *     // ... data to create a ScriptureCitation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ScriptureCitation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ScriptureCitationUpsertArgs>(args: SelectSubset<T, ScriptureCitationUpsertArgs<ExtArgs>>): Prisma__ScriptureCitationClient<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ScriptureCitations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationCountArgs} args - Arguments to filter ScriptureCitations to count.
+     * @example
+     * // Count the number of ScriptureCitations
+     * const count = await prisma.scriptureCitation.count({
+     *   where: {
+     *     // ... the filter for the ScriptureCitations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ScriptureCitationCountArgs>(
+      args?: Subset<T, ScriptureCitationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ScriptureCitationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ScriptureCitation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ScriptureCitationAggregateArgs>(args: Subset<T, ScriptureCitationAggregateArgs>): Prisma.PrismaPromise<GetScriptureCitationAggregateType<T>>
+
+    /**
+     * Group by ScriptureCitation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScriptureCitationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ScriptureCitationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ScriptureCitationGroupByArgs['orderBy'] }
+        : { orderBy?: ScriptureCitationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ScriptureCitationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetScriptureCitationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ScriptureCitation model
+   */
+  readonly fields: ScriptureCitationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ScriptureCitation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ScriptureCitationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    weekly<T extends WeeklyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WeeklyDefaultArgs<ExtArgs>>): Prisma__WeeklyClient<$Result.GetResult<Prisma.$WeeklyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ScriptureCitation model
+   */
+  interface ScriptureCitationFieldRefs {
+    readonly id: FieldRef<"ScriptureCitation", 'Int'>
+    readonly scriptureBook: FieldRef<"ScriptureCitation", 'String'>
+    readonly scriptureChapter: FieldRef<"ScriptureCitation", 'String'>
+    readonly scriptureVerse: FieldRef<"ScriptureCitation", 'String'>
+    readonly weeklyId: FieldRef<"ScriptureCitation", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ScriptureCitation findUnique
+   */
+  export type ScriptureCitationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScriptureCitation to fetch.
+     */
+    where: ScriptureCitationWhereUniqueInput
+  }
+
+  /**
+   * ScriptureCitation findUniqueOrThrow
+   */
+  export type ScriptureCitationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScriptureCitation to fetch.
+     */
+    where: ScriptureCitationWhereUniqueInput
+  }
+
+  /**
+   * ScriptureCitation findFirst
+   */
+  export type ScriptureCitationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScriptureCitation to fetch.
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScriptureCitations to fetch.
+     */
+    orderBy?: ScriptureCitationOrderByWithRelationInput | ScriptureCitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ScriptureCitations.
+     */
+    cursor?: ScriptureCitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScriptureCitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScriptureCitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ScriptureCitations.
+     */
+    distinct?: ScriptureCitationScalarFieldEnum | ScriptureCitationScalarFieldEnum[]
+  }
+
+  /**
+   * ScriptureCitation findFirstOrThrow
+   */
+  export type ScriptureCitationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScriptureCitation to fetch.
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScriptureCitations to fetch.
+     */
+    orderBy?: ScriptureCitationOrderByWithRelationInput | ScriptureCitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ScriptureCitations.
+     */
+    cursor?: ScriptureCitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScriptureCitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScriptureCitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ScriptureCitations.
+     */
+    distinct?: ScriptureCitationScalarFieldEnum | ScriptureCitationScalarFieldEnum[]
+  }
+
+  /**
+   * ScriptureCitation findMany
+   */
+  export type ScriptureCitationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScriptureCitations to fetch.
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScriptureCitations to fetch.
+     */
+    orderBy?: ScriptureCitationOrderByWithRelationInput | ScriptureCitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ScriptureCitations.
+     */
+    cursor?: ScriptureCitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScriptureCitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScriptureCitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ScriptureCitations.
+     */
+    distinct?: ScriptureCitationScalarFieldEnum | ScriptureCitationScalarFieldEnum[]
+  }
+
+  /**
+   * ScriptureCitation create
+   */
+  export type ScriptureCitationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ScriptureCitation.
+     */
+    data: XOR<ScriptureCitationCreateInput, ScriptureCitationUncheckedCreateInput>
+  }
+
+  /**
+   * ScriptureCitation createMany
+   */
+  export type ScriptureCitationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ScriptureCitations.
+     */
+    data: ScriptureCitationCreateManyInput | ScriptureCitationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ScriptureCitation createManyAndReturn
+   */
+  export type ScriptureCitationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * The data used to create many ScriptureCitations.
+     */
+    data: ScriptureCitationCreateManyInput | ScriptureCitationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ScriptureCitation update
+   */
+  export type ScriptureCitationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ScriptureCitation.
+     */
+    data: XOR<ScriptureCitationUpdateInput, ScriptureCitationUncheckedUpdateInput>
+    /**
+     * Choose, which ScriptureCitation to update.
+     */
+    where: ScriptureCitationWhereUniqueInput
+  }
+
+  /**
+   * ScriptureCitation updateMany
+   */
+  export type ScriptureCitationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ScriptureCitations.
+     */
+    data: XOR<ScriptureCitationUpdateManyMutationInput, ScriptureCitationUncheckedUpdateManyInput>
+    /**
+     * Filter which ScriptureCitations to update
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * Limit how many ScriptureCitations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ScriptureCitation updateManyAndReturn
+   */
+  export type ScriptureCitationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * The data used to update ScriptureCitations.
+     */
+    data: XOR<ScriptureCitationUpdateManyMutationInput, ScriptureCitationUncheckedUpdateManyInput>
+    /**
+     * Filter which ScriptureCitations to update
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * Limit how many ScriptureCitations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ScriptureCitation upsert
+   */
+  export type ScriptureCitationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ScriptureCitation to update in case it exists.
+     */
+    where: ScriptureCitationWhereUniqueInput
+    /**
+     * In case the ScriptureCitation found by the `where` argument doesn't exist, create a new ScriptureCitation with this data.
+     */
+    create: XOR<ScriptureCitationCreateInput, ScriptureCitationUncheckedCreateInput>
+    /**
+     * In case the ScriptureCitation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ScriptureCitationUpdateInput, ScriptureCitationUncheckedUpdateInput>
+  }
+
+  /**
+   * ScriptureCitation delete
+   */
+  export type ScriptureCitationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
+    /**
+     * Filter which ScriptureCitation to delete.
+     */
+    where: ScriptureCitationWhereUniqueInput
+  }
+
+  /**
+   * ScriptureCitation deleteMany
+   */
+  export type ScriptureCitationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ScriptureCitations to delete
+     */
+    where?: ScriptureCitationWhereInput
+    /**
+     * Limit how many ScriptureCitations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ScriptureCitation without action
+   */
+  export type ScriptureCitationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScriptureCitation
+     */
+    select?: ScriptureCitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScriptureCitation
+     */
+    omit?: ScriptureCitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScriptureCitationInclude<ExtArgs> | null
   }
 
 
@@ -7023,15 +9622,35 @@ export namespace Prisma {
 
   export const WeeklyScalarFieldEnum: {
     id: 'id',
-    scriptureChapter: 'scriptureChapter',
-    scriptureVerse: 'scriptureVerse',
-    scriptureBook: 'scriptureBook',
     saintName: 'saintName',
     saintDescription: 'saintDescription',
     saintFeastDay: 'saintFeastDay'
   };
 
   export type WeeklyScalarFieldEnum = (typeof WeeklyScalarFieldEnum)[keyof typeof WeeklyScalarFieldEnum]
+
+
+  export const EssayScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    category: 'category',
+    text: 'text',
+    createdAt: 'createdAt',
+    authorId: 'authorId'
+  };
+
+  export type EssayScalarFieldEnum = (typeof EssayScalarFieldEnum)[keyof typeof EssayScalarFieldEnum]
+
+
+  export const ScriptureCitationScalarFieldEnum: {
+    id: 'id',
+    scriptureBook: 'scriptureBook',
+    scriptureChapter: 'scriptureChapter',
+    scriptureVerse: 'scriptureVerse',
+    weeklyId: 'weeklyId'
+  };
+
+  export type ScriptureCitationScalarFieldEnum = (typeof ScriptureCitationScalarFieldEnum)[keyof typeof ScriptureCitationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7188,6 +9807,7 @@ export namespace Prisma {
     isAdmin?: BoolFilter<"User"> | boolean
     discussions?: DiscussionListRelationFilter
     replies?: ReplyListRelationFilter
+    essays?: EssayListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
   }
 
@@ -7200,6 +9820,7 @@ export namespace Prisma {
     isAdmin?: SortOrder
     discussions?: DiscussionOrderByRelationAggregateInput
     replies?: ReplyOrderByRelationAggregateInput
+    essays?: EssayOrderByRelationAggregateInput
     profile?: UserProfileOrderByWithRelationInput
   }
 
@@ -7215,6 +9836,7 @@ export namespace Prisma {
     isAdmin?: BoolFilter<"User"> | boolean
     discussions?: DiscussionListRelationFilter
     replies?: ReplyListRelationFilter
+    essays?: EssayListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
   }, "id" | "userName" | "userEmail">
 
@@ -7330,7 +9952,7 @@ export namespace Prisma {
     title?: StringFilter<"Discussion"> | string
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-    replys?: ReplyListRelationFilter
+    replies?: ReplyListRelationFilter
   }
 
   export type DiscussionOrderByWithRelationInput = {
@@ -7340,7 +9962,7 @@ export namespace Prisma {
     title?: SortOrder
     createdAt?: SortOrder
     author?: UserOrderByWithRelationInput
-    replys?: ReplyOrderByRelationAggregateInput
+    replies?: ReplyOrderByRelationAggregateInput
   }
 
   export type DiscussionWhereUniqueInput = Prisma.AtLeast<{
@@ -7353,7 +9975,7 @@ export namespace Prisma {
     title?: StringFilter<"Discussion"> | string
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-    replys?: ReplyListRelationFilter
+    replies?: ReplyListRelationFilter
   }, "id">
 
   export type DiscussionOrderByWithAggregationInput = {
@@ -7385,22 +10007,20 @@ export namespace Prisma {
     OR?: WeeklyWhereInput[]
     NOT?: WeeklyWhereInput | WeeklyWhereInput[]
     id?: IntFilter<"Weekly"> | number
-    scriptureChapter?: StringFilter<"Weekly"> | string
-    scriptureVerse?: StringFilter<"Weekly"> | string
-    scriptureBook?: StringFilter<"Weekly"> | string
     saintName?: StringFilter<"Weekly"> | string
     saintDescription?: StringFilter<"Weekly"> | string
     saintFeastDay?: StringFilter<"Weekly"> | string
+    citation?: ScriptureCitationListRelationFilter
+    featuredEssays?: EssayListRelationFilter
   }
 
   export type WeeklyOrderByWithRelationInput = {
     id?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
-    scriptureBook?: SortOrder
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
+    citation?: ScriptureCitationOrderByRelationAggregateInput
+    featuredEssays?: EssayOrderByRelationAggregateInput
   }
 
   export type WeeklyWhereUniqueInput = Prisma.AtLeast<{
@@ -7408,19 +10028,15 @@ export namespace Prisma {
     AND?: WeeklyWhereInput | WeeklyWhereInput[]
     OR?: WeeklyWhereInput[]
     NOT?: WeeklyWhereInput | WeeklyWhereInput[]
-    scriptureChapter?: StringFilter<"Weekly"> | string
-    scriptureVerse?: StringFilter<"Weekly"> | string
-    scriptureBook?: StringFilter<"Weekly"> | string
     saintName?: StringFilter<"Weekly"> | string
     saintDescription?: StringFilter<"Weekly"> | string
     saintFeastDay?: StringFilter<"Weekly"> | string
+    citation?: ScriptureCitationListRelationFilter
+    featuredEssays?: EssayListRelationFilter
   }, "id">
 
   export type WeeklyOrderByWithAggregationInput = {
     id?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
-    scriptureBook?: SortOrder
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
@@ -7436,12 +10052,131 @@ export namespace Prisma {
     OR?: WeeklyScalarWhereWithAggregatesInput[]
     NOT?: WeeklyScalarWhereWithAggregatesInput | WeeklyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Weekly"> | number
-    scriptureChapter?: StringWithAggregatesFilter<"Weekly"> | string
-    scriptureVerse?: StringWithAggregatesFilter<"Weekly"> | string
-    scriptureBook?: StringWithAggregatesFilter<"Weekly"> | string
     saintName?: StringWithAggregatesFilter<"Weekly"> | string
     saintDescription?: StringWithAggregatesFilter<"Weekly"> | string
     saintFeastDay?: StringWithAggregatesFilter<"Weekly"> | string
+  }
+
+  export type EssayWhereInput = {
+    AND?: EssayWhereInput | EssayWhereInput[]
+    OR?: EssayWhereInput[]
+    NOT?: EssayWhereInput | EssayWhereInput[]
+    id?: IntFilter<"Essay"> | number
+    title?: StringFilter<"Essay"> | string
+    category?: StringFilter<"Essay"> | string
+    text?: StringFilter<"Essay"> | string
+    createdAt?: DateTimeFilter<"Essay"> | Date | string
+    authorId?: IntFilter<"Essay"> | number
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    featuredIn?: WeeklyListRelationFilter
+  }
+
+  export type EssayOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    category?: SortOrder
+    text?: SortOrder
+    createdAt?: SortOrder
+    authorId?: SortOrder
+    author?: UserOrderByWithRelationInput
+    featuredIn?: WeeklyOrderByRelationAggregateInput
+  }
+
+  export type EssayWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: EssayWhereInput | EssayWhereInput[]
+    OR?: EssayWhereInput[]
+    NOT?: EssayWhereInput | EssayWhereInput[]
+    title?: StringFilter<"Essay"> | string
+    category?: StringFilter<"Essay"> | string
+    text?: StringFilter<"Essay"> | string
+    createdAt?: DateTimeFilter<"Essay"> | Date | string
+    authorId?: IntFilter<"Essay"> | number
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    featuredIn?: WeeklyListRelationFilter
+  }, "id">
+
+  export type EssayOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    category?: SortOrder
+    text?: SortOrder
+    createdAt?: SortOrder
+    authorId?: SortOrder
+    _count?: EssayCountOrderByAggregateInput
+    _avg?: EssayAvgOrderByAggregateInput
+    _max?: EssayMaxOrderByAggregateInput
+    _min?: EssayMinOrderByAggregateInput
+    _sum?: EssaySumOrderByAggregateInput
+  }
+
+  export type EssayScalarWhereWithAggregatesInput = {
+    AND?: EssayScalarWhereWithAggregatesInput | EssayScalarWhereWithAggregatesInput[]
+    OR?: EssayScalarWhereWithAggregatesInput[]
+    NOT?: EssayScalarWhereWithAggregatesInput | EssayScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Essay"> | number
+    title?: StringWithAggregatesFilter<"Essay"> | string
+    category?: StringWithAggregatesFilter<"Essay"> | string
+    text?: StringWithAggregatesFilter<"Essay"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Essay"> | Date | string
+    authorId?: IntWithAggregatesFilter<"Essay"> | number
+  }
+
+  export type ScriptureCitationWhereInput = {
+    AND?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
+    OR?: ScriptureCitationWhereInput[]
+    NOT?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
+    id?: IntFilter<"ScriptureCitation"> | number
+    scriptureBook?: StringFilter<"ScriptureCitation"> | string
+    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
+    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    weeklyId?: IntFilter<"ScriptureCitation"> | number
+    weekly?: XOR<WeeklyScalarRelationFilter, WeeklyWhereInput>
+  }
+
+  export type ScriptureCitationOrderByWithRelationInput = {
+    id?: SortOrder
+    scriptureBook?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    weeklyId?: SortOrder
+    weekly?: WeeklyOrderByWithRelationInput
+  }
+
+  export type ScriptureCitationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
+    OR?: ScriptureCitationWhereInput[]
+    NOT?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
+    scriptureBook?: StringFilter<"ScriptureCitation"> | string
+    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
+    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    weeklyId?: IntFilter<"ScriptureCitation"> | number
+    weekly?: XOR<WeeklyScalarRelationFilter, WeeklyWhereInput>
+  }, "id">
+
+  export type ScriptureCitationOrderByWithAggregationInput = {
+    id?: SortOrder
+    scriptureBook?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    weeklyId?: SortOrder
+    _count?: ScriptureCitationCountOrderByAggregateInput
+    _avg?: ScriptureCitationAvgOrderByAggregateInput
+    _max?: ScriptureCitationMaxOrderByAggregateInput
+    _min?: ScriptureCitationMinOrderByAggregateInput
+    _sum?: ScriptureCitationSumOrderByAggregateInput
+  }
+
+  export type ScriptureCitationScalarWhereWithAggregatesInput = {
+    AND?: ScriptureCitationScalarWhereWithAggregatesInput | ScriptureCitationScalarWhereWithAggregatesInput[]
+    OR?: ScriptureCitationScalarWhereWithAggregatesInput[]
+    NOT?: ScriptureCitationScalarWhereWithAggregatesInput | ScriptureCitationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ScriptureCitation"> | number
+    scriptureBook?: StringWithAggregatesFilter<"ScriptureCitation"> | string
+    scriptureChapter?: StringWithAggregatesFilter<"ScriptureCitation"> | string
+    scriptureVerse?: StringWithAggregatesFilter<"ScriptureCitation"> | string
+    weeklyId?: IntWithAggregatesFilter<"ScriptureCitation"> | number
   }
 
   export type UserProfileCreateInput = {
@@ -7493,6 +10228,7 @@ export namespace Prisma {
     isAdmin?: boolean
     discussions?: DiscussionCreateNestedManyWithoutAuthorInput
     replies?: ReplyCreateNestedManyWithoutAuthorInput
+    essays?: EssayCreateNestedManyWithoutAuthorInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
   }
 
@@ -7505,6 +10241,7 @@ export namespace Prisma {
     isAdmin?: boolean
     discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    essays?: EssayUncheckedCreateNestedManyWithoutAuthorInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -7516,6 +10253,7 @@ export namespace Prisma {
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
   }
 
@@ -7528,6 +10266,7 @@ export namespace Prisma {
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUncheckedUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -7562,7 +10301,7 @@ export namespace Prisma {
     title: string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutRepliesInput
-    discussion: DiscussionCreateNestedOneWithoutReplysInput
+    discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
     children?: ReplyCreateNestedManyWithoutParentInput
   }
@@ -7583,7 +10322,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
-    discussion?: DiscussionUpdateOneRequiredWithoutReplysNestedInput
+    discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
   }
@@ -7630,7 +10369,7 @@ export namespace Prisma {
     title: string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
-    replys?: ReplyCreateNestedManyWithoutDiscussionInput
+    replies?: ReplyCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUncheckedCreateInput = {
@@ -7639,7 +10378,7 @@ export namespace Prisma {
     authorId: number
     title: string
     createdAt?: Date | string
-    replys?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
+    replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUpdateInput = {
@@ -7647,7 +10386,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
-    replys?: ReplyUpdateManyWithoutDiscussionNestedInput
+    replies?: ReplyUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateInput = {
@@ -7656,7 +10395,7 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    replys?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
+    replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionCreateManyInput = {
@@ -7682,60 +10421,47 @@ export namespace Prisma {
   }
 
   export type WeeklyCreateInput = {
-    id: number
-    scriptureChapter: string
-    scriptureVerse: string
-    scriptureBook: string
     saintName: string
     saintDescription: string
     saintFeastDay: string
+    citation?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
+    featuredEssays?: EssayCreateNestedManyWithoutFeaturedInInput
   }
 
   export type WeeklyUncheckedCreateInput = {
-    id: number
-    scriptureChapter: string
-    scriptureVerse: string
-    scriptureBook: string
+    id?: number
     saintName: string
     saintDescription: string
     saintFeastDay: string
+    citation?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
+    featuredEssays?: EssayUncheckedCreateNestedManyWithoutFeaturedInInput
   }
 
   export type WeeklyUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
-    scriptureBook?: StringFieldUpdateOperationsInput | string
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    citation?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
+    featuredEssays?: EssayUpdateManyWithoutFeaturedInNestedInput
   }
 
   export type WeeklyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
-    scriptureBook?: StringFieldUpdateOperationsInput | string
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    citation?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
+    featuredEssays?: EssayUncheckedUpdateManyWithoutFeaturedInNestedInput
   }
 
   export type WeeklyCreateManyInput = {
-    id: number
-    scriptureChapter: string
-    scriptureVerse: string
-    scriptureBook: string
+    id?: number
     saintName: string
     saintDescription: string
     saintFeastDay: string
   }
 
   export type WeeklyUpdateManyMutationInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
-    scriptureBook?: StringFieldUpdateOperationsInput | string
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
@@ -7743,12 +10469,124 @@ export namespace Prisma {
 
   export type WeeklyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
-    scriptureBook?: StringFieldUpdateOperationsInput | string
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EssayCreateInput = {
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutEssaysInput
+    featuredIn?: WeeklyCreateNestedManyWithoutFeaturedEssaysInput
+  }
+
+  export type EssayUncheckedCreateInput = {
+    id?: number
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    authorId: number
+    featuredIn?: WeeklyUncheckedCreateNestedManyWithoutFeaturedEssaysInput
+  }
+
+  export type EssayUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutEssaysNestedInput
+    featuredIn?: WeeklyUpdateManyWithoutFeaturedEssaysNestedInput
+  }
+
+  export type EssayUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: IntFieldUpdateOperationsInput | number
+    featuredIn?: WeeklyUncheckedUpdateManyWithoutFeaturedEssaysNestedInput
+  }
+
+  export type EssayCreateManyInput = {
+    id?: number
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    authorId: number
+  }
+
+  export type EssayUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EssayUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ScriptureCitationCreateInput = {
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+    weekly: WeeklyCreateNestedOneWithoutCitationInput
+  }
+
+  export type ScriptureCitationUncheckedCreateInput = {
+    id?: number
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+    weeklyId: number
+  }
+
+  export type ScriptureCitationUpdateInput = {
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    weekly?: WeeklyUpdateOneRequiredWithoutCitationNestedInput
+  }
+
+  export type ScriptureCitationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    weeklyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ScriptureCitationCreateManyInput = {
+    id?: number
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+    weeklyId: number
+  }
+
+  export type ScriptureCitationUpdateManyMutationInput = {
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ScriptureCitationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    weeklyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7896,6 +10734,12 @@ export namespace Prisma {
     none?: ReplyWhereInput
   }
 
+  export type EssayListRelationFilter = {
+    every?: EssayWhereInput
+    some?: EssayWhereInput
+    none?: EssayWhereInput
+  }
+
   export type UserProfileNullableScalarRelationFilter = {
     is?: UserProfileWhereInput | null
     isNot?: UserProfileWhereInput | null
@@ -7906,6 +10750,10 @@ export namespace Prisma {
   }
 
   export type ReplyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EssayOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8099,11 +10947,18 @@ export namespace Prisma {
     authorId?: SortOrder
   }
 
+  export type ScriptureCitationListRelationFilter = {
+    every?: ScriptureCitationWhereInput
+    some?: ScriptureCitationWhereInput
+    none?: ScriptureCitationWhereInput
+  }
+
+  export type ScriptureCitationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type WeeklyCountOrderByAggregateInput = {
     id?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
-    scriptureBook?: SortOrder
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
@@ -8115,9 +10970,6 @@ export namespace Prisma {
 
   export type WeeklyMaxOrderByAggregateInput = {
     id?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
-    scriptureBook?: SortOrder
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
@@ -8125,9 +10977,6 @@ export namespace Prisma {
 
   export type WeeklyMinOrderByAggregateInput = {
     id?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
-    scriptureBook?: SortOrder
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
@@ -8135,6 +10984,92 @@ export namespace Prisma {
 
   export type WeeklySumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type WeeklyListRelationFilter = {
+    every?: WeeklyWhereInput
+    some?: WeeklyWhereInput
+    none?: WeeklyWhereInput
+  }
+
+  export type WeeklyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EssayCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    category?: SortOrder
+    text?: SortOrder
+    createdAt?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type EssayAvgOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type EssayMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    category?: SortOrder
+    text?: SortOrder
+    createdAt?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type EssayMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    category?: SortOrder
+    text?: SortOrder
+    createdAt?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type EssaySumOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type WeeklyScalarRelationFilter = {
+    is?: WeeklyWhereInput
+    isNot?: WeeklyWhereInput
+  }
+
+  export type ScriptureCitationCountOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureBook?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    weeklyId?: SortOrder
+  }
+
+  export type ScriptureCitationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    weeklyId?: SortOrder
+  }
+
+  export type ScriptureCitationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureBook?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    weeklyId?: SortOrder
+  }
+
+  export type ScriptureCitationMinOrderByAggregateInput = {
+    id?: SortOrder
+    scriptureBook?: SortOrder
+    scriptureChapter?: SortOrder
+    scriptureVerse?: SortOrder
+    weeklyId?: SortOrder
+  }
+
+  export type ScriptureCitationSumOrderByAggregateInput = {
+    id?: SortOrder
+    weeklyId?: SortOrder
   }
 
   export type UserProfileCreatetagsInput = {
@@ -8186,6 +11121,13 @@ export namespace Prisma {
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
   }
 
+  export type EssayCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput> | EssayCreateWithoutAuthorInput[] | EssayUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutAuthorInput | EssayCreateOrConnectWithoutAuthorInput[]
+    createMany?: EssayCreateManyAuthorInputEnvelope
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+  }
+
   export type UserProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
@@ -8204,6 +11146,13 @@ export namespace Prisma {
     connectOrCreate?: ReplyCreateOrConnectWithoutAuthorInput | ReplyCreateOrConnectWithoutAuthorInput[]
     createMany?: ReplyCreateManyAuthorInputEnvelope
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
+  }
+
+  export type EssayUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput> | EssayCreateWithoutAuthorInput[] | EssayUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutAuthorInput | EssayCreateOrConnectWithoutAuthorInput[]
+    createMany?: EssayCreateManyAuthorInputEnvelope
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
   }
 
   export type UserProfileUncheckedCreateNestedOneWithoutUserInput = {
@@ -8252,6 +11201,20 @@ export namespace Prisma {
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
   }
 
+  export type EssayUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput> | EssayCreateWithoutAuthorInput[] | EssayUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutAuthorInput | EssayCreateOrConnectWithoutAuthorInput[]
+    upsert?: EssayUpsertWithWhereUniqueWithoutAuthorInput | EssayUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: EssayCreateManyAuthorInputEnvelope
+    set?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    disconnect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    delete?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    update?: EssayUpdateWithWhereUniqueWithoutAuthorInput | EssayUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: EssayUpdateManyWithWhereWithoutAuthorInput | EssayUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: EssayScalarWhereInput | EssayScalarWhereInput[]
+  }
+
   export type UserProfileUpdateOneWithoutUserNestedInput = {
     create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
@@ -8290,6 +11253,20 @@ export namespace Prisma {
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
   }
 
+  export type EssayUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput> | EssayCreateWithoutAuthorInput[] | EssayUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutAuthorInput | EssayCreateOrConnectWithoutAuthorInput[]
+    upsert?: EssayUpsertWithWhereUniqueWithoutAuthorInput | EssayUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: EssayCreateManyAuthorInputEnvelope
+    set?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    disconnect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    delete?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    update?: EssayUpdateWithWhereUniqueWithoutAuthorInput | EssayUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: EssayUpdateManyWithWhereWithoutAuthorInput | EssayUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: EssayScalarWhereInput | EssayScalarWhereInput[]
+  }
+
   export type UserProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
@@ -8306,9 +11283,9 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type DiscussionCreateNestedOneWithoutReplysInput = {
-    create?: XOR<DiscussionCreateWithoutReplysInput, DiscussionUncheckedCreateWithoutReplysInput>
-    connectOrCreate?: DiscussionCreateOrConnectWithoutReplysInput
+  export type DiscussionCreateNestedOneWithoutRepliesInput = {
+    create?: XOR<DiscussionCreateWithoutRepliesInput, DiscussionUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: DiscussionCreateOrConnectWithoutRepliesInput
     connect?: DiscussionWhereUniqueInput
   }
 
@@ -8340,12 +11317,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepliesInput, UserUpdateWithoutRepliesInput>, UserUncheckedUpdateWithoutRepliesInput>
   }
 
-  export type DiscussionUpdateOneRequiredWithoutReplysNestedInput = {
-    create?: XOR<DiscussionCreateWithoutReplysInput, DiscussionUncheckedCreateWithoutReplysInput>
-    connectOrCreate?: DiscussionCreateOrConnectWithoutReplysInput
-    upsert?: DiscussionUpsertWithoutReplysInput
+  export type DiscussionUpdateOneRequiredWithoutRepliesNestedInput = {
+    create?: XOR<DiscussionCreateWithoutRepliesInput, DiscussionUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: DiscussionCreateOrConnectWithoutRepliesInput
+    upsert?: DiscussionUpsertWithoutRepliesInput
     connect?: DiscussionWhereUniqueInput
-    update?: XOR<XOR<DiscussionUpdateToOneWithWhereWithoutReplysInput, DiscussionUpdateWithoutReplysInput>, DiscussionUncheckedUpdateWithoutReplysInput>
+    update?: XOR<XOR<DiscussionUpdateToOneWithWhereWithoutRepliesInput, DiscussionUpdateWithoutRepliesInput>, DiscussionUncheckedUpdateWithoutRepliesInput>
   }
 
   export type ReplyUpdateOneWithoutChildrenNestedInput = {
@@ -8448,6 +11425,152 @@ export namespace Prisma {
     update?: ReplyUpdateWithWhereUniqueWithoutDiscussionInput | ReplyUpdateWithWhereUniqueWithoutDiscussionInput[]
     updateMany?: ReplyUpdateManyWithWhereWithoutDiscussionInput | ReplyUpdateManyWithWhereWithoutDiscussionInput[]
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
+  }
+
+  export type ScriptureCitationCreateNestedManyWithoutWeeklyInput = {
+    create?: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput> | ScriptureCitationCreateWithoutWeeklyInput[] | ScriptureCitationUncheckedCreateWithoutWeeklyInput[]
+    connectOrCreate?: ScriptureCitationCreateOrConnectWithoutWeeklyInput | ScriptureCitationCreateOrConnectWithoutWeeklyInput[]
+    createMany?: ScriptureCitationCreateManyWeeklyInputEnvelope
+    connect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+  }
+
+  export type EssayCreateNestedManyWithoutFeaturedInInput = {
+    create?: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput> | EssayCreateWithoutFeaturedInInput[] | EssayUncheckedCreateWithoutFeaturedInInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutFeaturedInInput | EssayCreateOrConnectWithoutFeaturedInInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+  }
+
+  export type ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput = {
+    create?: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput> | ScriptureCitationCreateWithoutWeeklyInput[] | ScriptureCitationUncheckedCreateWithoutWeeklyInput[]
+    connectOrCreate?: ScriptureCitationCreateOrConnectWithoutWeeklyInput | ScriptureCitationCreateOrConnectWithoutWeeklyInput[]
+    createMany?: ScriptureCitationCreateManyWeeklyInputEnvelope
+    connect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+  }
+
+  export type EssayUncheckedCreateNestedManyWithoutFeaturedInInput = {
+    create?: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput> | EssayCreateWithoutFeaturedInInput[] | EssayUncheckedCreateWithoutFeaturedInInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutFeaturedInInput | EssayCreateOrConnectWithoutFeaturedInInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+  }
+
+  export type ScriptureCitationUpdateManyWithoutWeeklyNestedInput = {
+    create?: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput> | ScriptureCitationCreateWithoutWeeklyInput[] | ScriptureCitationUncheckedCreateWithoutWeeklyInput[]
+    connectOrCreate?: ScriptureCitationCreateOrConnectWithoutWeeklyInput | ScriptureCitationCreateOrConnectWithoutWeeklyInput[]
+    upsert?: ScriptureCitationUpsertWithWhereUniqueWithoutWeeklyInput | ScriptureCitationUpsertWithWhereUniqueWithoutWeeklyInput[]
+    createMany?: ScriptureCitationCreateManyWeeklyInputEnvelope
+    set?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    disconnect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    delete?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    connect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    update?: ScriptureCitationUpdateWithWhereUniqueWithoutWeeklyInput | ScriptureCitationUpdateWithWhereUniqueWithoutWeeklyInput[]
+    updateMany?: ScriptureCitationUpdateManyWithWhereWithoutWeeklyInput | ScriptureCitationUpdateManyWithWhereWithoutWeeklyInput[]
+    deleteMany?: ScriptureCitationScalarWhereInput | ScriptureCitationScalarWhereInput[]
+  }
+
+  export type EssayUpdateManyWithoutFeaturedInNestedInput = {
+    create?: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput> | EssayCreateWithoutFeaturedInInput[] | EssayUncheckedCreateWithoutFeaturedInInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutFeaturedInInput | EssayCreateOrConnectWithoutFeaturedInInput[]
+    upsert?: EssayUpsertWithWhereUniqueWithoutFeaturedInInput | EssayUpsertWithWhereUniqueWithoutFeaturedInInput[]
+    set?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    disconnect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    delete?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    update?: EssayUpdateWithWhereUniqueWithoutFeaturedInInput | EssayUpdateWithWhereUniqueWithoutFeaturedInInput[]
+    updateMany?: EssayUpdateManyWithWhereWithoutFeaturedInInput | EssayUpdateManyWithWhereWithoutFeaturedInInput[]
+    deleteMany?: EssayScalarWhereInput | EssayScalarWhereInput[]
+  }
+
+  export type ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput = {
+    create?: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput> | ScriptureCitationCreateWithoutWeeklyInput[] | ScriptureCitationUncheckedCreateWithoutWeeklyInput[]
+    connectOrCreate?: ScriptureCitationCreateOrConnectWithoutWeeklyInput | ScriptureCitationCreateOrConnectWithoutWeeklyInput[]
+    upsert?: ScriptureCitationUpsertWithWhereUniqueWithoutWeeklyInput | ScriptureCitationUpsertWithWhereUniqueWithoutWeeklyInput[]
+    createMany?: ScriptureCitationCreateManyWeeklyInputEnvelope
+    set?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    disconnect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    delete?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    connect?: ScriptureCitationWhereUniqueInput | ScriptureCitationWhereUniqueInput[]
+    update?: ScriptureCitationUpdateWithWhereUniqueWithoutWeeklyInput | ScriptureCitationUpdateWithWhereUniqueWithoutWeeklyInput[]
+    updateMany?: ScriptureCitationUpdateManyWithWhereWithoutWeeklyInput | ScriptureCitationUpdateManyWithWhereWithoutWeeklyInput[]
+    deleteMany?: ScriptureCitationScalarWhereInput | ScriptureCitationScalarWhereInput[]
+  }
+
+  export type EssayUncheckedUpdateManyWithoutFeaturedInNestedInput = {
+    create?: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput> | EssayCreateWithoutFeaturedInInput[] | EssayUncheckedCreateWithoutFeaturedInInput[]
+    connectOrCreate?: EssayCreateOrConnectWithoutFeaturedInInput | EssayCreateOrConnectWithoutFeaturedInInput[]
+    upsert?: EssayUpsertWithWhereUniqueWithoutFeaturedInInput | EssayUpsertWithWhereUniqueWithoutFeaturedInInput[]
+    set?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    disconnect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    delete?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    connect?: EssayWhereUniqueInput | EssayWhereUniqueInput[]
+    update?: EssayUpdateWithWhereUniqueWithoutFeaturedInInput | EssayUpdateWithWhereUniqueWithoutFeaturedInInput[]
+    updateMany?: EssayUpdateManyWithWhereWithoutFeaturedInInput | EssayUpdateManyWithWhereWithoutFeaturedInInput[]
+    deleteMany?: EssayScalarWhereInput | EssayScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutEssaysInput = {
+    create?: XOR<UserCreateWithoutEssaysInput, UserUncheckedCreateWithoutEssaysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEssaysInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type WeeklyCreateNestedManyWithoutFeaturedEssaysInput = {
+    create?: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput> | WeeklyCreateWithoutFeaturedEssaysInput[] | WeeklyUncheckedCreateWithoutFeaturedEssaysInput[]
+    connectOrCreate?: WeeklyCreateOrConnectWithoutFeaturedEssaysInput | WeeklyCreateOrConnectWithoutFeaturedEssaysInput[]
+    connect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+  }
+
+  export type WeeklyUncheckedCreateNestedManyWithoutFeaturedEssaysInput = {
+    create?: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput> | WeeklyCreateWithoutFeaturedEssaysInput[] | WeeklyUncheckedCreateWithoutFeaturedEssaysInput[]
+    connectOrCreate?: WeeklyCreateOrConnectWithoutFeaturedEssaysInput | WeeklyCreateOrConnectWithoutFeaturedEssaysInput[]
+    connect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutEssaysNestedInput = {
+    create?: XOR<UserCreateWithoutEssaysInput, UserUncheckedCreateWithoutEssaysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEssaysInput
+    upsert?: UserUpsertWithoutEssaysInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEssaysInput, UserUpdateWithoutEssaysInput>, UserUncheckedUpdateWithoutEssaysInput>
+  }
+
+  export type WeeklyUpdateManyWithoutFeaturedEssaysNestedInput = {
+    create?: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput> | WeeklyCreateWithoutFeaturedEssaysInput[] | WeeklyUncheckedCreateWithoutFeaturedEssaysInput[]
+    connectOrCreate?: WeeklyCreateOrConnectWithoutFeaturedEssaysInput | WeeklyCreateOrConnectWithoutFeaturedEssaysInput[]
+    upsert?: WeeklyUpsertWithWhereUniqueWithoutFeaturedEssaysInput | WeeklyUpsertWithWhereUniqueWithoutFeaturedEssaysInput[]
+    set?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    disconnect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    delete?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    connect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    update?: WeeklyUpdateWithWhereUniqueWithoutFeaturedEssaysInput | WeeklyUpdateWithWhereUniqueWithoutFeaturedEssaysInput[]
+    updateMany?: WeeklyUpdateManyWithWhereWithoutFeaturedEssaysInput | WeeklyUpdateManyWithWhereWithoutFeaturedEssaysInput[]
+    deleteMany?: WeeklyScalarWhereInput | WeeklyScalarWhereInput[]
+  }
+
+  export type WeeklyUncheckedUpdateManyWithoutFeaturedEssaysNestedInput = {
+    create?: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput> | WeeklyCreateWithoutFeaturedEssaysInput[] | WeeklyUncheckedCreateWithoutFeaturedEssaysInput[]
+    connectOrCreate?: WeeklyCreateOrConnectWithoutFeaturedEssaysInput | WeeklyCreateOrConnectWithoutFeaturedEssaysInput[]
+    upsert?: WeeklyUpsertWithWhereUniqueWithoutFeaturedEssaysInput | WeeklyUpsertWithWhereUniqueWithoutFeaturedEssaysInput[]
+    set?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    disconnect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    delete?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    connect?: WeeklyWhereUniqueInput | WeeklyWhereUniqueInput[]
+    update?: WeeklyUpdateWithWhereUniqueWithoutFeaturedEssaysInput | WeeklyUpdateWithWhereUniqueWithoutFeaturedEssaysInput[]
+    updateMany?: WeeklyUpdateManyWithWhereWithoutFeaturedEssaysInput | WeeklyUpdateManyWithWhereWithoutFeaturedEssaysInput[]
+    deleteMany?: WeeklyScalarWhereInput | WeeklyScalarWhereInput[]
+  }
+
+  export type WeeklyCreateNestedOneWithoutCitationInput = {
+    create?: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationInput
+    connect?: WeeklyWhereUniqueInput
+  }
+
+  export type WeeklyUpdateOneRequiredWithoutCitationNestedInput = {
+    create?: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationInput
+    upsert?: WeeklyUpsertWithoutCitationInput
+    connect?: WeeklyWhereUniqueInput
+    update?: XOR<XOR<WeeklyUpdateToOneWithWhereWithoutCitationInput, WeeklyUpdateWithoutCitationInput>, WeeklyUncheckedUpdateWithoutCitationInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8634,6 +11757,7 @@ export namespace Prisma {
     isAdmin?: boolean
     discussions?: DiscussionCreateNestedManyWithoutAuthorInput
     replies?: ReplyCreateNestedManyWithoutAuthorInput
+    essays?: EssayCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -8645,6 +11769,7 @@ export namespace Prisma {
     isAdmin?: boolean
     discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    essays?: EssayUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -8671,6 +11796,7 @@ export namespace Prisma {
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -8682,13 +11808,14 @@ export namespace Prisma {
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type DiscussionCreateWithoutAuthorInput = {
     text: string
     title: string
     createdAt?: Date | string
-    replys?: ReplyCreateNestedManyWithoutDiscussionInput
+    replies?: ReplyCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUncheckedCreateWithoutAuthorInput = {
@@ -8696,7 +11823,7 @@ export namespace Prisma {
     text: string
     title: string
     createdAt?: Date | string
-    replys?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
+    replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionCreateOrConnectWithoutAuthorInput = {
@@ -8713,7 +11840,7 @@ export namespace Prisma {
     text: string
     title: string
     createdAt?: Date | string
-    discussion: DiscussionCreateNestedOneWithoutReplysInput
+    discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
     children?: ReplyCreateNestedManyWithoutParentInput
   }
@@ -8735,6 +11862,33 @@ export namespace Prisma {
 
   export type ReplyCreateManyAuthorInputEnvelope = {
     data: ReplyCreateManyAuthorInput | ReplyCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EssayCreateWithoutAuthorInput = {
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    featuredIn?: WeeklyCreateNestedManyWithoutFeaturedEssaysInput
+  }
+
+  export type EssayUncheckedCreateWithoutAuthorInput = {
+    id?: number
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    featuredIn?: WeeklyUncheckedCreateNestedManyWithoutFeaturedEssaysInput
+  }
+
+  export type EssayCreateOrConnectWithoutAuthorInput = {
+    where: EssayWhereUniqueInput
+    create: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type EssayCreateManyAuthorInputEnvelope = {
+    data: EssayCreateManyAuthorInput | EssayCreateManyAuthorInput[]
     skipDuplicates?: boolean
   }
 
@@ -8809,6 +11963,34 @@ export namespace Prisma {
     parentId?: IntNullableFilter<"Reply"> | number | null
   }
 
+  export type EssayUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: EssayWhereUniqueInput
+    update: XOR<EssayUpdateWithoutAuthorInput, EssayUncheckedUpdateWithoutAuthorInput>
+    create: XOR<EssayCreateWithoutAuthorInput, EssayUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type EssayUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: EssayWhereUniqueInput
+    data: XOR<EssayUpdateWithoutAuthorInput, EssayUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type EssayUpdateManyWithWhereWithoutAuthorInput = {
+    where: EssayScalarWhereInput
+    data: XOR<EssayUpdateManyMutationInput, EssayUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type EssayScalarWhereInput = {
+    AND?: EssayScalarWhereInput | EssayScalarWhereInput[]
+    OR?: EssayScalarWhereInput[]
+    NOT?: EssayScalarWhereInput | EssayScalarWhereInput[]
+    id?: IntFilter<"Essay"> | number
+    title?: StringFilter<"Essay"> | string
+    category?: StringFilter<"Essay"> | string
+    text?: StringFilter<"Essay"> | string
+    createdAt?: DateTimeFilter<"Essay"> | Date | string
+    authorId?: IntFilter<"Essay"> | number
+  }
+
   export type UserProfileUpsertWithoutUserInput = {
     update: XOR<UserProfileUpdateWithoutUserInput, UserProfileUncheckedUpdateWithoutUserInput>
     create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
@@ -8837,6 +12019,7 @@ export namespace Prisma {
     createdAt?: Date | string
     isAdmin?: boolean
     discussions?: DiscussionCreateNestedManyWithoutAuthorInput
+    essays?: EssayCreateNestedManyWithoutAuthorInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
   }
 
@@ -8848,6 +12031,7 @@ export namespace Prisma {
     createdAt?: Date | string
     isAdmin?: boolean
     discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
+    essays?: EssayUncheckedCreateNestedManyWithoutAuthorInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -8856,14 +12040,14 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutRepliesInput, UserUncheckedCreateWithoutRepliesInput>
   }
 
-  export type DiscussionCreateWithoutReplysInput = {
+  export type DiscussionCreateWithoutRepliesInput = {
     text: string
     title: string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
   }
 
-  export type DiscussionUncheckedCreateWithoutReplysInput = {
+  export type DiscussionUncheckedCreateWithoutRepliesInput = {
     id?: number
     text: string
     authorId: number
@@ -8871,9 +12055,9 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type DiscussionCreateOrConnectWithoutReplysInput = {
+  export type DiscussionCreateOrConnectWithoutRepliesInput = {
     where: DiscussionWhereUniqueInput
-    create: XOR<DiscussionCreateWithoutReplysInput, DiscussionUncheckedCreateWithoutReplysInput>
+    create: XOR<DiscussionCreateWithoutRepliesInput, DiscussionUncheckedCreateWithoutRepliesInput>
   }
 
   export type ReplyCreateWithoutChildrenInput = {
@@ -8881,7 +12065,7 @@ export namespace Prisma {
     title: string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutRepliesInput
-    discussion: DiscussionCreateNestedOneWithoutReplysInput
+    discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
   }
 
@@ -8905,7 +12089,7 @@ export namespace Prisma {
     title: string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutRepliesInput
-    discussion: DiscussionCreateNestedOneWithoutReplysInput
+    discussion: DiscussionCreateNestedOneWithoutRepliesInput
     children?: ReplyCreateNestedManyWithoutParentInput
   }
 
@@ -8947,6 +12131,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
   }
 
@@ -8958,28 +12143,29 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUncheckedUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
-  export type DiscussionUpsertWithoutReplysInput = {
-    update: XOR<DiscussionUpdateWithoutReplysInput, DiscussionUncheckedUpdateWithoutReplysInput>
-    create: XOR<DiscussionCreateWithoutReplysInput, DiscussionUncheckedCreateWithoutReplysInput>
+  export type DiscussionUpsertWithoutRepliesInput = {
+    update: XOR<DiscussionUpdateWithoutRepliesInput, DiscussionUncheckedUpdateWithoutRepliesInput>
+    create: XOR<DiscussionCreateWithoutRepliesInput, DiscussionUncheckedCreateWithoutRepliesInput>
     where?: DiscussionWhereInput
   }
 
-  export type DiscussionUpdateToOneWithWhereWithoutReplysInput = {
+  export type DiscussionUpdateToOneWithWhereWithoutRepliesInput = {
     where?: DiscussionWhereInput
-    data: XOR<DiscussionUpdateWithoutReplysInput, DiscussionUncheckedUpdateWithoutReplysInput>
+    data: XOR<DiscussionUpdateWithoutRepliesInput, DiscussionUncheckedUpdateWithoutRepliesInput>
   }
 
-  export type DiscussionUpdateWithoutReplysInput = {
+  export type DiscussionUpdateWithoutRepliesInput = {
     text?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
   }
 
-  export type DiscussionUncheckedUpdateWithoutReplysInput = {
+  export type DiscussionUncheckedUpdateWithoutRepliesInput = {
     id?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     authorId?: IntFieldUpdateOperationsInput | number
@@ -9003,7 +12189,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
-    discussion?: DiscussionUpdateOneRequiredWithoutReplysNestedInput
+    discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
   }
 
@@ -9040,6 +12226,7 @@ export namespace Prisma {
     createdAt?: Date | string
     isAdmin?: boolean
     replies?: ReplyCreateNestedManyWithoutAuthorInput
+    essays?: EssayCreateNestedManyWithoutAuthorInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
   }
 
@@ -9051,6 +12238,7 @@ export namespace Prisma {
     createdAt?: Date | string
     isAdmin?: boolean
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    essays?: EssayUncheckedCreateNestedManyWithoutAuthorInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -9106,6 +12294,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
   }
 
@@ -9117,6 +12306,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    essays?: EssayUncheckedUpdateManyWithoutAuthorNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -9136,6 +12326,248 @@ export namespace Prisma {
     data: XOR<ReplyUpdateManyMutationInput, ReplyUncheckedUpdateManyWithoutDiscussionInput>
   }
 
+  export type ScriptureCitationCreateWithoutWeeklyInput = {
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+  }
+
+  export type ScriptureCitationUncheckedCreateWithoutWeeklyInput = {
+    id?: number
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+  }
+
+  export type ScriptureCitationCreateOrConnectWithoutWeeklyInput = {
+    where: ScriptureCitationWhereUniqueInput
+    create: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput>
+  }
+
+  export type ScriptureCitationCreateManyWeeklyInputEnvelope = {
+    data: ScriptureCitationCreateManyWeeklyInput | ScriptureCitationCreateManyWeeklyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EssayCreateWithoutFeaturedInInput = {
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutEssaysInput
+  }
+
+  export type EssayUncheckedCreateWithoutFeaturedInInput = {
+    id?: number
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+    authorId: number
+  }
+
+  export type EssayCreateOrConnectWithoutFeaturedInInput = {
+    where: EssayWhereUniqueInput
+    create: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput>
+  }
+
+  export type ScriptureCitationUpsertWithWhereUniqueWithoutWeeklyInput = {
+    where: ScriptureCitationWhereUniqueInput
+    update: XOR<ScriptureCitationUpdateWithoutWeeklyInput, ScriptureCitationUncheckedUpdateWithoutWeeklyInput>
+    create: XOR<ScriptureCitationCreateWithoutWeeklyInput, ScriptureCitationUncheckedCreateWithoutWeeklyInput>
+  }
+
+  export type ScriptureCitationUpdateWithWhereUniqueWithoutWeeklyInput = {
+    where: ScriptureCitationWhereUniqueInput
+    data: XOR<ScriptureCitationUpdateWithoutWeeklyInput, ScriptureCitationUncheckedUpdateWithoutWeeklyInput>
+  }
+
+  export type ScriptureCitationUpdateManyWithWhereWithoutWeeklyInput = {
+    where: ScriptureCitationScalarWhereInput
+    data: XOR<ScriptureCitationUpdateManyMutationInput, ScriptureCitationUncheckedUpdateManyWithoutWeeklyInput>
+  }
+
+  export type ScriptureCitationScalarWhereInput = {
+    AND?: ScriptureCitationScalarWhereInput | ScriptureCitationScalarWhereInput[]
+    OR?: ScriptureCitationScalarWhereInput[]
+    NOT?: ScriptureCitationScalarWhereInput | ScriptureCitationScalarWhereInput[]
+    id?: IntFilter<"ScriptureCitation"> | number
+    scriptureBook?: StringFilter<"ScriptureCitation"> | string
+    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
+    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    weeklyId?: IntFilter<"ScriptureCitation"> | number
+  }
+
+  export type EssayUpsertWithWhereUniqueWithoutFeaturedInInput = {
+    where: EssayWhereUniqueInput
+    update: XOR<EssayUpdateWithoutFeaturedInInput, EssayUncheckedUpdateWithoutFeaturedInInput>
+    create: XOR<EssayCreateWithoutFeaturedInInput, EssayUncheckedCreateWithoutFeaturedInInput>
+  }
+
+  export type EssayUpdateWithWhereUniqueWithoutFeaturedInInput = {
+    where: EssayWhereUniqueInput
+    data: XOR<EssayUpdateWithoutFeaturedInInput, EssayUncheckedUpdateWithoutFeaturedInInput>
+  }
+
+  export type EssayUpdateManyWithWhereWithoutFeaturedInInput = {
+    where: EssayScalarWhereInput
+    data: XOR<EssayUpdateManyMutationInput, EssayUncheckedUpdateManyWithoutFeaturedInInput>
+  }
+
+  export type UserCreateWithoutEssaysInput = {
+    userName: string
+    userEmail: string
+    passwordHash: string
+    createdAt?: Date | string
+    isAdmin?: boolean
+    discussions?: DiscussionCreateNestedManyWithoutAuthorInput
+    replies?: ReplyCreateNestedManyWithoutAuthorInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEssaysInput = {
+    id?: number
+    userName: string
+    userEmail: string
+    passwordHash: string
+    createdAt?: Date | string
+    isAdmin?: boolean
+    discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
+    replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEssaysInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEssaysInput, UserUncheckedCreateWithoutEssaysInput>
+  }
+
+  export type WeeklyCreateWithoutFeaturedEssaysInput = {
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+    citation?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
+  }
+
+  export type WeeklyUncheckedCreateWithoutFeaturedEssaysInput = {
+    id?: number
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+    citation?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
+  }
+
+  export type WeeklyCreateOrConnectWithoutFeaturedEssaysInput = {
+    where: WeeklyWhereUniqueInput
+    create: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput>
+  }
+
+  export type UserUpsertWithoutEssaysInput = {
+    update: XOR<UserUpdateWithoutEssaysInput, UserUncheckedUpdateWithoutEssaysInput>
+    create: XOR<UserCreateWithoutEssaysInput, UserUncheckedCreateWithoutEssaysInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEssaysInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEssaysInput, UserUncheckedUpdateWithoutEssaysInput>
+  }
+
+  export type UserUpdateWithoutEssaysInput = {
+    userName?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEssaysInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userName?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type WeeklyUpsertWithWhereUniqueWithoutFeaturedEssaysInput = {
+    where: WeeklyWhereUniqueInput
+    update: XOR<WeeklyUpdateWithoutFeaturedEssaysInput, WeeklyUncheckedUpdateWithoutFeaturedEssaysInput>
+    create: XOR<WeeklyCreateWithoutFeaturedEssaysInput, WeeklyUncheckedCreateWithoutFeaturedEssaysInput>
+  }
+
+  export type WeeklyUpdateWithWhereUniqueWithoutFeaturedEssaysInput = {
+    where: WeeklyWhereUniqueInput
+    data: XOR<WeeklyUpdateWithoutFeaturedEssaysInput, WeeklyUncheckedUpdateWithoutFeaturedEssaysInput>
+  }
+
+  export type WeeklyUpdateManyWithWhereWithoutFeaturedEssaysInput = {
+    where: WeeklyScalarWhereInput
+    data: XOR<WeeklyUpdateManyMutationInput, WeeklyUncheckedUpdateManyWithoutFeaturedEssaysInput>
+  }
+
+  export type WeeklyScalarWhereInput = {
+    AND?: WeeklyScalarWhereInput | WeeklyScalarWhereInput[]
+    OR?: WeeklyScalarWhereInput[]
+    NOT?: WeeklyScalarWhereInput | WeeklyScalarWhereInput[]
+    id?: IntFilter<"Weekly"> | number
+    saintName?: StringFilter<"Weekly"> | string
+    saintDescription?: StringFilter<"Weekly"> | string
+    saintFeastDay?: StringFilter<"Weekly"> | string
+  }
+
+  export type WeeklyCreateWithoutCitationInput = {
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+    featuredEssays?: EssayCreateNestedManyWithoutFeaturedInInput
+  }
+
+  export type WeeklyUncheckedCreateWithoutCitationInput = {
+    id?: number
+    saintName: string
+    saintDescription: string
+    saintFeastDay: string
+    featuredEssays?: EssayUncheckedCreateNestedManyWithoutFeaturedInInput
+  }
+
+  export type WeeklyCreateOrConnectWithoutCitationInput = {
+    where: WeeklyWhereUniqueInput
+    create: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+  }
+
+  export type WeeklyUpsertWithoutCitationInput = {
+    update: XOR<WeeklyUpdateWithoutCitationInput, WeeklyUncheckedUpdateWithoutCitationInput>
+    create: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+    where?: WeeklyWhereInput
+  }
+
+  export type WeeklyUpdateToOneWithWhereWithoutCitationInput = {
+    where?: WeeklyWhereInput
+    data: XOR<WeeklyUpdateWithoutCitationInput, WeeklyUncheckedUpdateWithoutCitationInput>
+  }
+
+  export type WeeklyUpdateWithoutCitationInput = {
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredEssays?: EssayUpdateManyWithoutFeaturedInNestedInput
+  }
+
+  export type WeeklyUncheckedUpdateWithoutCitationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredEssays?: EssayUncheckedUpdateManyWithoutFeaturedInNestedInput
+  }
+
   export type DiscussionCreateManyAuthorInput = {
     id?: number
     text: string
@@ -9152,11 +12584,19 @@ export namespace Prisma {
     parentId?: number | null
   }
 
+  export type EssayCreateManyAuthorInput = {
+    id?: number
+    title: string
+    category: string
+    text: string
+    createdAt?: Date | string
+  }
+
   export type DiscussionUpdateWithoutAuthorInput = {
     text?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    replys?: ReplyUpdateManyWithoutDiscussionNestedInput
+    replies?: ReplyUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateWithoutAuthorInput = {
@@ -9164,7 +12604,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    replys?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
+    replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateManyWithoutAuthorInput = {
@@ -9178,7 +12618,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    discussion?: DiscussionUpdateOneRequiredWithoutReplysNestedInput
+    discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
   }
@@ -9202,6 +12642,31 @@ export namespace Prisma {
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type EssayUpdateWithoutAuthorInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    featuredIn?: WeeklyUpdateManyWithoutFeaturedEssaysNestedInput
+  }
+
+  export type EssayUncheckedUpdateWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    featuredIn?: WeeklyUncheckedUpdateManyWithoutFeaturedEssaysNestedInput
+  }
+
+  export type EssayUncheckedUpdateManyWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ReplyCreateManyParentInput = {
     id?: number
     text: string
@@ -9216,7 +12681,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
-    discussion?: DiscussionUpdateOneRequiredWithoutReplysNestedInput
+    discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
   }
 
@@ -9274,6 +12739,81 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ScriptureCitationCreateManyWeeklyInput = {
+    id?: number
+    scriptureBook: string
+    scriptureChapter: string
+    scriptureVerse: string
+  }
+
+  export type ScriptureCitationUpdateWithoutWeeklyInput = {
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ScriptureCitationUncheckedUpdateWithoutWeeklyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ScriptureCitationUncheckedUpdateManyWithoutWeeklyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    scriptureBook?: StringFieldUpdateOperationsInput | string
+    scriptureChapter?: StringFieldUpdateOperationsInput | string
+    scriptureVerse?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EssayUpdateWithoutFeaturedInInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutEssaysNestedInput
+  }
+
+  export type EssayUncheckedUpdateWithoutFeaturedInInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EssayUncheckedUpdateManyWithoutFeaturedInInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WeeklyUpdateWithoutFeaturedEssaysInput = {
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+    citation?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
+  }
+
+  export type WeeklyUncheckedUpdateWithoutFeaturedEssaysInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+    citation?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
+  }
+
+  export type WeeklyUncheckedUpdateManyWithoutFeaturedEssaysInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
   }
 
 

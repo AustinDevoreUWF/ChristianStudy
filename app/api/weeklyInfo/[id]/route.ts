@@ -1,5 +1,6 @@
 import { getWeeklyValues } from "@/services/weekly"
 
+
 export async function GET(req:Request){
     try{
         const data = await getWeeklyValues()
@@ -8,3 +9,4 @@ export async function GET(req:Request){
         return Response.json({error: err.message||"There was an error retrieving the data"},{status:500})
     }
 }
+

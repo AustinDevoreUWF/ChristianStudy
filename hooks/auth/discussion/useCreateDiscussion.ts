@@ -8,7 +8,7 @@ export default function useCreateDiscussion() {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/discussion/createDiscussion", {
+      const res = await fetch("/api/discussions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, text, authorId }),

@@ -19,7 +19,7 @@ export function WeeklyHome(){
     async function handleSubmit(e:React.FormEvent){
         e.preventDefault();
         //get the data
-        const res = await fetch("/api/weeklyInfo/setWeeklyValues",{
+        const res = await fetch("/api/weeklyInfo",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(form),

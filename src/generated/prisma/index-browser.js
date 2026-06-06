@@ -155,12 +155,26 @@ exports.Prisma.DiscussionScalarFieldEnum = {
 
 exports.Prisma.WeeklyScalarFieldEnum = {
   id: 'id',
-  scriptureChapter: 'scriptureChapter',
-  scriptureVerse: 'scriptureVerse',
-  scriptureBook: 'scriptureBook',
   saintName: 'saintName',
   saintDescription: 'saintDescription',
   saintFeastDay: 'saintFeastDay'
+};
+
+exports.Prisma.EssayScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  text: 'text',
+  createdAt: 'createdAt',
+  authorId: 'authorId'
+};
+
+exports.Prisma.ScriptureCitationScalarFieldEnum = {
+  id: 'id',
+  scriptureBook: 'scriptureBook',
+  scriptureChapter: 'scriptureChapter',
+  scriptureVerse: 'scriptureVerse',
+  weeklyId: 'weeklyId'
 };
 
 exports.Prisma.SortOrder = {
@@ -184,7 +198,9 @@ exports.Prisma.ModelName = {
   User: 'User',
   Reply: 'Reply',
   Discussion: 'Discussion',
-  Weekly: 'Weekly'
+  Weekly: 'Weekly',
+  Essay: 'Essay',
+  ScriptureCitation: 'ScriptureCitation'
 };
 
 /**

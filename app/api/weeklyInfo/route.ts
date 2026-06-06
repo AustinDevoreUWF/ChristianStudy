@@ -1,6 +1,7 @@
 import { setWeeklyValues } from "@/services/weekly";
 import { WeeklyDTO } from "@/src/dto/discussionDTO";
 
+
 export async function POST(req: Request){
     //get body from the component
     const body = await req.json();

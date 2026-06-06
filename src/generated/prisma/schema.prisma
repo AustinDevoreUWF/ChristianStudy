@@ -23,6 +23,7 @@ model User {
   isAdmin      Boolean      @default(false)
   discussions  Discussion[]
   replies      Reply[]
+  essays       Essay[]
   profile      UserProfile?
 }
 
@@ -35,7 +36,7 @@ model Reply {
   createdAt    DateTime   @default(now())
   parentId     Int?
   author       User       @relation(fields: [authorId], references: [id])
-  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
   parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
   children     Reply[]    @relation("ReplyToReply")
 }
@@ -47,15 +48,39 @@ model Discussion {
   title     String
   createdAt DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
-  replys    Reply[]
+  replies   Reply[]
 }
 
 model Weekly {
-  id               Int    @id
-  scriptureChapter String
-  scriptureVerse   String
-  scriptureBook    String
+  id               Int                 @id @default(autoincrement())
   saintName        String
   saintDescription String
   saintFeastDay    String
+  // 1-to-Many: A week can have multiple scripture citations
+  citation         ScriptureCitation[]
+  // Many-to-Many: Implicit relation link to featured essays
+  featuredEssays   Essay[]
+}
+
+model Essay {
+  id        Int      @id @default(autoincrement())
+  title     String
+  category  String
+  text      String
+  createdAt DateTime @default(now())
+
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
+
+  // Many-to-Many: Connects back to the Weekly models that feature it
+  featuredIn Weekly[]
+}
+
+model ScriptureCitation {
+  id               Int    @id @default(autoincrement())
+  scriptureBook    String
+  scriptureChapter String
+  scriptureVerse   String
+  weeklyId         Int
+  weekly           Weekly @relation(fields: [weeklyId], references: [id], onDelete: Cascade)
 }

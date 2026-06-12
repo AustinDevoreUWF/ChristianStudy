@@ -12,6 +12,7 @@ export async function POST(req: Request){
         const essay = await createEssay(title,category,text,authorId)
          return Response.json({message:"Essay Created",essay},{status:200});
     }catch(err:any){
+        console.log(err)
         return Response.json({error:"Failure to create"},{status:500})
     }
 }

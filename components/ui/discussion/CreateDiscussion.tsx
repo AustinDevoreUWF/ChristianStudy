@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import useCreateDiscussion from "@/hooks/auth/discussion/useCreateDiscussion";
 import { useAuth } from "../context/AuthContext";
-const inputStyle: React.CSSProperties = {
+export const inputStyle: React.CSSProperties = {
   display: "block",
   width: "100%",
   background: "transparent",

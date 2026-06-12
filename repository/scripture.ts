@@ -25,7 +25,7 @@ export class PrismaEssayRepo implements EssayRepository{
                 authorId: essay.authorId,
             }
         });if(!data)return null;
-        return new Essay(title,category,text,authorId)
+        return data;
     }
     async deleteEssay(id:number):Promise<Essay|null>{
         const data = await prisma.essay.delete({
@@ -42,7 +42,7 @@ export class PrismaEssayRepo implements EssayRepository{
     }
     async getAllEssays():Promise<Essay[]>{
         const data = await prisma.essay.findMany({
-            orderBy:{createdAt:"asc"},
+            orderBy:{createdAt:"desc"},
         });
         return data.map((d:any)=>new Essay(d.title,d.category,d.text, d.authorId, d.id,d.createdAt))
     }

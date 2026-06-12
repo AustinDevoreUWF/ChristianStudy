@@ -34,8 +34,9 @@ export class Essay{
   text       :string;
   createdAt?  :Date;
   authorId   :number;
+  userName?  :string;
 
-  constructor(title:string,category:string,text:string, authorId:number, id:number|null=null,createdAt?:Date,){
+  constructor(title:string,category:string,text:string, authorId:number, id:number|null=null,createdAt?:Date,userName?:string){
     if(!title || !category || !text){
       throw new Error("Missing required fields")}
     this.id = id;
@@ -44,6 +45,7 @@ export class Essay{
     this.text = text;
     this.createdAt = createdAt;
     this.authorId  =authorId;
+    this.userName = userName;
     }
 }
 

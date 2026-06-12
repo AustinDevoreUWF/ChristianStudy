@@ -4,21 +4,25 @@ import CreateEssay from "@/components/essay/CreateEssay";
 export default async  function EssayList(){
     const list = await getAllEssays()
     return(
-         <div className="flex flex-col lg:flex-row-reverse lg:items-start gap-6 p-10 m-20">
-      <div className="lg:sticky lg:top-10 shrink-0">
+         <div className="flex flex-col gap-4 m-10">
+      <div className="shrink-0">
         <CreateEssay />
       </div>
-        <div className="flex justify-center">ESSAYS</div>
-      <div className="flex-1 bg-[#0c0c0c] p-10 border border-white/[.22] rounded-lg">
-        <ul className="space-y-2">
+        <div className="flex justify-start pl-10 font-cinzel text-3xl">Essays</div>
+        <div className=" w-16 h-px bg-white/[.22] mb-[1rem] ml-10" />
+      <div className="flex-1 bg-[#0c0c0c] p-10 ml-10 mr-10 border border- border-white/[.22] rounded-lg">
+        <ul className="gap-6 flex flex-col ">
           {list.map((item) => (
-            <li key={item.id} className="flex flex-row gap-4 items-center border rounded-lg border-white/[.22] p-2">
-              <div className="text-xs text-white/[.22]">{item.id}</div>
-              <div className="font-cinzel text-xs">{item.category}</div>
-              <div className="font-garamond text-lg">{item.title}</div>
-              <div className="ml-auto text-sm text-white/[.22] font-garamond text-xs">
+            <li key={item.id}>
+              <Link href={`/essay/${item.id}`} className="flex items-center gap-4 p-4 border-b border-white/[.22]  hover:bg-white/[.05] transition-colors">
+              <div className="text-xs text-white/[.42]">{item.id}</div>
+              <div className="font-cinzel text-xs text-white/[.42]">{item.userName}</div>
+              <div className="font-cinzel text-xs italic">{item.category}</div>
+              <div className="font-cinzel text-sm leading-none">{item.title}</div>
+              <div className="ml-auto text-sm text-white/[.42] font-garamond text-xs">
                 {new Date(item.createdAt!).toDateString()}
               </div>
+              </Link>
             </li>
           ))}
         </ul>

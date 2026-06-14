@@ -1,28 +1,44 @@
 
 export class Weekly{
-  id: number
-  saintName        :string
-  saintDescription :string
-  saintFeastDay    :string
-  citation         :ScriptureCitation[]
-  featuredEssays   :Essay[]
+  id                       :number;             
+  saintName                :string;
+  saintDescription         :string;             
+  saintFeastDay            :string;             
+  featuredScriptureRef     :string;             
+  featuredScriptureSummary :string;             
+  discussionTitle          :string;             
+  discussionDescription    :string;             
+  discussionImage          :string;             
+  discussionCloses         :string;             
+  citations                :ScriptureCitation[];
+  featuredEssays           :Essay[];
 
   constructor(
     id:number,
     saintName: string,
     saintDescription: string,
     saintFeastDay: string,
-    citation: ScriptureCitation[],
+    featuredScriptureRef: string,
+    featuredScriptureSummary: string,
+    discussionTitle:string,
+    discussionDescription:string,
+    discussionImage:string,
+    discussionCloses:string,
+    citations: ScriptureCitation[],
     featuredEssays:Essay[],
   )
-  {
-    if(!id||!saintName||!saintDescription||!saintFeastDay||!citation||!featuredEssays) throw new Error("Missing required field")
-    
+  {    
     this.id = id,
     this.saintName = saintName;
     this.saintDescription = saintDescription;
     this.saintFeastDay = saintFeastDay;
-    this.citation = citation || null;
+    this.featuredScriptureRef = featuredScriptureRef;
+    this.featuredScriptureSummary = featuredScriptureSummary;
+    this.discussionTitle = discussionTitle;
+    this.discussionDescription = discussionDescription;
+    this.discussionImage = discussionImage;
+    this.discussionCloses = discussionCloses;
+    this.citations = citations || null;
     this.featuredEssays = featuredEssays || null;
   }
 }
@@ -51,19 +67,12 @@ export class Essay{
 
 export class ScriptureCitation{
   id               :number|null;
-  scriptureBook    :string;
-  scriptureChapter :string;
-  scriptureVerse   :string;
-  featuredInWeeks  :Weekly[];
-  constructor(scriptureBook:string,scriptureChapter:string,scriptureVerse:string,featuredInWeeks:Weekly[],id:number|null=null){
-    if(!scriptureBook||!scriptureChapter||!scriptureVerse||!featuredInWeeks){  
-      throw new Error("Missing Required fields")}
-
-      this.id = id;
-      this.scriptureBook = scriptureBook;
-      this.scriptureChapter = scriptureChapter;
-      this.scriptureVerse = scriptureVerse;
-      this.featuredInWeeks = featuredInWeeks;
-
+  reference        :string;
+  summary          :Weekly[];
+  constructor(reference:string, summary:Weekly[], id:number|null=null){
+    if (!reference || !summary) throw new Error("Missing required fields")
+    this.id = id;
+    this.reference = reference;
+    this.summary = summary;
   }
 }

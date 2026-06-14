@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { getWeeklyValues } from "@/services/weekly";
+import Link from "next/link";
+import { getAllEssays, getWeeklyValues } from "@/services/weekly";
 export default async function Home() {
-
+  const essays = await getAllEssays();
   const weekly = await getWeeklyValues();
   if(!weekly){
     return <div className="text-white text-center pt-20">Loading layout...</div>;
@@ -22,9 +23,9 @@ export default async function Home() {
         <ul className="flex justify-center list-none cursor-pointer">
           {["Essays","Discussions","Account","Weekly","References"].map((item) => (
             <li key={item} className="last:border-r-0 border-r border-white/[.08]">
-              <a className="flex px-8 items-center justify-center px-6 py-[.45rem] font-cinzel text-xs text-white/[.22] hover:text-white/60 transition-colors no-underline">
+              <Link href={item} className="flex px-8 items-center justify-center px-6 py-[.45rem] font-cinzel text-xs text-white/[.22] hover:text-white/60 transition-colors no-underline">
                 {item}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -81,7 +82,7 @@ export default async function Home() {
                   {item.category}
                 </span>
                 <span className="text-white/[.60] font-garamond flex flex-col ">{item.title}</span>
-                <span className="text-white/[.22] font-cinzel text-xs ">{item.mins} min Read</span>
+                {/*<span className="text-white/[.22] font-cinzel text-xs ">{item.mins} min Read</span>*/}
               </li>
             ))}</ul>
           </div>

@@ -51,14 +51,18 @@ model Discussion {
 }
 
 model Weekly {
-  id               Int                 @id @default(autoincrement())
-  saintName        String
-  saintDescription String
-  saintFeastDay    String
-  // 1-to-Many: A week can have multiple scripture citations
-  citation         ScriptureCitation[]
-  // Many-to-Many: Implicit relation link to featured essays
-  featuredEssays   Essay[]             
+  id                       Int                 @id @default(1)
+  saintName                String              @default("")
+  saintDescription         String              @default("")
+  saintFeastDay            String              @default("")
+  featuredScriptureRef     String              @default("")
+  featuredScriptureSummary String              @default("")
+  discussionTitle          String              @default("")
+  discussionDescription    String              @default("")
+  discussionImage          String              @default("")
+  discussionCloses         String              @default("")
+  citations                ScriptureCitation[]
+  featuredEssays           Essay[]
 }
 
 model Essay {
@@ -76,10 +80,9 @@ model Essay {
 }
 
 model ScriptureCitation {
-  id               Int      @id @default(autoincrement())
-  scriptureBook    String
-  scriptureChapter String
-  scriptureVerse   String
-  weeklyId         Int
-  weekly           Weekly   @relation(fields: [weeklyId], references: [id], onDelete: Cascade)
+  id        Int    @id @default(autoincrement())
+  reference String
+  summary   String
+  weeklyId  Int
+  weekly    Weekly @relation(fields: [weeklyId], references: [id], onDelete: Cascade)
 }

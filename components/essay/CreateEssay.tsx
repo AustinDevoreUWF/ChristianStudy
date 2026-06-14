@@ -45,9 +45,7 @@ export default function CreateEssay(){
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          style={{
-            position: "fixed",
-            
+          style={{         
             background: "transparent",
             border: "1px solid rgba(255,255,255,0.20)",
             color: "rgba(255,255,255,0.60)",
@@ -60,9 +58,9 @@ export default function CreateEssay(){
             transition: "background 0.2s, color 0.2s, border-color 0.2s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#ffffff";
-            e.currentTarget.style.color = "#080808";
-            e.currentTarget.style.borderColor = "#ffffff";
+            e.currentTarget.style.background = "white/[.1]";
+            e.currentTarget.style.color = "";
+            e.currentTarget.style.borderColor = "";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "transparent";

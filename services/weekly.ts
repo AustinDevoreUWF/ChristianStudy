@@ -9,12 +9,8 @@ const weeklyRepo = new PrismaWeeklyRepo()
 const essayRepo = new PrismaEssayRepo()
 const userRepo = new PrismaUserRepository();
 
-//recieves input of type WeeklyDTO, passes input through to udpate function in DB
-export async function setWeeklyValues(input:WeeklyDTO):Promise<Weekly|null>{
-    return await weeklyRepo.updateWeeklyScripture(input)
-}
-export async function getWeeklyValues():Promise<WeeklyDTO|null>{
-    return await weeklyRepo.getWeeklySripture()
+export async function updateFeaturedDiscussion():Promise<Weekly>{
+    
 }
 
 

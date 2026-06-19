@@ -120,7 +120,7 @@ export class PrismaWeeklyRepo implements WeeklyRepository {
     })
     return this.toDomain(data)
   }
-
+//update you
   async updateFeaturedScripture(input: featuredScripture): Promise<Weekly> {
     await prisma.scriptureCitation.deleteMany({ where: { weeklyId: 1 } })
     await prisma.scriptureCitation.createMany({

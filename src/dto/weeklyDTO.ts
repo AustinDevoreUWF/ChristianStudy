@@ -1,4 +1,3 @@
-import { ScriptureCitation } from "@/src/domain/scripture"
 export type featuredDiscussionDTO = {
   discussionTitle          :string;             
   discussionDescription    :string;             
@@ -12,12 +11,16 @@ export type saintDTO = {
   saintFeastDay            :string;             
 }
 
-export type scriptureDTO = {
+export type featuredScriptureDTO = {
   featuredScriptureRef :string;
   featuredScriptureSummary :string;
 }
 
-export type featuredScripture = {
-  citations :ScriptureCitation[];
-    
+export type readingsDTO = {
+  citations: CitationDTO[]
+}
+
+export type CitationDTO = {
+  reference:string;
+  summary:string;
 }

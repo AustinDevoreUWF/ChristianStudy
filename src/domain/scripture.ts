@@ -68,8 +68,8 @@ export class Essay{
 export class ScriptureCitation{
   id               :number|null;
   reference        :string;
-  summary          :Weekly[];
-  constructor(reference:string, summary:Weekly[], id:number|null=null){
+  summary          :string;
+  constructor(reference:string, summary:string, id:number|null=null){
     if (!reference || !summary) throw new Error("Missing required fields")
     this.id = id;
     this.reference = reference;

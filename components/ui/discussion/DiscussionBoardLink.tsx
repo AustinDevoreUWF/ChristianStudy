@@ -9,7 +9,7 @@ export default function DiscussionLink({ id, topic, content, authorName, created
 }) {
   return (
     <a
-      href={`/discussions/${id}`}
+      href={`/discussion/${id}`}
       style={{
         display: "block",
         backgroundColor: "transparent",

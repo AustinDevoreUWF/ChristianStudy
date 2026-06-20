@@ -21,7 +21,7 @@ export async function updateSaint(input: saintDTO):Promise<Weekly>{
     return await weeklyRepo.updateSaint(input)
 }
 export async function updateReadings(input: readingsDTO):Promise<Weekly>{
-    return await weeklyRepo.updateScripture(input)
+    return await weeklyRepo.updateReadings(input)
 }
 export async function updateFeaturedScripture(input: featuredScriptureDTO):Promise<Weekly>{
     return await weeklyRepo.updateFeaturedScripture(input)

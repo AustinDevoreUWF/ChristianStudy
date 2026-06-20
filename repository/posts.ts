@@ -51,7 +51,7 @@ export class PrismaDiscussionRepo implements DiscussionRepo {
     }
     async findAll():Promise<Discussion[]>{
         const data = await prisma.discussion.findMany({
-            orderBy:{createdAt:"asc"}
+            orderBy:{createdAt:"desc"}
         });
         return data.map((d:any)=> new Discussion(d.title!, d.text!, d.authorId!, d.id, d.createdAt))
     }

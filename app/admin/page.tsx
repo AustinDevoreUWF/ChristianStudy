@@ -1,6 +1,5 @@
 "use client"
 import { useState } from "react";
-import {updateFeaturedDiscussion, updateSaint, updateFeaturedScripture, updateScripture} from "@/services/weekly";
 import { featuredDiscussionDTO, saintDTO, readingsDTO, featuredScriptureDTO } from "@/src/dto/weeklyDTO";
 
 export default function adminPage(){
@@ -42,8 +41,8 @@ export default function adminPage(){
     function addCitation(){
         setForm((prev)=>({...prev, citations: [...prev.citations, {reference: "",summary: ""}]}))
     }
-    function removeCitation(){
-        setForm((prev)=>({...prev, citations: prev.citations.slice(0,-1)}))
+    function removeCitation(index:number){
+        setForm((prev)=>({...prev, citations: prev.citations.filter((_,i)=>i!==index)}))
     }
     function handleUpdateFeaturedDiscussion(){
         const dto: featuredDiscussionDTO ={
@@ -82,6 +81,8 @@ export default function adminPage(){
     return(
         <div className="flex flex-col items-center">
             <div className="mt-8 text-4xl font-cinzel text-white/[.66]">Update Home Page</div>
+ 
+            {/* Featured Discussion */}
             <div className="flex flex-col mt-5">
                 <p className="text-2xl font-cinzel text-white/[.66] ">Featured Discussion</p>
                 <div className="flex flex-col border border-white/66 font-garamond">
@@ -92,6 +93,43 @@ export default function adminPage(){
                 </div>
             </div>
             <button onClick={handleUpdateFeaturedDiscussion} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Featured Discussion</button>
+ 
+            {/* Saint */}
+            <div className="flex flex-col mt-5">
+                <p className="text-2xl font-cinzel text-white/[.66] ">Saint of the Week</p>
+                <div className="flex flex-col border border-white/66 font-garamond">
+                    <input type="text" value={form.saintName} onChange={(e)=>set("saintName",e.target.value)} className="" placeholder="Saint Name"/>
+                    <input type="text" value={form.saintFeastDay} onChange={(e)=>set("saintFeastDay",e.target.value)} className="" placeholder="Feast Day"/>
+                    <input type="text" value={form.saintDescription} onChange={(e)=>set("saintDescription",e.target.value)} className="" placeholder="Saint Description"/>
+                </div>
+            </div>
+            <button onClick={handleUpdateSaint} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Saint</button>
+ 
+            {/* Featured Scripture (the single quote at the top) */}
+            <div className="flex flex-col mt-5">
+                <p className="text-2xl font-cinzel text-white/[.66] ">Featured Scripture</p>
+                <div className="flex flex-col border border-white/66 font-garamond">
+                    <input type="text" value={form.featuredScriptureRef} onChange={(e)=>set("featuredScriptureRef",e.target.value)} className="" placeholder="Reference (e.g. Romans 8:28)"/>
+                    <input type="text" value={form.featuredScriptureSummary} onChange={(e)=>set("featuredScriptureSummary",e.target.value)} className="" placeholder="Your summary"/>
+                </div>
+            </div>
+            <button onClick={handleUpdateFeaturedScripture} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Featured Scripture</button>
+ 
+            {/* Readings (the array) */}
+            <div className="flex flex-col mt-5 w-full max-w-md">
+                <p className="text-2xl font-cinzel text-white/[.66] ">Readings</p>
+                <div className="flex flex-col gap-3 font-garamond">
+                    {form.citations.map((c, i) => (
+                        <div key={i} className="flex flex-col border border-white/66 p-2 relative">
+                            <button onClick={()=>removeCitation(i)} className="absolute top-1 right-2 text-white/40 hover:text-white/80 text-sm">x</button>
+                            <input type="text" value={c.reference} onChange={(e)=>setCitation(i,"reference",e.target.value)} className="" placeholder="Reference (e.g. Luke 7:1-10)"/>
+                            <input type="text" value={c.summary} onChange={(e)=>setCitation(i,"summary",e.target.value)} className="" placeholder="Summary"/>
+                        </div>
+                    ))}
+                </div>
+                <button onClick={addCitation} className="border border-dashed border-white/40 text-white/50 font-cinzel mt-3 px-4 py-2 rounded hover:text-white/80 hover:cursor-pointer">+ Add Reading</button>
+            </div>
+            <button onClick={handleUpdateReadings} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Readings</button>
  
         </div>
     )

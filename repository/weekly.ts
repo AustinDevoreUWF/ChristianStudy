@@ -15,7 +15,7 @@ export interface WeeklyRepository {
 
     updateFeaturedDiscussion(input:featuredDiscussionDTO): Promise<Weekly>;
     updateSaint(input:saintDTO): Promise<Weekly>;
-    updateScripture(input:readingsDTO): Promise<Weekly>;
+    updateReadings(input:readingsDTO): Promise<Weekly>;
     updateFeaturedScripture(input:featuredScriptureDTO): Promise<Weekly>;
 
 }
@@ -55,26 +55,23 @@ export class PrismaEssayRepo implements EssayRepository{
         return data.map((d:any)=>new Essay(d.title,d.category,d.text, d.authorId, d.id,d.createdAt))
     }
 }
-
 export class PrismaWeeklyRepo implements WeeklyRepository {
-
-    async toDomain(data: any): Promise<Weekly> {
-        return new Weekly(
-        data.id,
-        data.saintName,
-        data.saintDescription,
-        data.saintFeastDay,
-        data.featuredScriptureRef,
-        data.featuredScriptureSummary,
-        data.discussionTitle,
-        data.discussionDescription,
-        data.discussionImage,
-        data.discussionCloses,
-        data.citations?.map((c: any) => new ScriptureCitation(c.reference, c.summary, c.id)) ?? [],
-        data.featuredEssays ?? [],
-        )
-    }
-
+  toDomain(data: any): Weekly {
+    return new Weekly(
+      data.id,
+      data.saintName,
+      data.saintDescription,
+      data.saintFeastDay,
+      data.featuredScriptureRef,
+      data.featuredScriptureSummary,
+      data.discussionTitle,
+      data.discussionDescription,
+      data.discussionImage,
+      data.discussionCloses,
+      data.citations?.map((c: any) => new ScriptureCitation(c.reference, c.summary, c.id)) ?? [],
+      data.featuredEssays ?? [],
+    )
+  }
 
   async getWeekly(): Promise<Weekly | null> {
     const data = await prisma.weekly.findUnique({
@@ -97,17 +94,6 @@ export class PrismaWeeklyRepo implements WeeklyRepository {
     return this.toDomain(data)
   }
 
-  async updateScripture(input: readingsDTO): Promise<Weekly> {
-    const data = await prisma.weekly.update({
-      where: { id: 1 },
-      data: {
-        citation.reference: input.reference,
-        featuredScriptureSummary: input.summary,
-      }
-    })
-    return this.toDomain(data)
-  }
-
   async updateFeaturedDiscussion(input: featuredDiscussionDTO): Promise<Weekly> {
     const data = await prisma.weekly.update({
       where: { id: 1 },
@@ -120,8 +106,21 @@ export class PrismaWeeklyRepo implements WeeklyRepository {
     })
     return this.toDomain(data)
   }
-//update you
+
+  // The featured verse — fields on Weekly 
   async updateFeaturedScripture(input: featuredScriptureDTO): Promise<Weekly> {
+    const data = await prisma.weekly.update({
+      where: { id: 1 },
+      data: {
+        featuredScriptureRef: input.featuredScriptureRef,
+        featuredScriptureSummary: input.featuredScriptureSummary,
+      }
+    })
+    return this.toDomain(data)
+  }
+
+  // The READINGS array — ScriptureCitation table
+  async updateReadings(input: readingsDTO): Promise<Weekly> {
     await prisma.scriptureCitation.deleteMany({ where: { weeklyId: 1 } })
     await prisma.scriptureCitation.createMany({
       data: input.citations.map((c) => ({

@@ -42,8 +42,10 @@ export default function adminPage(){
     function addCitation(){
         setForm((prev)=>({...prev, citations: [...prev.citations, {reference: "",summary: ""}]}))
     }
-
-    function handleFeaturedDiscussion(){
+    function removeCitation(){
+        setForm((prev)=>({...prev, citations: prev.citations.slice(0,-1)}))
+    }
+    function handleUpdateFeaturedDiscussion(){
         const dto: featuredDiscussionDTO ={
             discussionTitle: form.discussionTitle,
             discussionDescription: form.discussionDescription,
@@ -53,7 +55,7 @@ export default function adminPage(){
         save("discussion",dto);
     }
 
-    function handleSaint(){
+    function handleUpdateSaint(){
         const dto: saintDTO ={
             saintName: form.saintName,
             saintDescription: form.saintDescription,
@@ -62,14 +64,14 @@ export default function adminPage(){
         save("saint",dto);
     }
 
-    function handleReadings(){
+    function handleUpdateReadings(){
         const dto: readingsDTO = {
             citations: form.citations,
         }
         save("readings",dto);
     }
 
-    function handleFeaturedScripture(){
+    function handleUpdateFeaturedScripture(){
         const dto: featuredScriptureDTO ={
             featuredScriptureRef: form.featuredScriptureRef,
             featuredScriptureSummary: form.featuredScriptureSummary,
@@ -79,11 +81,18 @@ export default function adminPage(){
 
     return(
         <div className="flex flex-col items-center">
-            <div className="mt-8 text-3xl font-cinzel text-white/[.66]">Update Home Page</div>
-            <div className="flex flex-col">
-                <input type="text" value={form.discussionTitle} onChange={(e)=>set("saintName",e.target.value)}/>
+            <div className="mt-8 text-4xl font-cinzel text-white/[.66]">Update Home Page</div>
+            <div className="flex flex-col mt-5">
+                <p className="text-2xl font-cinzel text-white/[.66] ">Featured Discussion</p>
+                <div className="flex flex-col border border-white/66 font-garamond">
+                    <input type="text" value={form.discussionTitle} onChange={(e)=>set("discussionTitle",e.target.value)} className="" placeholder="Discussion Title"/>
+                    <input type="text" value={form.discussionDescription} onChange={(e)=>set("discussionDescription",e.target.value)} className="" placeholder="Discussion Description"/>
+                    <input type="text" value={form.discussionImage} onChange={(e)=>set("discussionImage",e.target.value)} className="" placeholder="Discussion Image"/>
+                    <input type="text" value={form.discussionCloses} onChange={(e)=>set("discussionCloses",e.target.value)} className="" placeholder="Discussion Closes"/>
+                </div>
             </div>
-
+            <button onClick={handleUpdateFeaturedDiscussion} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Featured Discussion</button>
+ 
         </div>
     )
 }

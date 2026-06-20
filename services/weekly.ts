@@ -3,12 +3,16 @@ import { PrismaWeeklyRepo, PrismaEssayRepo } from "@/repository/weekly";
 import { WeeklyDTO } from "@/src/dto/discussionDTO";
 import { Weekly, Essay } from "@/src/domain/scripture";
 import { PrismaUserRepository } from "@/repository/users";
-import { featuredDiscussionDTO, featuredScripture, saintDTO, scriptureDTO } from "@/src/dto/weeklyDTO";
+import { featuredDiscussionDTO, featuredScriptureDTO, saintDTO, readingsDTO } from "@/src/dto/weeklyDTO";
 
 //INSTANTIATE REPOS
 const weeklyRepo = new PrismaWeeklyRepo()
 const essayRepo = new PrismaEssayRepo()
 const userRepo = new PrismaUserRepository();
+
+export async function getWeekly():Promise<Weekly|null>{
+    return await weeklyRepo.getWeekly();
+}
 
 export async function updateFeaturedDiscussion(input: featuredDiscussionDTO):Promise<Weekly>{
     return await weeklyRepo.updateFeaturedDiscussion(input)
@@ -16,10 +20,10 @@ export async function updateFeaturedDiscussion(input: featuredDiscussionDTO):Pro
 export async function updateSaint(input: saintDTO):Promise<Weekly>{
     return await weeklyRepo.updateSaint(input)
 }
-export async function updateScripture(input: scriptureDTO):Promise<Weekly>{
+export async function updateReadings(input: readingsDTO):Promise<Weekly>{
     return await weeklyRepo.updateScripture(input)
 }
-export async function updateFeaturedScripture(input: featuredScripture):Promise<Weekly>{
+export async function updateFeaturedScripture(input: featuredScriptureDTO):Promise<Weekly>{
     return await weeklyRepo.updateFeaturedScripture(input)
 }
 

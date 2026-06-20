@@ -1523,12 +1523,12 @@ export namespace Prisma {
    */
 
   export type WeeklyCountOutputType = {
-    citation: number
+    citations: number
     featuredEssays: number
   }
 
   export type WeeklyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    citation?: boolean | WeeklyCountOutputTypeCountCitationArgs
+    citations?: boolean | WeeklyCountOutputTypeCountCitationsArgs
     featuredEssays?: boolean | WeeklyCountOutputTypeCountFeaturedEssaysArgs
   }
 
@@ -1546,7 +1546,7 @@ export namespace Prisma {
   /**
    * WeeklyCountOutputType without action
    */
-  export type WeeklyCountOutputTypeCountCitationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WeeklyCountOutputTypeCountCitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScriptureCitationWhereInput
   }
 
@@ -6217,6 +6217,12 @@ export namespace Prisma {
     saintName: string | null
     saintDescription: string | null
     saintFeastDay: string | null
+    featuredScriptureRef: string | null
+    featuredScriptureSummary: string | null
+    discussionTitle: string | null
+    discussionDescription: string | null
+    discussionImage: string | null
+    discussionCloses: string | null
   }
 
   export type WeeklyMaxAggregateOutputType = {
@@ -6224,6 +6230,12 @@ export namespace Prisma {
     saintName: string | null
     saintDescription: string | null
     saintFeastDay: string | null
+    featuredScriptureRef: string | null
+    featuredScriptureSummary: string | null
+    discussionTitle: string | null
+    discussionDescription: string | null
+    discussionImage: string | null
+    discussionCloses: string | null
   }
 
   export type WeeklyCountAggregateOutputType = {
@@ -6231,6 +6243,12 @@ export namespace Prisma {
     saintName: number
     saintDescription: number
     saintFeastDay: number
+    featuredScriptureRef: number
+    featuredScriptureSummary: number
+    discussionTitle: number
+    discussionDescription: number
+    discussionImage: number
+    discussionCloses: number
     _all: number
   }
 
@@ -6248,6 +6266,12 @@ export namespace Prisma {
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
+    featuredScriptureRef?: true
+    featuredScriptureSummary?: true
+    discussionTitle?: true
+    discussionDescription?: true
+    discussionImage?: true
+    discussionCloses?: true
   }
 
   export type WeeklyMaxAggregateInputType = {
@@ -6255,6 +6279,12 @@ export namespace Prisma {
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
+    featuredScriptureRef?: true
+    featuredScriptureSummary?: true
+    discussionTitle?: true
+    discussionDescription?: true
+    discussionImage?: true
+    discussionCloses?: true
   }
 
   export type WeeklyCountAggregateInputType = {
@@ -6262,6 +6292,12 @@ export namespace Prisma {
     saintName?: true
     saintDescription?: true
     saintFeastDay?: true
+    featuredScriptureRef?: true
+    featuredScriptureSummary?: true
+    discussionTitle?: true
+    discussionDescription?: true
+    discussionImage?: true
+    discussionCloses?: true
     _all?: true
   }
 
@@ -6356,6 +6392,12 @@ export namespace Prisma {
     saintName: string
     saintDescription: string
     saintFeastDay: string
+    featuredScriptureRef: string
+    featuredScriptureSummary: string
+    discussionTitle: string
+    discussionDescription: string
+    discussionImage: string
+    discussionCloses: string
     _count: WeeklyCountAggregateOutputType | null
     _avg: WeeklyAvgAggregateOutputType | null
     _sum: WeeklySumAggregateOutputType | null
@@ -6382,7 +6424,13 @@ export namespace Prisma {
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
-    citation?: boolean | Weekly$citationArgs<ExtArgs>
+    featuredScriptureRef?: boolean
+    featuredScriptureSummary?: boolean
+    discussionTitle?: boolean
+    discussionDescription?: boolean
+    discussionImage?: boolean
+    discussionCloses?: boolean
+    citations?: boolean | Weekly$citationsArgs<ExtArgs>
     featuredEssays?: boolean | Weekly$featuredEssaysArgs<ExtArgs>
     _count?: boolean | WeeklyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["weekly"]>
@@ -6392,6 +6440,12 @@ export namespace Prisma {
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
+    featuredScriptureRef?: boolean
+    featuredScriptureSummary?: boolean
+    discussionTitle?: boolean
+    discussionDescription?: boolean
+    discussionImage?: boolean
+    discussionCloses?: boolean
   }, ExtArgs["result"]["weekly"]>
 
   export type WeeklySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6399,6 +6453,12 @@ export namespace Prisma {
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
+    featuredScriptureRef?: boolean
+    featuredScriptureSummary?: boolean
+    discussionTitle?: boolean
+    discussionDescription?: boolean
+    discussionImage?: boolean
+    discussionCloses?: boolean
   }, ExtArgs["result"]["weekly"]>
 
   export type WeeklySelectScalar = {
@@ -6406,11 +6466,17 @@ export namespace Prisma {
     saintName?: boolean
     saintDescription?: boolean
     saintFeastDay?: boolean
+    featuredScriptureRef?: boolean
+    featuredScriptureSummary?: boolean
+    discussionTitle?: boolean
+    discussionDescription?: boolean
+    discussionImage?: boolean
+    discussionCloses?: boolean
   }
 
-  export type WeeklyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "saintName" | "saintDescription" | "saintFeastDay", ExtArgs["result"]["weekly"]>
+  export type WeeklyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "saintName" | "saintDescription" | "saintFeastDay" | "featuredScriptureRef" | "featuredScriptureSummary" | "discussionTitle" | "discussionDescription" | "discussionImage" | "discussionCloses", ExtArgs["result"]["weekly"]>
   export type WeeklyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    citation?: boolean | Weekly$citationArgs<ExtArgs>
+    citations?: boolean | Weekly$citationsArgs<ExtArgs>
     featuredEssays?: boolean | Weekly$featuredEssaysArgs<ExtArgs>
     _count?: boolean | WeeklyCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -6420,7 +6486,7 @@ export namespace Prisma {
   export type $WeeklyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Weekly"
     objects: {
-      citation: Prisma.$ScriptureCitationPayload<ExtArgs>[]
+      citations: Prisma.$ScriptureCitationPayload<ExtArgs>[]
       featuredEssays: Prisma.$EssayPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6428,6 +6494,12 @@ export namespace Prisma {
       saintName: string
       saintDescription: string
       saintFeastDay: string
+      featuredScriptureRef: string
+      featuredScriptureSummary: string
+      discussionTitle: string
+      discussionDescription: string
+      discussionImage: string
+      discussionCloses: string
     }, ExtArgs["result"]["weekly"]>
     composites: {}
   }
@@ -6822,7 +6894,7 @@ export namespace Prisma {
    */
   export interface Prisma__WeeklyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    citation<T extends Weekly$citationArgs<ExtArgs> = {}>(args?: Subset<T, Weekly$citationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    citations<T extends Weekly$citationsArgs<ExtArgs> = {}>(args?: Subset<T, Weekly$citationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptureCitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     featuredEssays<T extends Weekly$featuredEssaysArgs<ExtArgs> = {}>(args?: Subset<T, Weekly$featuredEssaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EssayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6857,6 +6929,12 @@ export namespace Prisma {
     readonly saintName: FieldRef<"Weekly", 'String'>
     readonly saintDescription: FieldRef<"Weekly", 'String'>
     readonly saintFeastDay: FieldRef<"Weekly", 'String'>
+    readonly featuredScriptureRef: FieldRef<"Weekly", 'String'>
+    readonly featuredScriptureSummary: FieldRef<"Weekly", 'String'>
+    readonly discussionTitle: FieldRef<"Weekly", 'String'>
+    readonly discussionDescription: FieldRef<"Weekly", 'String'>
+    readonly discussionImage: FieldRef<"Weekly", 'String'>
+    readonly discussionCloses: FieldRef<"Weekly", 'String'>
   }
     
 
@@ -7080,7 +7158,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Weekly.
      */
-    data: XOR<WeeklyCreateInput, WeeklyUncheckedCreateInput>
+    data?: XOR<WeeklyCreateInput, WeeklyUncheckedCreateInput>
   }
 
   /**
@@ -7250,9 +7328,9 @@ export namespace Prisma {
   }
 
   /**
-   * Weekly.citation
+   * Weekly.citations
    */
-  export type Weekly$citationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Weekly$citationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ScriptureCitation
      */
@@ -8484,25 +8562,22 @@ export namespace Prisma {
 
   export type ScriptureCitationMinAggregateOutputType = {
     id: number | null
-    scriptureBook: string | null
-    scriptureChapter: string | null
-    scriptureVerse: string | null
+    reference: string | null
+    summary: string | null
     weeklyId: number | null
   }
 
   export type ScriptureCitationMaxAggregateOutputType = {
     id: number | null
-    scriptureBook: string | null
-    scriptureChapter: string | null
-    scriptureVerse: string | null
+    reference: string | null
+    summary: string | null
     weeklyId: number | null
   }
 
   export type ScriptureCitationCountAggregateOutputType = {
     id: number
-    scriptureBook: number
-    scriptureChapter: number
-    scriptureVerse: number
+    reference: number
+    summary: number
     weeklyId: number
     _all: number
   }
@@ -8520,25 +8595,22 @@ export namespace Prisma {
 
   export type ScriptureCitationMinAggregateInputType = {
     id?: true
-    scriptureBook?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
+    reference?: true
+    summary?: true
     weeklyId?: true
   }
 
   export type ScriptureCitationMaxAggregateInputType = {
     id?: true
-    scriptureBook?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
+    reference?: true
+    summary?: true
     weeklyId?: true
   }
 
   export type ScriptureCitationCountAggregateInputType = {
     id?: true
-    scriptureBook?: true
-    scriptureChapter?: true
-    scriptureVerse?: true
+    reference?: true
+    summary?: true
     weeklyId?: true
     _all?: true
   }
@@ -8631,9 +8703,8 @@ export namespace Prisma {
 
   export type ScriptureCitationGroupByOutputType = {
     id: number
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
     weeklyId: number
     _count: ScriptureCitationCountAggregateOutputType | null
     _avg: ScriptureCitationAvgAggregateOutputType | null
@@ -8658,40 +8729,36 @@ export namespace Prisma {
 
   export type ScriptureCitationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureBook?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
+    reference?: boolean
+    summary?: boolean
     weeklyId?: boolean
     weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scriptureCitation"]>
 
   export type ScriptureCitationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureBook?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
+    reference?: boolean
+    summary?: boolean
     weeklyId?: boolean
     weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scriptureCitation"]>
 
   export type ScriptureCitationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    scriptureBook?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
+    reference?: boolean
+    summary?: boolean
     weeklyId?: boolean
     weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scriptureCitation"]>
 
   export type ScriptureCitationSelectScalar = {
     id?: boolean
-    scriptureBook?: boolean
-    scriptureChapter?: boolean
-    scriptureVerse?: boolean
+    reference?: boolean
+    summary?: boolean
     weeklyId?: boolean
   }
 
-  export type ScriptureCitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "scriptureBook" | "scriptureChapter" | "scriptureVerse" | "weeklyId", ExtArgs["result"]["scriptureCitation"]>
+  export type ScriptureCitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "reference" | "summary" | "weeklyId", ExtArgs["result"]["scriptureCitation"]>
   export type ScriptureCitationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     weekly?: boolean | WeeklyDefaultArgs<ExtArgs>
   }
@@ -8709,9 +8776,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      scriptureBook: string
-      scriptureChapter: string
-      scriptureVerse: string
+      reference: string
+      summary: string
       weeklyId: number
     }, ExtArgs["result"]["scriptureCitation"]>
     composites: {}
@@ -9138,9 +9204,8 @@ export namespace Prisma {
    */
   interface ScriptureCitationFieldRefs {
     readonly id: FieldRef<"ScriptureCitation", 'Int'>
-    readonly scriptureBook: FieldRef<"ScriptureCitation", 'String'>
-    readonly scriptureChapter: FieldRef<"ScriptureCitation", 'String'>
-    readonly scriptureVerse: FieldRef<"ScriptureCitation", 'String'>
+    readonly reference: FieldRef<"ScriptureCitation", 'String'>
+    readonly summary: FieldRef<"ScriptureCitation", 'String'>
     readonly weeklyId: FieldRef<"ScriptureCitation", 'Int'>
   }
     
@@ -9624,7 +9689,13 @@ export namespace Prisma {
     id: 'id',
     saintName: 'saintName',
     saintDescription: 'saintDescription',
-    saintFeastDay: 'saintFeastDay'
+    saintFeastDay: 'saintFeastDay',
+    featuredScriptureRef: 'featuredScriptureRef',
+    featuredScriptureSummary: 'featuredScriptureSummary',
+    discussionTitle: 'discussionTitle',
+    discussionDescription: 'discussionDescription',
+    discussionImage: 'discussionImage',
+    discussionCloses: 'discussionCloses'
   };
 
   export type WeeklyScalarFieldEnum = (typeof WeeklyScalarFieldEnum)[keyof typeof WeeklyScalarFieldEnum]
@@ -9644,9 +9715,8 @@ export namespace Prisma {
 
   export const ScriptureCitationScalarFieldEnum: {
     id: 'id',
-    scriptureBook: 'scriptureBook',
-    scriptureChapter: 'scriptureChapter',
-    scriptureVerse: 'scriptureVerse',
+    reference: 'reference',
+    summary: 'summary',
     weeklyId: 'weeklyId'
   };
 
@@ -10010,7 +10080,13 @@ export namespace Prisma {
     saintName?: StringFilter<"Weekly"> | string
     saintDescription?: StringFilter<"Weekly"> | string
     saintFeastDay?: StringFilter<"Weekly"> | string
-    citation?: ScriptureCitationListRelationFilter
+    featuredScriptureRef?: StringFilter<"Weekly"> | string
+    featuredScriptureSummary?: StringFilter<"Weekly"> | string
+    discussionTitle?: StringFilter<"Weekly"> | string
+    discussionDescription?: StringFilter<"Weekly"> | string
+    discussionImage?: StringFilter<"Weekly"> | string
+    discussionCloses?: StringFilter<"Weekly"> | string
+    citations?: ScriptureCitationListRelationFilter
     featuredEssays?: EssayListRelationFilter
   }
 
@@ -10019,7 +10095,13 @@ export namespace Prisma {
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
-    citation?: ScriptureCitationOrderByRelationAggregateInput
+    featuredScriptureRef?: SortOrder
+    featuredScriptureSummary?: SortOrder
+    discussionTitle?: SortOrder
+    discussionDescription?: SortOrder
+    discussionImage?: SortOrder
+    discussionCloses?: SortOrder
+    citations?: ScriptureCitationOrderByRelationAggregateInput
     featuredEssays?: EssayOrderByRelationAggregateInput
   }
 
@@ -10031,7 +10113,13 @@ export namespace Prisma {
     saintName?: StringFilter<"Weekly"> | string
     saintDescription?: StringFilter<"Weekly"> | string
     saintFeastDay?: StringFilter<"Weekly"> | string
-    citation?: ScriptureCitationListRelationFilter
+    featuredScriptureRef?: StringFilter<"Weekly"> | string
+    featuredScriptureSummary?: StringFilter<"Weekly"> | string
+    discussionTitle?: StringFilter<"Weekly"> | string
+    discussionDescription?: StringFilter<"Weekly"> | string
+    discussionImage?: StringFilter<"Weekly"> | string
+    discussionCloses?: StringFilter<"Weekly"> | string
+    citations?: ScriptureCitationListRelationFilter
     featuredEssays?: EssayListRelationFilter
   }, "id">
 
@@ -10040,6 +10128,12 @@ export namespace Prisma {
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
+    featuredScriptureRef?: SortOrder
+    featuredScriptureSummary?: SortOrder
+    discussionTitle?: SortOrder
+    discussionDescription?: SortOrder
+    discussionImage?: SortOrder
+    discussionCloses?: SortOrder
     _count?: WeeklyCountOrderByAggregateInput
     _avg?: WeeklyAvgOrderByAggregateInput
     _max?: WeeklyMaxOrderByAggregateInput
@@ -10055,6 +10149,12 @@ export namespace Prisma {
     saintName?: StringWithAggregatesFilter<"Weekly"> | string
     saintDescription?: StringWithAggregatesFilter<"Weekly"> | string
     saintFeastDay?: StringWithAggregatesFilter<"Weekly"> | string
+    featuredScriptureRef?: StringWithAggregatesFilter<"Weekly"> | string
+    featuredScriptureSummary?: StringWithAggregatesFilter<"Weekly"> | string
+    discussionTitle?: StringWithAggregatesFilter<"Weekly"> | string
+    discussionDescription?: StringWithAggregatesFilter<"Weekly"> | string
+    discussionImage?: StringWithAggregatesFilter<"Weekly"> | string
+    discussionCloses?: StringWithAggregatesFilter<"Weekly"> | string
   }
 
   export type EssayWhereInput = {
@@ -10127,18 +10227,16 @@ export namespace Prisma {
     OR?: ScriptureCitationWhereInput[]
     NOT?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
     id?: IntFilter<"ScriptureCitation"> | number
-    scriptureBook?: StringFilter<"ScriptureCitation"> | string
-    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
-    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    reference?: StringFilter<"ScriptureCitation"> | string
+    summary?: StringFilter<"ScriptureCitation"> | string
     weeklyId?: IntFilter<"ScriptureCitation"> | number
     weekly?: XOR<WeeklyScalarRelationFilter, WeeklyWhereInput>
   }
 
   export type ScriptureCitationOrderByWithRelationInput = {
     id?: SortOrder
-    scriptureBook?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
+    reference?: SortOrder
+    summary?: SortOrder
     weeklyId?: SortOrder
     weekly?: WeeklyOrderByWithRelationInput
   }
@@ -10148,18 +10246,16 @@ export namespace Prisma {
     AND?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
     OR?: ScriptureCitationWhereInput[]
     NOT?: ScriptureCitationWhereInput | ScriptureCitationWhereInput[]
-    scriptureBook?: StringFilter<"ScriptureCitation"> | string
-    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
-    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    reference?: StringFilter<"ScriptureCitation"> | string
+    summary?: StringFilter<"ScriptureCitation"> | string
     weeklyId?: IntFilter<"ScriptureCitation"> | number
     weekly?: XOR<WeeklyScalarRelationFilter, WeeklyWhereInput>
   }, "id">
 
   export type ScriptureCitationOrderByWithAggregationInput = {
     id?: SortOrder
-    scriptureBook?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
+    reference?: SortOrder
+    summary?: SortOrder
     weeklyId?: SortOrder
     _count?: ScriptureCitationCountOrderByAggregateInput
     _avg?: ScriptureCitationAvgOrderByAggregateInput
@@ -10173,9 +10269,8 @@ export namespace Prisma {
     OR?: ScriptureCitationScalarWhereWithAggregatesInput[]
     NOT?: ScriptureCitationScalarWhereWithAggregatesInput | ScriptureCitationScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ScriptureCitation"> | number
-    scriptureBook?: StringWithAggregatesFilter<"ScriptureCitation"> | string
-    scriptureChapter?: StringWithAggregatesFilter<"ScriptureCitation"> | string
-    scriptureVerse?: StringWithAggregatesFilter<"ScriptureCitation"> | string
+    reference?: StringWithAggregatesFilter<"ScriptureCitation"> | string
+    summary?: StringWithAggregatesFilter<"ScriptureCitation"> | string
     weeklyId?: IntWithAggregatesFilter<"ScriptureCitation"> | number
   }
 
@@ -10421,27 +10516,47 @@ export namespace Prisma {
   }
 
   export type WeeklyCreateInput = {
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
-    citation?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
+    id?: number
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
+    citations?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
     featuredEssays?: EssayCreateNestedManyWithoutFeaturedInInput
   }
 
   export type WeeklyUncheckedCreateInput = {
     id?: number
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
-    citation?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
+    citations?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
     featuredEssays?: EssayUncheckedCreateNestedManyWithoutFeaturedInInput
   }
 
   export type WeeklyUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
-    citation?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
+    citations?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
     featuredEssays?: EssayUpdateManyWithoutFeaturedInNestedInput
   }
 
@@ -10450,21 +10565,40 @@ export namespace Prisma {
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
-    citation?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
+    citations?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
     featuredEssays?: EssayUncheckedUpdateManyWithoutFeaturedInNestedInput
   }
 
   export type WeeklyCreateManyInput = {
     id?: number
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
   }
 
   export type WeeklyUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
   }
 
   export type WeeklyUncheckedUpdateManyInput = {
@@ -10472,6 +10606,12 @@ export namespace Prisma {
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
   }
 
   export type EssayCreateInput = {
@@ -10538,54 +10678,47 @@ export namespace Prisma {
   }
 
   export type ScriptureCitationCreateInput = {
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
-    weekly: WeeklyCreateNestedOneWithoutCitationInput
+    reference: string
+    summary: string
+    weekly: WeeklyCreateNestedOneWithoutCitationsInput
   }
 
   export type ScriptureCitationUncheckedCreateInput = {
     id?: number
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
     weeklyId: number
   }
 
   export type ScriptureCitationUpdateInput = {
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
-    weekly?: WeeklyUpdateOneRequiredWithoutCitationNestedInput
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    weekly?: WeeklyUpdateOneRequiredWithoutCitationsNestedInput
   }
 
   export type ScriptureCitationUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     weeklyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScriptureCitationCreateManyInput = {
     id?: number
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
     weeklyId: number
   }
 
   export type ScriptureCitationUpdateManyMutationInput = {
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
   export type ScriptureCitationUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     weeklyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10962,6 +11095,12 @@ export namespace Prisma {
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
+    featuredScriptureRef?: SortOrder
+    featuredScriptureSummary?: SortOrder
+    discussionTitle?: SortOrder
+    discussionDescription?: SortOrder
+    discussionImage?: SortOrder
+    discussionCloses?: SortOrder
   }
 
   export type WeeklyAvgOrderByAggregateInput = {
@@ -10973,6 +11112,12 @@ export namespace Prisma {
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
+    featuredScriptureRef?: SortOrder
+    featuredScriptureSummary?: SortOrder
+    discussionTitle?: SortOrder
+    discussionDescription?: SortOrder
+    discussionImage?: SortOrder
+    discussionCloses?: SortOrder
   }
 
   export type WeeklyMinOrderByAggregateInput = {
@@ -10980,6 +11125,12 @@ export namespace Prisma {
     saintName?: SortOrder
     saintDescription?: SortOrder
     saintFeastDay?: SortOrder
+    featuredScriptureRef?: SortOrder
+    featuredScriptureSummary?: SortOrder
+    discussionTitle?: SortOrder
+    discussionDescription?: SortOrder
+    discussionImage?: SortOrder
+    discussionCloses?: SortOrder
   }
 
   export type WeeklySumOrderByAggregateInput = {
@@ -11040,9 +11191,8 @@ export namespace Prisma {
 
   export type ScriptureCitationCountOrderByAggregateInput = {
     id?: SortOrder
-    scriptureBook?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
+    reference?: SortOrder
+    summary?: SortOrder
     weeklyId?: SortOrder
   }
 
@@ -11053,17 +11203,15 @@ export namespace Prisma {
 
   export type ScriptureCitationMaxOrderByAggregateInput = {
     id?: SortOrder
-    scriptureBook?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
+    reference?: SortOrder
+    summary?: SortOrder
     weeklyId?: SortOrder
   }
 
   export type ScriptureCitationMinOrderByAggregateInput = {
     id?: SortOrder
-    scriptureBook?: SortOrder
-    scriptureChapter?: SortOrder
-    scriptureVerse?: SortOrder
+    reference?: SortOrder
+    summary?: SortOrder
     weeklyId?: SortOrder
   }
 
@@ -11559,18 +11707,18 @@ export namespace Prisma {
     deleteMany?: WeeklyScalarWhereInput | WeeklyScalarWhereInput[]
   }
 
-  export type WeeklyCreateNestedOneWithoutCitationInput = {
-    create?: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
-    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationInput
+  export type WeeklyCreateNestedOneWithoutCitationsInput = {
+    create?: XOR<WeeklyCreateWithoutCitationsInput, WeeklyUncheckedCreateWithoutCitationsInput>
+    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationsInput
     connect?: WeeklyWhereUniqueInput
   }
 
-  export type WeeklyUpdateOneRequiredWithoutCitationNestedInput = {
-    create?: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
-    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationInput
-    upsert?: WeeklyUpsertWithoutCitationInput
+  export type WeeklyUpdateOneRequiredWithoutCitationsNestedInput = {
+    create?: XOR<WeeklyCreateWithoutCitationsInput, WeeklyUncheckedCreateWithoutCitationsInput>
+    connectOrCreate?: WeeklyCreateOrConnectWithoutCitationsInput
+    upsert?: WeeklyUpsertWithoutCitationsInput
     connect?: WeeklyWhereUniqueInput
-    update?: XOR<XOR<WeeklyUpdateToOneWithWhereWithoutCitationInput, WeeklyUpdateWithoutCitationInput>, WeeklyUncheckedUpdateWithoutCitationInput>
+    update?: XOR<XOR<WeeklyUpdateToOneWithWhereWithoutCitationsInput, WeeklyUpdateWithoutCitationsInput>, WeeklyUncheckedUpdateWithoutCitationsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12327,16 +12475,14 @@ export namespace Prisma {
   }
 
   export type ScriptureCitationCreateWithoutWeeklyInput = {
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
   }
 
   export type ScriptureCitationUncheckedCreateWithoutWeeklyInput = {
     id?: number
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
   }
 
   export type ScriptureCitationCreateOrConnectWithoutWeeklyInput = {
@@ -12392,9 +12538,8 @@ export namespace Prisma {
     OR?: ScriptureCitationScalarWhereInput[]
     NOT?: ScriptureCitationScalarWhereInput | ScriptureCitationScalarWhereInput[]
     id?: IntFilter<"ScriptureCitation"> | number
-    scriptureBook?: StringFilter<"ScriptureCitation"> | string
-    scriptureChapter?: StringFilter<"ScriptureCitation"> | string
-    scriptureVerse?: StringFilter<"ScriptureCitation"> | string
+    reference?: StringFilter<"ScriptureCitation"> | string
+    summary?: StringFilter<"ScriptureCitation"> | string
     weeklyId?: IntFilter<"ScriptureCitation"> | number
   }
 
@@ -12443,18 +12588,31 @@ export namespace Prisma {
   }
 
   export type WeeklyCreateWithoutFeaturedEssaysInput = {
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
-    citation?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
+    id?: number
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
+    citations?: ScriptureCitationCreateNestedManyWithoutWeeklyInput
   }
 
   export type WeeklyUncheckedCreateWithoutFeaturedEssaysInput = {
     id?: number
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
-    citation?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
+    citations?: ScriptureCitationUncheckedCreateNestedManyWithoutWeeklyInput
   }
 
   export type WeeklyCreateOrConnectWithoutFeaturedEssaysInput = {
@@ -12520,51 +12678,83 @@ export namespace Prisma {
     saintName?: StringFilter<"Weekly"> | string
     saintDescription?: StringFilter<"Weekly"> | string
     saintFeastDay?: StringFilter<"Weekly"> | string
+    featuredScriptureRef?: StringFilter<"Weekly"> | string
+    featuredScriptureSummary?: StringFilter<"Weekly"> | string
+    discussionTitle?: StringFilter<"Weekly"> | string
+    discussionDescription?: StringFilter<"Weekly"> | string
+    discussionImage?: StringFilter<"Weekly"> | string
+    discussionCloses?: StringFilter<"Weekly"> | string
   }
 
-  export type WeeklyCreateWithoutCitationInput = {
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
+  export type WeeklyCreateWithoutCitationsInput = {
+    id?: number
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
     featuredEssays?: EssayCreateNestedManyWithoutFeaturedInInput
   }
 
-  export type WeeklyUncheckedCreateWithoutCitationInput = {
+  export type WeeklyUncheckedCreateWithoutCitationsInput = {
     id?: number
-    saintName: string
-    saintDescription: string
-    saintFeastDay: string
+    saintName?: string
+    saintDescription?: string
+    saintFeastDay?: string
+    featuredScriptureRef?: string
+    featuredScriptureSummary?: string
+    discussionTitle?: string
+    discussionDescription?: string
+    discussionImage?: string
+    discussionCloses?: string
     featuredEssays?: EssayUncheckedCreateNestedManyWithoutFeaturedInInput
   }
 
-  export type WeeklyCreateOrConnectWithoutCitationInput = {
+  export type WeeklyCreateOrConnectWithoutCitationsInput = {
     where: WeeklyWhereUniqueInput
-    create: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+    create: XOR<WeeklyCreateWithoutCitationsInput, WeeklyUncheckedCreateWithoutCitationsInput>
   }
 
-  export type WeeklyUpsertWithoutCitationInput = {
-    update: XOR<WeeklyUpdateWithoutCitationInput, WeeklyUncheckedUpdateWithoutCitationInput>
-    create: XOR<WeeklyCreateWithoutCitationInput, WeeklyUncheckedCreateWithoutCitationInput>
+  export type WeeklyUpsertWithoutCitationsInput = {
+    update: XOR<WeeklyUpdateWithoutCitationsInput, WeeklyUncheckedUpdateWithoutCitationsInput>
+    create: XOR<WeeklyCreateWithoutCitationsInput, WeeklyUncheckedCreateWithoutCitationsInput>
     where?: WeeklyWhereInput
   }
 
-  export type WeeklyUpdateToOneWithWhereWithoutCitationInput = {
+  export type WeeklyUpdateToOneWithWhereWithoutCitationsInput = {
     where?: WeeklyWhereInput
-    data: XOR<WeeklyUpdateWithoutCitationInput, WeeklyUncheckedUpdateWithoutCitationInput>
+    data: XOR<WeeklyUpdateWithoutCitationsInput, WeeklyUncheckedUpdateWithoutCitationsInput>
   }
 
-  export type WeeklyUpdateWithoutCitationInput = {
-    saintName?: StringFieldUpdateOperationsInput | string
-    saintDescription?: StringFieldUpdateOperationsInput | string
-    saintFeastDay?: StringFieldUpdateOperationsInput | string
-    featuredEssays?: EssayUpdateManyWithoutFeaturedInNestedInput
-  }
-
-  export type WeeklyUncheckedUpdateWithoutCitationInput = {
+  export type WeeklyUpdateWithoutCitationsInput = {
     id?: IntFieldUpdateOperationsInput | number
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
+    featuredEssays?: EssayUpdateManyWithoutFeaturedInNestedInput
+  }
+
+  export type WeeklyUncheckedUpdateWithoutCitationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    saintName?: StringFieldUpdateOperationsInput | string
+    saintDescription?: StringFieldUpdateOperationsInput | string
+    saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
     featuredEssays?: EssayUncheckedUpdateManyWithoutFeaturedInNestedInput
   }
 
@@ -12743,29 +12933,25 @@ export namespace Prisma {
 
   export type ScriptureCitationCreateManyWeeklyInput = {
     id?: number
-    scriptureBook: string
-    scriptureChapter: string
-    scriptureVerse: string
+    reference: string
+    summary: string
   }
 
   export type ScriptureCitationUpdateWithoutWeeklyInput = {
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
   export type ScriptureCitationUncheckedUpdateWithoutWeeklyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
   export type ScriptureCitationUncheckedUpdateManyWithoutWeeklyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    scriptureBook?: StringFieldUpdateOperationsInput | string
-    scriptureChapter?: StringFieldUpdateOperationsInput | string
-    scriptureVerse?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
   export type EssayUpdateWithoutFeaturedInInput = {
@@ -12795,10 +12981,17 @@ export namespace Prisma {
   }
 
   export type WeeklyUpdateWithoutFeaturedEssaysInput = {
+    id?: IntFieldUpdateOperationsInput | number
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
-    citation?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
+    citations?: ScriptureCitationUpdateManyWithoutWeeklyNestedInput
   }
 
   export type WeeklyUncheckedUpdateWithoutFeaturedEssaysInput = {
@@ -12806,7 +12999,13 @@ export namespace Prisma {
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
-    citation?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
+    citations?: ScriptureCitationUncheckedUpdateManyWithoutWeeklyNestedInput
   }
 
   export type WeeklyUncheckedUpdateManyWithoutFeaturedEssaysInput = {
@@ -12814,6 +13013,12 @@ export namespace Prisma {
     saintName?: StringFieldUpdateOperationsInput | string
     saintDescription?: StringFieldUpdateOperationsInput | string
     saintFeastDay?: StringFieldUpdateOperationsInput | string
+    featuredScriptureRef?: StringFieldUpdateOperationsInput | string
+    featuredScriptureSummary?: StringFieldUpdateOperationsInput | string
+    discussionTitle?: StringFieldUpdateOperationsInput | string
+    discussionDescription?: StringFieldUpdateOperationsInput | string
+    discussionImage?: StringFieldUpdateOperationsInput | string
+    discussionCloses?: StringFieldUpdateOperationsInput | string
   }
 
 

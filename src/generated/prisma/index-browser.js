@@ -157,7 +157,13 @@ exports.Prisma.WeeklyScalarFieldEnum = {
   id: 'id',
   saintName: 'saintName',
   saintDescription: 'saintDescription',
-  saintFeastDay: 'saintFeastDay'
+  saintFeastDay: 'saintFeastDay',
+  featuredScriptureRef: 'featuredScriptureRef',
+  featuredScriptureSummary: 'featuredScriptureSummary',
+  discussionTitle: 'discussionTitle',
+  discussionDescription: 'discussionDescription',
+  discussionImage: 'discussionImage',
+  discussionCloses: 'discussionCloses'
 };
 
 exports.Prisma.EssayScalarFieldEnum = {
@@ -171,9 +177,8 @@ exports.Prisma.EssayScalarFieldEnum = {
 
 exports.Prisma.ScriptureCitationScalarFieldEnum = {
   id: 'id',
-  scriptureBook: 'scriptureBook',
-  scriptureChapter: 'scriptureChapter',
-  scriptureVerse: 'scriptureVerse',
+  reference: 'reference',
+  summary: 'summary',
   weeklyId: 'weeklyId'
 };
 

@@ -1,7 +1,7 @@
 import { Weekly, Essay, ScriptureCitation } from "@/src/domain/scripture";
 import prisma from "@/src/lib/prisma";
 import { WeeklyDTO } from "@/src/dto/discussionDTO";
-import { featuredDiscussionDTO, saintDTO, scriptureDTO, featuredScripture } from "@/src/dto/weeklyDTO";
+import { featuredDiscussionDTO, saintDTO, readingsDTO, featuredScriptureDTO } from "@/src/dto/weeklyDTO";
 
 export interface EssayRepository { 
     createEssay(essay: Essay):Promise<Essay|null>
@@ -15,8 +15,8 @@ export interface WeeklyRepository {
 
     updateFeaturedDiscussion(input:featuredDiscussionDTO): Promise<Weekly>;
     updateSaint(input:saintDTO): Promise<Weekly>;
-    updateScripture(input:scriptureDTO): Promise<Weekly>;
-    updateFeaturedScripture(input:featuredScripture): Promise<Weekly>;
+    updateScripture(input:readingsDTO): Promise<Weekly>;
+    updateFeaturedScripture(input:featuredScriptureDTO): Promise<Weekly>;
 
 }
 
@@ -97,12 +97,12 @@ export class PrismaWeeklyRepo implements WeeklyRepository {
     return this.toDomain(data)
   }
 
-  async updateScripture(input: scriptureDTO): Promise<Weekly> {
+  async updateScripture(input: readingsDTO): Promise<Weekly> {
     const data = await prisma.weekly.update({
       where: { id: 1 },
       data: {
-        featuredScriptureRef: input.featuredScriptureRef,
-        featuredScriptureSummary: input.featuredScriptureSummary,
+        citation.reference: input.reference,
+        featuredScriptureSummary: input.summary,
       }
     })
     return this.toDomain(data)
@@ -121,7 +121,7 @@ export class PrismaWeeklyRepo implements WeeklyRepository {
     return this.toDomain(data)
   }
 //update you
-  async updateFeaturedScripture(input: featuredScripture): Promise<Weekly> {
+  async updateFeaturedScripture(input: featuredScriptureDTO): Promise<Weekly> {
     await prisma.scriptureCitation.deleteMany({ where: { weeklyId: 1 } })
     await prisma.scriptureCitation.createMany({
       data: input.citations.map((c) => ({

@@ -7,6 +7,7 @@ export class Discussion {
     text: string;
     authorId: number;
     createdAt?: Date;
+    discussionImage?: string;
     //Constructor1.Default/
     constructor(discussionTitle:string, discussionText:string, authorId:number, id:number|null=null,createdAt?: Date){
         if(!authorId)throw new Error("A authorId was not provided, Im low Level!");

@@ -1,36 +1,30 @@
-import { NextResponse } from "next/server";
-import {getWeekly, updateFeaturedDiscussion, updateSaint, updateReadings, updateFeaturedScripture} from "@/services/weekly";
+import { NextResponse, NextRequest } from "next/server";
+import { getWeekly, updateFeaturedDiscussion, updateSaint, updateReadings, updateFeaturedScripture } from "@/services/weekly";
+import { verifyAdmin } from "@/src/lib/Admin"; 
+export async function POST(request: NextRequest) {
+    const adminUser = await verifyAdmin(request);
 
-
-export async function GET(req:Request){
-    try{
-        const weekly = await getWeekly()
-        return Response.json({message:"Weekly Recieved", weekly}, {status:200})
-    }catch(err:any){
-        return Response.json({message:err.message||"An error occured"},{status:400})
+    if (!adminUser) {
+        return NextResponse.json({ error: "Unauthorized access denied" }, { status: 401 });
     }
-}
-export async function POST(req:Request, section:string){
-    
-    try{
-        const body = await req.json()
-        const {section, ...data} = body
 
-        switch(section){
+    try {
+        const body = await request.json(); 
+        const { section, ...data } = body;
+
+        switch (section) {
             case "discussion":
-                return NextResponse.json(await updateFeaturedDiscussion(data))
+                return NextResponse.json(await updateFeaturedDiscussion(data));
             case "saint":
-                return NextResponse.json(await updateSaint(data))
+                return NextResponse.json(await updateSaint(data));
             case "readings":
-                return NextResponse.json(await updateReadings(data))
+                return NextResponse.json(await updateReadings(data));
             case "featuredScripture":
-                return NextResponse.json(await updateFeaturedScripture(data))
+                return NextResponse.json(await updateFeaturedScripture(data));
             default:
-                return NextResponse.json({ error: "Unknown section" }, { status: 400 })
-            }
-    }catch(err:any){
-        const errorMessage = err.message;
-        console.log(errorMessage);
-        return Response.json({message:err.message||"Unknown error updating values"},{status:500})
+                return NextResponse.json({ error: "Unknown section" }, { status: 400 });
+        }
+    } catch (err: any) {
+        return NextResponse.json({ message: err.message || "Unknown error updating values" }, { status: 500 });
     }
 }

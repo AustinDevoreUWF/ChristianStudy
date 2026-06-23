@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { featuredDiscussionDTO, saintDTO, readingsDTO, featuredScriptureDTO } from "@/src/dto/weeklyDTO";
 import { UploadImage } from "@/components/ui/discussion/UploadImg"
+import { useAuth } from "@/components/ui/context/AuthContext";
 export default function adminPage(){
+    const { user, loading } = useAuth();
     //object literal
     const [form, setForm] = useState({
         discussionTitle: "",
@@ -17,6 +19,10 @@ export default function adminPage(){
         citations: [] as { reference:string; summary:string;}[],//citations typing broken down in object notation
     });
     const [uploading, setUploading] = useState(false);
+    
+    if (!user || !user.isAdmin) {
+            return <div className="text-red-500 text-center pt-20 font-cinzel text-xl">Access Denied. Admins Only.</div>;
+        }
 
     async function handleImageSelect(e:React.ChangeEvent<HTMLInputElement>){
         const file = e.target.files?.[0];
@@ -95,6 +101,7 @@ export default function adminPage(){
     }
 
     return(
+
         <div className="flex flex-col items-center">
             <div className="mt-8 text-4xl font-cinzel text-white/[.66]">Update Home Page</div>
  
@@ -152,5 +159,6 @@ export default function adminPage(){
             <button onClick={handleUpdateReadings} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Readings</button>
  
         </div>
+
     )
 }

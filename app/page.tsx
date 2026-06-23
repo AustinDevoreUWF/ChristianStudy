@@ -21,7 +21,7 @@ export default async function Home() {
       {/*LinkBar */}
       <div className="mb-10 m-0 px-10">
         <ul className="flex justify-center list-none cursor-pointer">
-          {["essay","discussion","users","References"].map((item) => (
+          {["essay","discussion","users","References","profile"].map((item) => (
             <li key={item} className="last:border-r-0 border-r border-white/[.08]">
               <Link href={item} className="flex px-8 items-center justify-center px-6 py-[.45rem] font-cinzel text-xs text-white/[.22] hover:text-white/60 transition-colors no-underline">
                 {item}
@@ -41,11 +41,15 @@ export default async function Home() {
         {/*Left Column*/}
           <div className=" mt-10 mr-10 pb-10">
             <p className=" border-b mb-5 pb-3 font-cinzel uppercase text-sm  text-[rgba(190,165,105,0.6)]">This week</p>
+            <p className="font-cinzel text-md  tracking-wide mb-3 text-center text-[rgba(190,165,105,0.6)]">Saint</p>
+            <div className="h-px w-10 bg-[rgba(190,165,105,0.3)] mx-auto mt-1 mb-4" />
             <p className="font-cinzel text-xl font-bold text-white/[.6] tracking-wider">{weekly.saintName}</p>
             <p className="text-[rgba(190,165,105,0.6)] font-cinzel text-xs">{weekly.saintFeastDay}</p>
             <p className="text-white/[.22] font-garamond italic pt-5 ">{weekly.saintDescription}</p>
-            <ul className="list-none mt-8">{weekly.citations.map((item)=>(
-              <li key={item} className="mt-3">
+            <p className="font-cinzel text-md  tracking-wide mt-5 text-center text-[rgba(190,165,105,0.6)]">Readings</p>
+            <div className="h-px w-10 bg-[rgba(190,165,105,0.3)] mx-auto mt-1 mb-4" />
+            <ul className="list-none mt-5">{weekly.citations.map((item)=>(
+              <li key={item.reference} className="mt-3">
                 <a className="text-[rgba(190,165,105,0.6)] font-cinzel text-sm tracking-widest flex flex-col">
                   {item.reference}
                 </a>
@@ -59,16 +63,20 @@ export default async function Home() {
           <div className="px-10 pb-10 mt-10">
             <p className=" border-b mb-5 pb-3 font-cinzel uppercase text-sm  text-[rgba(63,104,53,0.6)]">Featured Discussion This Week</p>
             <div className="w-full h-70 border border-white/[.40] relative shadow-[0_0_25px_rgba(63,104,53,0.5)]">
-              <Image src={weekly.discussionImage} fill alt="discussion" className="object-cover object-top " />
+              <Image src={weekly.discussionImage} fill alt="discussion" className="object-cover object-top  border-b-1" />
             </div>
+            <div className="h-px w- bg-[rgba(63,104,53,0.6)] mx-auto mt-3" />
             <p className=" text-xl font-cinzel text-white/[.6] font-medium pt-5">{weekly.discussionTitle}</p>
             <p className="text-lg font-garamond italic text-white/[.22] pt-1">{weekly.discussionDescription}</p>
             <div className="flex flex-row tracking-widest">
               <p className="text-sm text-white/[.22] font-cinzel pt-5 pl-5"> {weekly.discussionCloses}</p>
             </div> 
             <div className="flex justify-center">
-              <button className="w-full mt-5 p-10 font-cinzel text-lg tracking-[0.2em] uppercase text-white/30 border border-white/10 bg-transparent  hover:text-white/60 hover:border-white/30 hover:bg-white/[.01] cursor-pointer transition-all">Join the Discussion →</button>
+              <Link href="/discussion" className="w-full">
+                <button className="w-full mt-5 p-10 font-cinzel text-lg tracking-[0.2em] uppercase text-white/30 border border-white/10 bg-transparent  hover:text-white/60 hover:border-white/30 hover:bg-white/[.01] cursor-pointer transition-all">Join the Discussion →</button>
+              </Link>
             </div>
+
           </div>
         {/*Divider */}
           <div className="bg-white/[.08]"/>
@@ -76,11 +84,11 @@ export default async function Home() {
           <div className="px-10 pb-10 mt-10">
             <p className=" border-b mb-5 pb-3 font-cinzel uppercase text-sm  text-[rgba(37,100,172,0.6)]">Selected Essays</p>
             <ul>{essays.map((item)=>(
-              <li key={item} className="flex-col mb-5 border-t  first:border-t-0">
+              <li key={item.title} className="flex-col mb-5 border-t  first:border-t-0">
                 <span className="flex flex-col text-[rgba(37,100,172,0.6)] font-cinzel text-sm mt-5">
                   {item.category}
                 </span>
-                <span className="text-white/[.60] font-garamond flex flex-col ">{item.title}</span>
+                <Link href={"/essay"} className="text-white/[.60] font-garamond flex flex-col ">{item.title}</Link>
                 {/*<span className="text-white/[.22] font-cinzel text-xs ">{item.mins} min Read</span>*/}
               </li>
             ))}</ul>

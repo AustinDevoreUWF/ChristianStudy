@@ -8,6 +8,7 @@ export default async function Home() {
     return <div className="text-white text-center pt-20">Loading layout...</div>;
   }
 
+  //adding a comment for refresh
   return (
     <main className="bg-[#0c0c0c] min-h-screen ">
       {/* MastHead */}

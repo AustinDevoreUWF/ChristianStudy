@@ -21,7 +21,7 @@ export default async function Home() {
       {/*LinkBar */}
       <div className="mb-10 m-0 px-10">
         <ul className="flex justify-center list-none cursor-pointer">
-          {["essay","discussion","users","References","profile"].map((item) => (
+          {["essay","discussion","users","references","profile"].map((item) => (
             <li key={item} className="last:border-r-0 border-r border-white/[.08]">
               <Link href={item} className="flex px-8 items-center justify-center px-6 py-[.45rem] font-cinzel text-xs text-white/[.22] hover:text-white/60 transition-colors no-underline">
                 {item}

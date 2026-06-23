@@ -14,14 +14,17 @@ async function main() {
         where: { id: 1 },
         update: {},
         create: {
-            id: 1,
-            scriptureChapter: "",
-            scriptureVerse: "",
-            scriptureBook: "",
-            saintName: "",
-            saintDescription: "",
-            saintFeastDay: "",
-        }
+    id: 1,
+    saintName: "Saint Name Here",
+    saintDescription: "Description here",
+    saintFeastDay: "Feast day info",
+    featuredScriptureRef: "John 3:16", // <-- Use this instead of book/chapter/verse
+    featuredScriptureSummary: "For God so loved the world...", 
+    discussionTitle: "Weekly Discussion Title",
+    discussionDescription: "Discussion details",
+    discussionImage: "",
+    discussionCloses: ""
+}
     })
     console.log("Seeded weekly record")
 }

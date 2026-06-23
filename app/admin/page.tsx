@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import { featuredDiscussionDTO, saintDTO, readingsDTO, featuredScriptureDTO } from "@/src/dto/weeklyDTO";
-
+import { UploadImage } from "@/components/ui/discussion/UploadImg"
 export default function adminPage(){
     //object literal
     const [form, setForm] = useState({
@@ -16,6 +16,22 @@ export default function adminPage(){
         featuredScriptureSummary: "",
         citations: [] as { reference:string; summary:string;}[],//citations typing broken down in object notation
     });
+    const [uploading, setUploading] = useState(false);
+
+    async function handleImageSelect(e:React.ChangeEvent<HTMLInputElement>){
+        const file = e.target.files?.[0];
+        if(!file) return;
+        setUploading(true);
+        try{
+            const url = await UploadImage(file);
+            set("discussionImage",url);
+        }catch(err){
+            console.error(err);
+        }finally{
+            setUploading(false);
+        }
+    }
+
     async function save(inputType: string, input: object){
         const res = await fetch(`/api/weekly`,{
             method:"POST",
@@ -88,7 +104,11 @@ export default function adminPage(){
                 <div className="flex flex-col border border-white/66 font-garamond">
                     <input type="text" value={form.discussionTitle} onChange={(e)=>set("discussionTitle",e.target.value)} className="" placeholder="Discussion Title"/>
                     <input type="text" value={form.discussionDescription} onChange={(e)=>set("discussionDescription",e.target.value)} className="" placeholder="Discussion Description"/>
-                    <input type="text" value={form.discussionImage} onChange={(e)=>set("discussionImage",e.target.value)} className="" placeholder="Discussion Image"/>
+                    <input type="file" accept="image/*" onChange={handleImageSelect} className=""/>
+                    {uploading && <p className="text-white/50 text-sm">Uploading...</p>}
+                    {form.discussionImage && (
+                        <img src={form.discussionImage} alt="preview" className="h-24 mt-1 object-cover"/>
+                    )}
                     <input type="text" value={form.discussionCloses} onChange={(e)=>set("discussionCloses",e.target.value)} className="" placeholder="Discussion Closes"/>
                 </div>
             </div>

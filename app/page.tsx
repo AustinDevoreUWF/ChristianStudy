@@ -15,7 +15,7 @@ export default async function Home() {
       <div className="text-center pt-10 px-10">
         <div className="h-[2px] bg-white/[.18]"/>
         <div className="h-px bg-white/[.08] mt-2"/>
-        <div className="h-20  py-5 text-7xl font-cinzel tracking-[.5rem] font- text-white/60 mb-5">Studying Faith</div>
+        <div className="h-20  py-5 text-7xl font-cinzel tracking-[.5rem] font- text-white/60 mb-5">Dove</div>
         <p className="font-cinzel tracking-[.4rem] pb-3 text-xs uppercase text-white/30">Discussions · Essays · Readings</p>
         <div className="h-[2px] bg-white/[.08] "/>
       </div>

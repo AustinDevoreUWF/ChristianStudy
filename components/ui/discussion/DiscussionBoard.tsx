@@ -5,7 +5,7 @@ export default async function DiscussionBoard() {
   const discussions = await getAllDiscussions();
 
   return (
-    <main className="flex justify-center w-full my-20">
+    <main className="flex justify-center w-full my-4 sm:my-10 lg:my-20 px-4 sm:px-0">
       <div style={{
         backgroundColor: "#080808",
         border: "1px solid rgba(255,255,255,0.08)",
@@ -14,13 +14,13 @@ export default async function DiscussionBoard() {
         maxWidth: "800px",
         maxHeight: "90vh",
         overflowY: "auto",
-        padding: "2rem",
-      }}>
+        padding: "1rem",
+      }} className="sm:p-8">
 
         {/* Heading */}
         <p style={{
           fontFamily: "var(--font-cinzel)",
-          fontSize: "1.1rem",
+          fontSize: "clamp(0.9rem, 5vw, 1.1rem)",
           fontWeight: 400,
           letterSpacing: "0.14em",
           color: "#ffffff",
@@ -28,7 +28,7 @@ export default async function DiscussionBoard() {
         }}>
           Discussions
         </p>
-        <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "2rem" }} />
+        <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "1rem" }} className="sm:mb-8" />
 
         {/* Discussion list */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

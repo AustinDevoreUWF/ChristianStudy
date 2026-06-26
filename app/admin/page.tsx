@@ -102,50 +102,50 @@ export default function adminPage(){
 
     return(
 
-        <div className="flex flex-col items-center">
-            <div className="mt-8 text-4xl font-cinzel text-white/[.66]">Update Home Page</div>
+        <div className="flex flex-col items-center px-4 sm:px-8">
+            <div className="mt-4 sm:mt-8 text-2xl sm:text-4xl font-cinzel text-white/[.66]">Update Home Page</div>
  
             {/* Featured Discussion */}
-            <div className="flex flex-col mt-5">
-                <p className="text-2xl font-cinzel text-white/[.66] ">Featured Discussion</p>
+            <div className="flex flex-col mt-4 sm:mt-5 w-full max-w-2xl">
+                <p className="text-xl sm:text-2xl font-cinzel text-white/[.66]">Featured Discussion</p>
                 <div className="flex flex-col border border-white/66 font-garamond">
-                    <input type="text" value={form.discussionTitle} onChange={(e)=>set("discussionTitle",e.target.value)} className="" placeholder="Discussion Title"/>
-                    <input type="text" value={form.discussionDescription} onChange={(e)=>set("discussionDescription",e.target.value)} className="" placeholder="Discussion Description"/>
-                    <input type="file" accept="image/*" onChange={handleImageSelect} className=""/>
-                    {uploading && <p className="text-white/50 text-sm">Uploading...</p>}
+                    <input type="text" value={form.discussionTitle} onChange={(e)=>set("discussionTitle",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Discussion Title"/>
+                    <input type="text" value={form.discussionDescription} onChange={(e)=>set("discussionDescription",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Discussion Description"/>
+                    <input type="file" accept="image/*" onChange={handleImageSelect} className="p-2 text-sm"/>
+                    {uploading && <p className="text-white/50 text-xs sm:text-sm">Uploading...</p>}
                     {form.discussionImage && (
-                        <img src={form.discussionImage} alt="preview" className="h-24 mt-1 object-cover"/>
+                        <img src={form.discussionImage} alt="preview" className="h-16 sm:h-24 mt-1 object-cover"/>
                     )}
-                    <input type="text" value={form.discussionCloses} onChange={(e)=>set("discussionCloses",e.target.value)} className="" placeholder="Discussion Closes"/>
+                    <input type="text" value={form.discussionCloses} onChange={(e)=>set("discussionCloses",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Discussion Closes"/>
                 </div>
             </div>
-            <button onClick={handleUpdateFeaturedDiscussion} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Featured Discussion</button>
+            <button onClick={handleUpdateFeaturedDiscussion} className="bg-white/66 text-black font-garamond mt-2 px-3 sm:px-4 py-1 sm:py-2 text-sm sm:text-base rounded hover:cursor-pointer">Save Featured Discussion</button>
  
             {/* Saint */}
-            <div className="flex flex-col mt-5">
-                <p className="text-2xl font-cinzel text-white/[.66] ">Saint of the Week</p>
+            <div className="flex flex-col mt-4 sm:mt-5 w-full max-w-2xl">
+                <p className="text-xl sm:text-2xl font-cinzel text-white/[.66]">Saint of the Week</p>
                 <div className="flex flex-col border border-white/66 font-garamond">
-                    <input type="text" value={form.saintName} onChange={(e)=>set("saintName",e.target.value)} className="" placeholder="Saint Name"/>
-                    <input type="text" value={form.saintFeastDay} onChange={(e)=>set("saintFeastDay",e.target.value)} className="" placeholder="Feast Day"/>
-                    <input type="text" value={form.saintDescription} onChange={(e)=>set("saintDescription",e.target.value)} className="" placeholder="Saint Description"/>
+                    <input type="text" value={form.saintName} onChange={(e)=>set("saintName",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Saint Name"/>
+                    <input type="text" value={form.saintFeastDay} onChange={(e)=>set("saintFeastDay",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Feast Day"/>
+                    <input type="text" value={form.saintDescription} onChange={(e)=>set("saintDescription",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Saint Description"/>
                 </div>
             </div>
-            <button onClick={handleUpdateSaint} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Saint</button>
+            <button onClick={handleUpdateSaint} className="bg-white/66 text-black font-garamond mt-2 px-3 sm:px-4 py-1 sm:py-2 text-sm sm:text-base rounded hover:cursor-pointer">Save Saint</button>
  
             {/* Featured Scripture (the single quote at the top) */}
-            <div className="flex flex-col mt-5">
-                <p className="text-2xl font-cinzel text-white/[.66] ">Featured Scripture</p>
+            <div className="flex flex-col mt-4 sm:mt-5 w-full max-w-2xl">
+                <p className="text-xl sm:text-2xl font-cinzel text-white/[.66]">Featured Scripture</p>
                 <div className="flex flex-col border border-white/66 font-garamond">
-                    <input type="text" value={form.featuredScriptureRef} onChange={(e)=>set("featuredScriptureRef",e.target.value)} className="" placeholder="Reference (e.g. Romans 8:28)"/>
-                    <input type="text" value={form.featuredScriptureSummary} onChange={(e)=>set("featuredScriptureSummary",e.target.value)} className="" placeholder="Your summary"/>
+                    <input type="text" value={form.featuredScriptureRef} onChange={(e)=>set("featuredScriptureRef",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Reference (e.g. Romans 8:28)"/>
+                    <input type="text" value={form.featuredScriptureSummary} onChange={(e)=>set("featuredScriptureSummary",e.target.value)} className="p-2 text-sm sm:text-base" placeholder="Your summary"/>
                 </div>
             </div>
-            <button onClick={handleUpdateFeaturedScripture} className="bg-white/66 text-black font-garamond mt-2 px-4 py-2 rounded hover:cursor-pointer">Save Featured Scripture</button>
+            <button onClick={handleUpdateFeaturedScripture} className="bg-white/66 text-black font-garamond mt-2 px-3 sm:px-4 py-1 sm:py-2 text-sm sm:text-base rounded hover:cursor-pointer">Save Featured Scripture</button>
  
             {/* Readings (the array) */}
-            <div className="flex flex-col mt-5 w-full max-w-md">
-                <p className="text-2xl font-cinzel text-white/[.66] ">Readings</p>
-                <div className="flex flex-col gap-3 font-garamond">
+            <div className="flex flex-col mt-4 sm:mt-5 w-full max-w-2xl">
+                <p className="text-xl sm:text-2xl font-cinzel text-white/[.66]">Readings</p>
+                <div className="flex flex-col gap-2 sm:gap-3 font-garamond">
                     {form.citations.map((c, i) => (
                         <div key={i} className="flex flex-col border border-white/66 p-2 relative">
                             <button onClick={()=>removeCitation(i)} className="absolute top-1 right-2 text-white/40 hover:text-white/80 text-sm">x</button>

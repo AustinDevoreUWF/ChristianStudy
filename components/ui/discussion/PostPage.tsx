@@ -14,20 +14,20 @@ export default async function DiscussionPostPage({discussion,replies,discussionI
 
  return (
         <main>{/*Start at top=0 bottom=0*/}
-            <div style={{position:"fixed",left:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
-            <div style={{position:"fixed",right:"2rem",top:0,bottom:0,width:"1px",background:"rgba(255,255,255,0.08)"}} />
+            <div className="hidden sm:block fixed left-2rem top-0 bottom-0 w-px bg-white/10" />
+            <div className="hidden sm:block fixed right-2rem top-0 bottom-0 w-px bg-white/10" />
 
-            <div className="p-40 bg-[#080808] min-h-screen">
-                <h1 className="font-cinzel text-3xl text-white font-bold">
+            <div className="p-4 sm:p-10 lg:p-15 pt-10 bg-[#080808] min-h-screen">
+                <h1 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl text-white font-bold">
                     {discussion.title}
                 </h1>
-                <div className="flex flex-row gap-3">
-                    <p className="font-garamond text-white/30 text-lg">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                    <p className="font-garamond text-white/30 text-sm sm:text-base lg:text-lg leading-relaxed">
                         By {discussion.userName} &bull; {new Date(discussion.createdAt!).toLocaleDateString()}
                     </p>
                     <DeleteDiscussion authorId={discussion.authorId} id={discussionId}/>
                 </div>
-                <p className=" text-white/70 mt-8 whitespace-pre-wrap font-lora">
+                <p className="text-white/70 mt-6 sm:mt-8 whitespace-pre-wrap font-garamond text-base sm:text-lg lg:text-xl leading-relaxed break-words">
                     {discussion.text}
                 </p>
                 <ReplyList replies={replies} discussionId={discussionId}/>

@@ -59,18 +59,19 @@ export default function CreateDiscussion() {
           onClick={() => setOpen(true)}
           style={{
             position: "fixed",
-            top: "7.5rem",
-            right: "1.5rem",
+            top: "clamp(6rem, 5vh, 7.5rem)",
+            right: "clamp(1rem, 5vw, 1.5rem)",
             background: "transparent",
             border: "1px solid rgba(255,255,255,0.20)",
             color: "rgba(255,255,255,0.60)",
             fontFamily: "var(--font-cinzel)",
-            fontSize: "0.75rem",
+            fontSize: "clamp(0.65rem, 3vw, 0.75rem)",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            padding: "0.65rem 1.25rem",
+            padding: "0.5rem 1rem",
             cursor: "pointer",
             transition: "background 0.2s, color 0.2s, border-color 0.2s",
+            zIndex: 40,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "#ffffff";
@@ -97,6 +98,7 @@ export default function CreateDiscussion() {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 50,
+          padding: "1rem",
         }}>
           <form
             onSubmit={handleSubmit}
@@ -104,17 +106,19 @@ export default function CreateDiscussion() {
               background: "#080808",
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: "12px",
-              padding: "2rem",
+              padding: "clamp(1rem, 5vw, 2rem)",
               width: "100%",
               maxWidth: "520px",
+              maxHeight: "90vh",
               display: "flex",
               flexDirection: "column",
+              overflowY: "auto",
             }}
           >
             {/* Heading */}
             <p style={{
               fontFamily: "var(--font-cinzel)",
-              fontSize: "1.1rem",
+              fontSize: "clamp(0.95rem, 4vw, 1.1rem)",
               fontWeight: 400,
               letterSpacing: "0.14em",
               color: "#ffffff",
@@ -122,7 +126,7 @@ export default function CreateDiscussion() {
             }}>
               New Discussion
             </p>
-            <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "2rem" }} />
+            <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.20)", marginBottom: "1.5rem" }} />
 
             {/* Topic */}
             <input

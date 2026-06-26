@@ -55,12 +55,12 @@ export default function ReplyList({ replies,discussionId }: { replies: ReplyDTO[
     const topLevelReplies = replies.filter(x => x.parentId === null)
 
     return (
-    <div className="mt-2 pt-2 border-t border-white/19">
+    <div className="mt-2 pt-4 border-t border-white/19">
         <CreateReply discussionId={discussionId} parentId={parentId} open={open} setOpen={setOpen} />
         <ReplyButton onReply={()=>handleReply(null)}/>
         <div className="">
             {replies.length === 0 ? (
-                <p className="text-white/19 font-garamond">No replies yet. Want to start the conversation?</p>
+                <p className="text-white/30 text-xl font-garamond flex justify-center mt-10">Start the conversation?</p>
             ) : (//go over each root reply and search for its children else display root.
                 topLevelReplies.map(reply=>(
                     <ReplyItem 

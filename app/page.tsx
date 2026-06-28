@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAllEssays, getWeekly} from "@/services/weekly";
+import LinkBar from "@/components/LinkBar";
+
 export default async function Home() {
   const essays = await getAllEssays();
   const weekly = await getWeekly();
@@ -20,18 +22,7 @@ export default async function Home() {
         <div className="h-[2px] bg-white/[.08]"/>
       </div>
       {/*LinkBar */}
-      <div className="mb-6 sm:mb-10 m-0 px-4 sm:px-10">
-        <ul className="flex justify-center list-none cursor-pointer flex-wrap gap-1 sm:gap-0">
-          {["essay","discussion","users","references","profile"].map((item) => (
-            <li key={item} className="last:border-r-0 border-r border-white/[.08]">
-              <Link href={item} className="flex px-2 sm:px-6 items-center justify-center py-1 sm:py-[.45rem] font-cinzel text-xs text-white1 hover:text-white/60 transition-colors no-underline">
-                {item}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="h-px bg-white/[.08]"/>
-      </div>
+      <LinkBar />
       {/*Scripture section*/}
       <div className="text-center text-lg sm:text-2xl font-garamond text-white1 italic px-4 sm:px-20 pt-6 sm:pt-10">
           <p>"{weekly.featuredScriptureSummary}"</p>

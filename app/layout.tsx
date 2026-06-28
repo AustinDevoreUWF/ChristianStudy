@@ -46,7 +46,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${garamond.variable} ${lora.variable} ${noticia.variable} antialiased`}>
-        <AuthProvider>
+        <AuthProvider >
                 {children}
         </AuthProvider>
       </body>

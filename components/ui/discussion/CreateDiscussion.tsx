@@ -52,15 +52,12 @@ export default function CreateDiscussion() {
   }
 
   return (
-    <div>
+    <div className="flex">
       {/* Trigger button */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
           style={{
-            position: "fixed",
-            top: "clamp(6rem, 5vh, 7.5rem)",
-            right: "clamp(1rem, 5vw, 1.5rem)",
             background: "transparent",
             border: "1px solid rgba(255,255,255,0.20)",
             color: "rgba(255,255,255,0.60)",

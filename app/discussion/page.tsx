@@ -4,9 +4,12 @@ import DiscussionBoard from "@/components/ui/discussion/DiscussionBoard";
 
 export default async function DiscussionPage() {
   return (
-    <main className="flex h-screen overflow-y-auto bg-[#080808]" style={{ background: "#080808" }}>
+    <main className="flex flex-col h-screen overflow-y-auto bg-[#080808]" style={{ background: "#080808" }}>
+      
+      <div className="flex justify-end mt-5 mr-5">
+        <CreateDiscussion />
+      </div>
       <DiscussionBoard />
-      <CreateDiscussion />
     </main>
   )
 }
